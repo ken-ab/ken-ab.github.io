@@ -83,7 +83,7 @@ export const applications: TimelineEntry[] = [
   {
     id: "applied-sciences-olympic",
     period: "2024.12 - 2025.06",
-    title: "Applied Sciences / Olympic Medal Prediction Research",
+    title: "Predicting Olympic Medal Performance for 2028: Machine Learning Models and the Impact of Host and Coaching Effects",
     role: "First Author",
     type: "Research / Machine Learning / Sports Analytics",
     description:
@@ -95,7 +95,7 @@ export const applications: TimelineEntry[] = [
       "Used factor analysis to reduce ten influencing variables into principal components.",
       "Treated as the featured research card on this page.",
     ],
-    actions: [{ label: "Paper", href: "#", external: false }],
+    actions: [{ label: "Paper", href: "https://doi.org/10.3390/app15147793", external: true }],
     emphasis: "featured",
   },
   {
@@ -128,11 +128,12 @@ export const applications: TimelineEntry[] = [
   {
     id: "sustainability",
     period: "2025.04 - 2025.07",
-    title: "Sustainability Research",
+    title:
+      "Behavior Prediction of Connections in Eco-Designed Thin-Walled Steel–Ply–Bamboo Structures Based on Machine Learning for Mechanical Properties.",
     type: "Research Paper / Sustainability",
     description: "A sustainability-related research work, shown as a secondary research card.",
     tags: ["Sustainability", "Modeling", "Decision Analysis"],
-    actions: [{ label: "View Detail", href: "#" }],
+    actions: [{ label: "Paper", href: "https://doi.org/10.3390/su17156753", external: true }],
     emphasis: "medium",
   },
   {
