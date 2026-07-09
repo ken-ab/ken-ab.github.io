@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import type { TimelineEntry, Tone } from "../../data/portfolio";
+import { sortTimelineEntries } from "../../utils/timelineSort";
 import { ActionButton } from "./ActionButton";
 import { TagList } from "./TagList";
 
@@ -9,9 +10,11 @@ type TimelineProps = {
 };
 
 export function Timeline({ items, tone }: TimelineProps) {
+  const sortedItems = sortTimelineEntries(items);
+
   return (
     <ol className={`timeline-list tone-${tone}`}>
-      {items.map((item, index) => (
+      {sortedItems.map((item, index) => (
         <li
           className={`timeline-item is-${item.emphasis ?? "medium"}`}
           key={item.id}

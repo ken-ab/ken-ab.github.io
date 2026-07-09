@@ -2,8 +2,11 @@ import type { CSSProperties } from "react";
 import { SectionHero } from "../components/portfolio/SectionHero";
 import { SystemProjectCard } from "../components/portfolio/SystemProjectCard";
 import { developmentProjects } from "../data/portfolio";
+import { sortTimelineEntries } from "../utils/timelineSort";
 
 export function DevelopmentProjects() {
+  const sortedProjects = sortTimelineEntries(developmentProjects);
+
   return (
     <main className="page-shell page-enter">
       <SectionHero
@@ -14,7 +17,7 @@ export function DevelopmentProjects() {
       />
 
       <ol className="project-timeline tone-systems">
-        {developmentProjects.map((project, index) => (
+        {sortedProjects.map((project, index) => (
           <li
             className={`project-timeline-item is-${project.emphasis ?? "medium"}`}
             key={project.id}
