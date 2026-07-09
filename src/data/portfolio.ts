@@ -39,23 +39,23 @@ export const profile = {
   githubLabel: "github.com/ken-ab",
   email: "zzk13373667812@gmail.com",
   wechat: "zzk13373667812",
-  currently: `Incoming MSc student at PolyU
-Vibe coding mini programs and playful AI prototypes
-Exploring Generative AI and Multimodal Learning`,
+  currently: `Incoming Data Science student at PolyU
+Research focus: efficient GenAI, MoE, and model adaptation
+Building agentic AI and ML-system prototypes`,
   researchInterests:
-    "Efficient Generative AI · Multimodal Foundation Models · Vision-Language Learning · Diffusion Models · 3D/4D Vision",
-  technicalFocus: "PyTorch · Transformers · Diffusion Models · VLMs · Model Compression · PEFT",
+    "Efficient Generative AI · Mixture-of-Experts · Model Adaptation and Reuse · Multimodal and Agentic Learning",
+  technicalFocus: "Python · PyTorch · TensorFlow · Transformers · BERT · ChatGLM · MoE · scikit-learn",
   lookingFor:
     "Research Assistantship · GenAI / Multimodal Learning · Efficient AI · Agentic AI Systems",
   focus: "Multimodal / Multi-Agent AI Research · AI Systems Engineering",
   availability: "Research Assistantship · Research Collaboration",
   intro: `I'm Zhenkai Zhang (Ken), an incoming Data Science student at PolyU with a background in mathematical modeling, machine learning, and AI system development.
 
-My undergraduate work spans research-oriented machine learning and industry-oriented AI development. I have authored a first-author JCR Q2 SCI paper on Olympic medal prediction, contributed as the second student author to a JCR Q2 SCI paper on mechanical behavior prediction for thin-walled steel–ply–bamboo structures, and completed a first-author conference review on advanced MoE architectures from DeepSpeed-MoE to DeepSeek-V3. I also received the MCM/ICM Meritorious Winner award and maintained a GPA of 3.94/4.0.
+My undergraduate work spans research-oriented machine learning and industry-oriented AI development. My publication record includes a first-author AINIT 2025 paper on advanced MoE architectures, a first-author Applied Sciences paper on Olympic medal prediction, a third-author Sustainability paper on thin-walled steel-ply-bamboo structural behavior prediction, a second-author robotic vision review, and a third-author DEIC 2025 paper on digital service trade. I also received the MCM Meritorious Winner award and maintained a GPA of 88/100.
 
 On the engineering side, I participated in the development of the EnergyQuant investment platform, independently built a Finance Agent system for analyzing 4,000+ stocks, and launched two mini programs using Codex.
 
-My current interests lie in efficient generative AI, multimodal foundation models, and agentic AI systems. I am seeking research assistantship opportunities where I can contribute to experiments, benchmarking, system prototyping, and paper writing.`,
+My current interests lie in efficient generative AI, Mixture-of-Experts, model adaptation and reuse, and agentic AI systems. I am seeking research assistantship opportunities where I can contribute to experiments, benchmarking, system prototyping, and paper writing.`,
 };
 
 export const homeLanes = [
@@ -82,12 +82,12 @@ export const homeLanes = [
 export const applications: TimelineEntry[] = [
   {
     id: "applied-sciences-olympic",
-    period: "2024.12 - 2025.06",
-    title: "Predicting Olympic Medal Performance for 2028: Machine Learning Models and the Impact of Host and Coaching Effects",
+    period: "07/2025",
+    title: "Predicting Olympic Medal Performance for 2028: Machine Learning Models and the Impact of Host and Coaching Effect",
     role: "First Author",
-    type: "Research / Machine Learning / Sports Analytics",
+    type: "Applied Sciences, 2025 / Machine Learning / Sports Analytics",
     description:
-      "A machine learning study for predicting medal performance at the 2028 Olympic Games, combining historical Olympic data, country clustering, feature reduction and multiple predictive models.",
+      "A machine learning study for predicting medal performance at the 2028 Olympic Games, combining factor analysis, time-series analysis, machine learning, and Bayesian regression.",
     tags: ["K-means", "Factor Analysis", "ARIMA", "XGBoost", "FCNN", "Bayesian Regression", "Olympic Data"],
     highlights: [
       "Built separate modeling pipelines for medal-winning and non-medal countries.",
@@ -100,51 +100,53 @@ export const applications: TimelineEntry[] = [
   },
   {
     id: "ainit-moe",
-    period: "2025.04",
-    title: "AINIT 2025 / MoE Conference Paper",
+    period: "03/2025",
+    title: "Exploring and Enhancing Advanced MoE Models: From DeepSpeed-MoE to DeepSeek-V3",
     role: "First Author",
-    type: "Conference Paper / AI Architecture",
+    type: "AINIT 2025 / Conference Paper / AI Architecture",
     description:
-      "A research paper analyzing Mixture-of-Experts architectures, sparse activation, expert routing, inference cost and model performance.",
+      "Accepted by the 2025 IEEE 6th International Seminar on Artificial Intelligence, Networking and Information Technology. The paper reviews advanced Mixture-of-Experts architectures and their performance-efficiency trade-offs.",
     tags: ["DeepSpeed-MoE", "Switch Transformer", "Mixtral", "DeepSeek-V3", "Sparse Activation", "Expert Routing"],
     highlights: [
-      "Reviewed representative MoE systems and architectural trade-offs.",
-      "Analyzed routing strategies, inference efficiency and expert utilization.",
+      "Reviewed seven representative post-2022 MoE architectures.",
+      "Compared MoE and dense Transformer architectures across five dimensions.",
     ],
-    actions: [{ label: "View Detail", href: "#" }],
     emphasis: "compact",
   },
   {
     id: "robotic-vision",
-    period: "2025.04 - 2025.07",
-    title: "Robotic Vision Review",
-    type: "Review Paper / Computer Vision",
+    period: "04/2025",
+    title: "Research Progress on the Integration of Robot Vision, Computer Vision, and Machine Learning: Technological Evolution, Challenges, and Industrial Applications",
+    role: "Second Author",
+    type: "International Journal of Current Research in Science, Engineering & Technology, 2025",
     description:
-      "A review-oriented research work on robotic vision systems, covering perception, visual understanding and intelligent robotic applications.",
+      "A review-oriented research work on robotic vision, computer vision, machine learning, technological evolution, challenges, and industrial applications.",
     tags: ["Computer Vision", "Robotics", "Perception", "Review"],
-    actions: [{ label: "View Detail", href: "#" }],
     emphasis: "compact",
   },
   {
     id: "sustainability",
-    period: "2025.04 - 2025.07",
+    period: "07/2025",
     title:
-      "Behavior Prediction of Connections in Eco-Designed Thin-Walled Steel–Ply–Bamboo Structures Based on Machine Learning for Mechanical Properties.",
-    type: "Research Paper / Sustainability",
-    description: "A sustainability-related research work, shown as a secondary research card.",
-    tags: ["Sustainability", "Modeling", "Decision Analysis"],
+      "Behavior Prediction of Connections in Eco-Designed Thin-Walled Steel-Ply-Bamboo Structures Based on Machine Learning for Mechanical Properties",
+    role: "Third Author",
+    type: "Sustainability, 2025 / Machine Learning for Mechanical Properties",
+    description:
+      "A machine-learning study for predicting connection behavior in eco-designed thin-walled steel-ply-bamboo structures.",
+    tags: ["Sustainability", "Machine Learning", "Structural Mechanics", "Mechanical Properties"],
     actions: [{ label: "Paper", href: "https://doi.org/10.3390/su17156753", external: true }],
     emphasis: "medium",
   },
   {
     id: "deic-publications",
-    period: "2025.04 - 2025.07",
-    title: "DEIC / Additional Publications",
-    type: "Additional Publications",
+    period: "03/2025",
+    title:
+      "Enhancing Export Potential of Digital Service Trade in BRI Countries: A Stochastic Frontier Gravity Model Analysis of Digital Economy Development and Mediation Pathways",
+    role: "Third Author",
+    type: "DEIC 2025 / Digital Economy / Trade Modeling",
     description:
-      "Additional academic works shown in a compact list format, not as visually prominent as the Applied Sciences paper.",
-    tags: ["Academic Writing", "Data Analysis", "Research Methods"],
-    actions: [{ label: "View Detail", href: "#" }],
+      "Accepted by DEIC 2025. The paper studies digital service trade export potential in BRI countries using stochastic frontier gravity modeling and mediation-pathway analysis.",
+    tags: ["Digital Economy", "Stochastic Frontier Gravity Model", "Mediation Analysis", "BRI"],
     emphasis: "compact",
   },
 ];
@@ -179,10 +181,10 @@ export const internshipAwards: TimelineEntry[] = [
   },
   {
     id: "mcm-icm",
-    period: "2026.01.31",
-    title: "MCM/ICM Meritorious Winner",
+    period: "02/2026",
+    title: "Meritorious Winner (M Award), Mathematical Contest in Modeling (MCM)",
     chineseTitle: "美赛 M 奖",
-    type: "Competition / Mathematical Modeling / Education Policy",
+    type: "Competition / Mathematical Modeling",
     description:
       "Built a modeling framework for education policy in the AI era, combining skill demand analysis, course-skill networks and optimization methods.",
     tags: [
@@ -246,7 +248,7 @@ export const developmentProjects: DevelopmentProject[] = [
       "Added summary agent, evaluator agent and reflection-based replanning loop.",
       "Integrated Qwen3-8B LoRA news factor model.",
     ],
-    actions: [{ label: "GitHub", href: "https://github.com/ken-ab", external: true }],
+    actions: [{ label: "GitHub", href: "https://github.com/ken-ab/Finance-Agent", external: true }],
     emphasis: "featured",
     sections: {
       problem:
