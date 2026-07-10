@@ -1,6 +1,7 @@
 import moePoster from "../assets/case-studies/moe-poster.png";
 import olympicFigure from "../assets/case-studies/olympic-figure1-page.png";
 import sustainabilityFigure from "../assets/case-studies/sustainability-figure1-page.png";
+import deicFigure from "../assets/case-studies/deic-visual-abstract.png";
 import type { PortfolioLink, Tone } from "./portfolio";
 
 export type CaseStudy = {
@@ -144,8 +145,8 @@ export const caseStudies: CaseStudy[] = [
       "This paper builds machine-learning models to predict 2028 Olympic medal performance while quantifying host-country and exceptional-coaching effects.",
     visual: {
       src: olympicFigure,
-      alt: "PDF page containing Figure 1, the technical road map of the Olympic medal prediction paper.",
-      caption: "Figure 1 page from the paper: technical road map for MPXG, FMPM, host effect, and coach effect analysis.",
+      alt: "Visual abstract of the Olympic medal prediction study, covering MPXG, FMPM, host effects, and great coach effects.",
+      caption: "Visual abstract: MPXG and FMPM prediction pipelines with host-effect and great-coach-effect analysis.",
     },
     methodTitle: "Medal prediction plus effect quantification",
     methodLead:
@@ -199,8 +200,8 @@ export const caseStudies: CaseStudy[] = [
       "This paper uses machine learning and hyperparameter optimization to predict the mechanical behavior of self-drilling screw connections in thin-walled steel-ply-bamboo shear walls.",
     visual: {
       src: sustainabilityFigure,
-      alt: "PDF page containing Figure 1, the research workflow of the Sustainability paper.",
-      caption: "Figure 1 page from the paper: experimental data collection, factor analysis, model selection, and hyperparameter optimization.",
+      alt: "Visual abstract of the thin-walled steel-ply-bamboo connection study, from experiments to machine-learning optimization.",
+      caption: "Visual abstract: experimental data collection, factor analysis, model selection, and hyperparameter optimization.",
     },
     methodTitle: "Experimental data to optimized ML model",
     methodLead:
@@ -302,6 +303,11 @@ export const caseStudies: CaseStudy[] = [
     role: "Third Author",
     oneLineSummary:
       "This paper studies how digital-economy development affects digital service trade export potential in Belt and Road countries.",
+    visual: {
+      src: deicFigure,
+      alt: "Visual overview of the Belt and Road digital economy, showing new business models, defining trends, emerging technologies, and key enablers.",
+      caption: "Visual abstract: the Belt and Road digital economy ecosystem and its core business, technology, and infrastructure drivers.",
+    },
     methodTitle: "Digital economy to export potential",
     methodLead:
       "The paper combines a stochastic frontier gravity model with mediation-pathway reasoning to explain trade potential.",

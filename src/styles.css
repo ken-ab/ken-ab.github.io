@@ -1021,10 +1021,14 @@ img {
 }
 
 .case-visual-card img {
-  width: 100%;
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
   max-height: 760px;
   object-fit: contain;
   background: #ffffff;
+  margin: 0 auto;
 }
 
 .case-visual-card figcaption {
