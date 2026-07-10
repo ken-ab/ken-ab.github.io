@@ -1110,6 +1110,478 @@ img {
   transform: translateY(-50%) rotate(45deg);
 }
 
+.olympic-method-experience {
+  --olympic-blue: #1d527a;
+  --olympic-gold: #b2842f;
+  display: grid;
+  gap: 30px;
+}
+
+.olympic-technical-map {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid color-mix(in srgb, var(--olympic-blue) 24%, var(--paper-line));
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(247, 244, 235, 0.92)),
+    var(--paper-soft);
+  box-shadow: 0 24px 60px rgba(49, 41, 31, 0.08);
+}
+
+.olympic-map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--paper-line);
+  background: rgba(255, 255, 255, 0.46);
+}
+
+.olympic-map-header > div {
+  display: grid;
+  gap: 5px;
+}
+
+.olympic-map-header span,
+.olympic-fast-route-heading > span,
+.olympic-route-semantic {
+  color: var(--olympic-blue);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.olympic-map-header strong {
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.olympic-live-indicator {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid color-mix(in srgb, var(--olympic-gold) 40%, var(--paper-line));
+  border-radius: 999px;
+  color: var(--gold) !important;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.olympic-live-indicator i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--olympic-gold);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--olympic-gold) 42%, transparent);
+  animation: olympic-live-pulse 1.8s ease-out infinite;
+}
+
+.olympic-svg-scroll {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-color: color-mix(in srgb, var(--olympic-blue) 30%, transparent) transparent;
+  scrollbar-width: thin;
+}
+
+.olympic-route-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--olympic-blue);
+}
+
+.olympic-svg-grid {
+  fill: url("#olympic-paper-grid");
+}
+
+.olympic-svg-input rect,
+.olympic-svg-output rect:first-child {
+  fill: rgba(251, 250, 245, 0.96);
+  stroke: currentColor;
+  stroke-width: 2.4;
+}
+
+.olympic-svg-input ellipse,
+.olympic-svg-input path:not(.olympic-svg-spark),
+.olympic-svg-output path,
+.olympic-svg-output line {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.2;
+}
+
+.olympic-svg-input ellipse {
+  fill: color-mix(in srgb, var(--olympic-blue) 9%, var(--paper-soft));
+}
+
+.olympic-svg-spark {
+  fill: color-mix(in srgb, var(--olympic-gold) 64%, white);
+  stroke: var(--olympic-gold);
+  stroke-width: 1.5;
+}
+
+.olympic-svg-role,
+.olympic-svg-branch-label text {
+  fill: currentColor;
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+}
+
+.olympic-svg-title {
+  fill: var(--ink);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.olympic-svg-title.is-output {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 33px;
+}
+
+.olympic-svg-note {
+  fill: var(--muted);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.olympic-svg-note.is-strong {
+  fill: var(--wine);
+  font-weight: 800;
+}
+
+.olympic-svg-sketch-path {
+  fill: none;
+  stroke: currentColor;
+  stroke-dasharray: 8 7;
+  stroke-linecap: round;
+  stroke-width: 3;
+  animation: olympic-route-dash 13s linear infinite;
+}
+
+.olympic-svg-sketch-path.is-ghost {
+  stroke: var(--wine);
+  stroke-dasharray: 2 10;
+  stroke-width: 1.4;
+  opacity: 0.28;
+}
+
+.olympic-flow-dot {
+  fill: var(--olympic-gold);
+  filter: drop-shadow(0 0 7px color-mix(in srgb, var(--olympic-gold) 74%, transparent));
+}
+
+.olympic-flow-dot.is-bottom {
+  fill: var(--wine);
+  filter: drop-shadow(0 0 7px color-mix(in srgb, var(--wine) 64%, transparent));
+}
+
+.olympic-svg-branch-label rect {
+  fill: color-mix(in srgb, var(--olympic-blue) 7%, rgba(255, 255, 255, 0.92));
+  stroke: color-mix(in srgb, var(--olympic-blue) 32%, var(--paper-line));
+}
+
+.olympic-svg-branch-label.is-second rect {
+  fill: color-mix(in srgb, var(--wine) 6%, rgba(255, 255, 255, 0.92));
+  stroke: color-mix(in srgb, var(--wine) 30%, var(--paper-line));
+}
+
+.olympic-svg-branch-label.is-second text {
+  fill: var(--wine);
+}
+
+.olympic-svg-node rect {
+  fill: rgba(251, 250, 245, 0.98);
+  stroke: color-mix(in srgb, var(--olympic-blue) 30%, var(--paper-line));
+  stroke-width: 1.5;
+}
+
+.olympic-svg-node circle {
+  fill: color-mix(in srgb, var(--olympic-gold) 54%, white);
+  stroke: var(--olympic-gold);
+  stroke-width: 1.5;
+}
+
+.olympic-svg-node path {
+  fill: none;
+  stroke: color-mix(in srgb, var(--olympic-blue) 42%, var(--paper-line));
+  stroke-dasharray: 5 4;
+  stroke-linecap: round;
+}
+
+.olympic-svg-node-title {
+  fill: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.olympic-svg-node-detail {
+  fill: var(--muted);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.olympic-svg-output {
+  color: var(--wine);
+}
+
+.olympic-svg-annotation path {
+  fill: none;
+  stroke: var(--olympic-gold);
+  stroke-linecap: round;
+  stroke-width: 1.6;
+}
+
+.olympic-svg-annotation text {
+  fill: var(--gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.olympic-technical-map figcaption {
+  padding: 15px 24px 17px;
+  border-top: 1px solid var(--paper-line);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.olympic-fast-route-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 2px;
+}
+
+.olympic-fast-route-heading p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.olympic-animated-route {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
+  padding: 30px 26px 28px;
+  border: 1px solid color-mix(in srgb, var(--olympic-blue) 22%, var(--paper-line));
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 8% 15%, color-mix(in srgb, var(--olympic-blue) 8%, transparent), transparent 23%),
+    radial-gradient(circle at 92% 18%, color-mix(in srgb, var(--wine) 7%, transparent), transparent 24%),
+    linear-gradient(rgba(255, 255, 255, 0.76), rgba(251, 250, 245, 0.84));
+  box-shadow: 0 20px 52px rgba(49, 41, 31, 0.07);
+}
+
+.olympic-route-stage {
+  --stage-color: var(--olympic-blue);
+  position: relative;
+  min-width: 0;
+  animation: olympic-stage-rise 620ms both cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.olympic-route-stage[data-stage="2"] {
+  --stage-color: var(--olympic-gold);
+  animation-delay: 110ms;
+}
+
+.olympic-route-stage[data-stage="3"] {
+  --stage-color: var(--wine);
+  animation-delay: 220ms;
+}
+
+.olympic-route-stage[data-stage="4"] {
+  --stage-color: var(--green);
+  animation-delay: 330ms;
+}
+
+.olympic-route-glyph {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 22px;
+  border: 1px solid color-mix(in srgb, var(--stage-color) 32%, var(--paper-line));
+  border-radius: 50%;
+  color: var(--stage-color);
+  background: color-mix(in srgb, var(--stage-color) 7%, rgba(255, 255, 255, 0.96));
+  box-shadow:
+    inset 0 0 0 8px rgba(255, 255, 255, 0.55),
+    0 12px 26px color-mix(in srgb, var(--stage-color) 11%, transparent);
+}
+
+.olympic-stage-number {
+  position: absolute;
+  top: -8px;
+  left: -7px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: white;
+  background: var(--stage-color);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 900;
+  box-shadow: 0 5px 12px color-mix(in srgb, var(--stage-color) 22%, transparent);
+}
+
+.olympic-glyph-orbit {
+  position: absolute;
+  inset: 9px;
+  border: 1px dashed color-mix(in srgb, var(--stage-color) 46%, transparent);
+  border-radius: 50%;
+  animation: olympic-orbit 11s linear infinite;
+}
+
+.olympic-orbit-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--stage-color);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--stage-color) 55%, transparent);
+}
+
+.olympic-orbit-dot.is-a {
+  top: 6px;
+  right: 4px;
+}
+
+.olympic-orbit-dot.is-b {
+  bottom: 4px;
+  left: 7px;
+}
+
+.olympic-result-spark {
+  position: absolute;
+  right: 4px;
+  bottom: 7px;
+  color: var(--olympic-gold);
+}
+
+.olympic-route-copy {
+  padding-top: 18px;
+  border-top: 1px solid color-mix(in srgb, var(--stage-color) 32%, var(--paper-line));
+}
+
+.olympic-route-copy h3 {
+  min-height: 46px;
+  margin-top: 10px;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+.olympic-route-copy p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.58;
+}
+
+.olympic-route-semantic {
+  color: var(--stage-color);
+}
+
+.olympic-route-signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.olympic-route-signals span {
+  padding: 5px 8px;
+  border: 1px solid color-mix(in srgb, var(--stage-color) 22%, var(--paper-line));
+  border-radius: 999px;
+  color: color-mix(in srgb, var(--stage-color) 78%, var(--ink));
+  background: color-mix(in srgb, var(--stage-color) 5%, white);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.olympic-route-connector {
+  position: absolute;
+  top: 45px;
+  left: calc(50% + 47px);
+  z-index: 2;
+  width: calc(100% - 60px);
+  height: 2px;
+  background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--stage-color) 55%, transparent) 0 7px, transparent 7px 12px);
+}
+
+.olympic-route-connector::after {
+  position: absolute;
+  top: -4px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  content: "";
+  border-top: 2px solid var(--stage-color);
+  border-right: 2px solid var(--stage-color);
+  transform: rotate(45deg);
+}
+
+.olympic-route-connector i {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--olympic-gold);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--olympic-gold) 72%, transparent);
+  animation: olympic-route-travel 2.4s linear infinite;
+}
+
+.olympic-route-stage[data-stage="2"] .olympic-route-connector i {
+  animation-delay: -0.8s;
+}
+
+.olympic-route-stage[data-stage="3"] .olympic-route-connector i {
+  animation-delay: -1.6s;
+}
+
+@keyframes olympic-live-pulse {
+  70% { box-shadow: 0 0 0 9px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@keyframes olympic-route-dash {
+  to { stroke-dashoffset: -120; }
+}
+
+@keyframes olympic-orbit {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes olympic-stage-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes olympic-route-travel {
+  from { left: 0; opacity: 0; }
+  16% { opacity: 1; }
+  84% { opacity: 1; }
+  to { left: calc(100% - 8px); opacity: 0; }
+}
+
 .case-evidence-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1516,4 +1988,101 @@ img {
   .case-summary-card p {
     font-size: 18px;
   }
+}
+
+@media (max-width: 820px) {
+  .olympic-map-header,
+  .olympic-fast-route-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .olympic-map-header {
+    padding: 18px 20px;
+  }
+
+  .olympic-live-indicator {
+    align-self: flex-start;
+  }
+
+  .olympic-route-svg {
+    width: 1000px;
+    max-width: none;
+  }
+
+  .olympic-technical-map figcaption {
+    padding: 14px 20px 16px;
+  }
+
+  .olympic-animated-route {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 24px 20px 6px;
+  }
+
+  .olympic-route-stage {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 18px;
+    min-height: 188px;
+    padding-bottom: 26px;
+  }
+
+  .olympic-route-glyph {
+    width: 72px;
+    height: 72px;
+    margin: 0;
+  }
+
+  .olympic-stage-number {
+    top: -6px;
+    left: -4px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .olympic-route-copy {
+    padding-top: 4px;
+    border-top: 0;
+  }
+
+  .olympic-route-copy h3 {
+    min-height: auto;
+    margin-top: 7px;
+  }
+
+  .olympic-route-connector {
+    top: 75px;
+    left: 35px;
+    width: 2px;
+    height: calc(100% - 50px);
+    background: repeating-linear-gradient(180deg, color-mix(in srgb, var(--stage-color) 55%, transparent) 0 7px, transparent 7px 12px);
+  }
+
+  .olympic-route-connector::after {
+    top: auto;
+    right: -4px;
+    bottom: -1px;
+    transform: rotate(135deg);
+  }
+
+  .olympic-route-connector i {
+    top: 0;
+    left: -3px;
+    animation-name: olympic-route-travel-y;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .olympic-flow-dot {
+    display: none;
+  }
+}
+
+@keyframes olympic-route-travel-y {
+  from { top: 0; opacity: 0; }
+  16% { opacity: 1; }
+  84% { opacity: 1; }
+  to { top: calc(100% - 8px); opacity: 0; }
 }

@@ -1,4 +1,5 @@
 import { Navigate, useParams } from "react-router-dom";
+import { OlympicMethodRoute } from "../components/case-study/OlympicMethodRoute";
 import { ActionButton } from "../components/portfolio/ActionButton";
 import { getCaseStudy } from "../data/caseStudies";
 
@@ -52,7 +53,11 @@ export function CaseStudyPage() {
           <h2>{study.methodTitle}</h2>
           <p>{study.methodLead}</p>
         </div>
-        <MethodDiagram steps={study.methodSteps} />
+        {study.id === "olympic-prediction" ? (
+          <OlympicMethodRoute steps={study.methodSteps} />
+        ) : (
+          <MethodDiagram steps={study.methodSteps} />
+        )}
       </section>
 
       <section className="case-evidence-grid">
