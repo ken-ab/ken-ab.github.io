@@ -2497,6 +2497,11 @@ img {
   --publication-image-height: 248px;
 }
 
+.timeline-list.is-publications .timeline-card h2 {
+  font-size: 30px;
+  line-height: 1.12;
+}
+
 .publication-visual-strip {
   display: flex;
   gap: 14px;
@@ -2721,6 +2726,10 @@ img {
 @media (max-width: 620px) {
   .timeline-list.is-publications {
     --publication-image-height: 180px;
+  }
+
+  .timeline-list.is-publications .timeline-card h2 {
+    font-size: 27px;
   }
 
   .publication-visual-strip {

@@ -31,3 +31,8 @@ Make publication cards and paper briefs read as one continuous editorial page in
 - Scale the radar figure to its natural aspect ratio and make the callout border match the image bounds exactly.
 - Preserve the published abstract verbatim while breaking it into five paragraphs after the four user-marked sentences.
 - Reduce the shared publication-detail title size so long titles settle into roughly two to three desktop lines.
+
+## Follow-up: publication-card title consistency
+
+- Override featured, medium, and compact card emphasis only within the Publications timeline so every paper title uses the same 30px desktop size and 27px mobile size.
+- Keep the existing emphasis-specific card padding and all non-Publications timelines unchanged.
