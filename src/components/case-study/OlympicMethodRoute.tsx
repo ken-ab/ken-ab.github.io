@@ -1,4 +1,5 @@
 import { ArrowRight, ChartNoAxesCombined, House, Medal, UserRoundCog } from "lucide-react";
+import olympicModelComparisonRadar from "../../assets/case-studies/olympic-model-comparison-radar.png";
 
 export function OlympicMethodRoute() {
   return (
@@ -16,7 +17,7 @@ export function OlympicMethodRoute() {
           <svg className="olympic-route-svg" viewBox="0 0 1400 720" xmlns="http://www.w3.org/2000/svg">
             <title id="olympic-map-title">Corrected technical route for the Olympic medal prediction paper</title>
             <desc id="olympic-map-description">
-              Olympic history enters K-means clustering, which creates four country groups. The first three medal-winning groups enter MPXG, while the fourth non-medal-winning group enters FMPM.
+              Olympic history enters K-means clustering, which creates four country groups. The first three medal-winning groups, alpha one through alpha three, enter MPXG, while alpha four, the non-medal-winning group, enters FMPM.
             </desc>
             <defs>
               <pattern id="olympic-paper-grid" width="28" height="28" patternUnits="userSpaceOnUse">
@@ -86,23 +87,23 @@ export function OlympicMethodRoute() {
               <text className="olympic-svg-title" x="252" y="312">4 country groups</text>
               <g className="olympic-cluster-row is-medal">
                 <circle cx="266" cy="342" r="17" /><circle cx="311" cy="342" r="17" /><circle cx="356" cy="342" r="17" />
-                <text x="258" y="347">C1</text><text x="303" y="347">C2</text><text x="348" y="347">C3</text>
+                <text x="258" y="347">α1</text><text x="303" y="347">α2</text><text x="348" y="347">α3</text>
               </g>
               <text className="olympic-cluster-caption is-medal" x="252" y="374">prior medal winners</text>
               <g className="olympic-cluster-row is-none">
                 <circle cx="266" cy="404" r="17" />
-                <text x="258" y="409">C4</text>
+                <text x="258" y="409">α4</text>
               </g>
               <text className="olympic-cluster-caption is-none" x="291" y="409">no prior medal</text>
             </g>
 
             <g className="olympic-branch-note is-medal">
               <rect height="30" rx="15" width="174" x="426" y="224" />
-              <text x="442" y="244">C1-C3: medal-winning</text>
+              <text x="442" y="244">α1-α3: medal-winning</text>
             </g>
             <g className="olympic-branch-note is-none">
               <rect height="30" rx="15" width="161" x="426" y="451" />
-              <text x="442" y="471">C4: no prior medal</text>
+              <text x="442" y="471">α4: no prior medal</text>
             </g>
 
             <SvgNode detail="10 factors -> 3" label={["Factor", "Analysis"]} x={470} y={124} />
@@ -115,6 +116,20 @@ export function OlympicMethodRoute() {
               <ModelPill label="BPNN" x={946} y={145} />
               <ModelPill best label="XGBoost" x={828} y={190} />
               <ModelPill label="SVM" x={946} y={190} />
+            </g>
+
+            <g className="olympic-model-evidence-callout">
+              <path d="M934 244 L952 263 L970 244" />
+              <rect height="220" rx="24" width="700" x="610" y="262" />
+              <text className="olympic-svg-role" x="634" y="288">MODEL COMPARISON EVIDENCE · TRAINING / TEST</text>
+              <image
+                height="176"
+                href={olympicModelComparisonRadar}
+                preserveAspectRatio="xMidYMid meet"
+                width="658"
+                x="631"
+                y="296"
+              />
             </g>
 
             <g className="olympic-best-badge" filter="url(#olympic-pencil)">
@@ -132,7 +147,7 @@ export function OlympicMethodRoute() {
               <text className="olympic-svg-note" x="1262" y="217">90% interval</text>
             </g>
 
-            <SvgNode detail="C4: 1896-2024" label={["Participation", "records"]} x={470} y={500} width={145} />
+            <SvgNode detail="α4: 1896-2024" label={["Participation", "records"]} x={470} y={500} width={145} />
             <SvgNode detail="2028 participants" label={["ARIMA", "forecast"]} x={645} y={500} width={145} />
             <SvgNode detail="Dense 64 -> 32 -> 1" label={["Three-layer", "FCNN"]} x={820} y={500} width={175} />
             <SvgNode detail="model output" label={["First-medal", "probability"]} x={1025} y={500} width={165} />
@@ -147,7 +162,7 @@ export function OlympicMethodRoute() {
           </svg>
         </div>
         <figcaption>
-          The sequence is fixed: Olympic history enters K-means first; clusters C1-C3 follow MPXG, while C4 follows FMPM.
+          The sequence is fixed: Olympic history enters K-means first; groups α1-α3 follow MPXG, while α4 follows FMPM.
         </figcaption>
       </figure>
 
@@ -165,7 +180,7 @@ export function OlympicMethodRoute() {
             description="Gold, silver, and bronze are scored 13, 12, and 10; the host formula is evaluated across the last eight editions."
             icon={House}
             label="FINDING 01"
-            result="+74% medals"
+            result="+74% host-medal gain"
             steps={["Medal scoring", "Host-effect formula", "Last 8 editions"]}
             title="Host Effect"
             tone="host"
@@ -174,7 +189,7 @@ export function OlympicMethodRoute() {
             description="Coach status, project scope, athlete value, and country-group weight are combined before the 2028 estimate."
             icon={UserRoundCog}
             label="FINDING 02"
-            result="2028 impact"
+            result="+0.2–0.5 medals / athlete"
             steps={["C.E. score", "AWP", "Country weight", "Bayesian regression"]}
             title="Great Coach Effect"
             tone="coach"

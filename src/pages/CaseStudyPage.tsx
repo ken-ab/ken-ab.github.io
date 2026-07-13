@@ -18,10 +18,8 @@ export function CaseStudyPage() {
       {isPublication ? <PublicationIntro study={study} /> : <ProjectIntro study={study} />}
 
       <section className="case-section case-method-section">
-        <div className="case-section-heading">
+        <div className="case-section-heading is-method-only">
           <p className="section-eyebrow">Method / System</p>
-          <h2>{study.methodTitle}</h2>
-          <p>{study.methodLead}</p>
         </div>
         {study.id === "olympic-prediction" ? (
           <OlympicMethodRoute />
@@ -35,19 +33,6 @@ export function CaseStudyPage() {
         <EvidenceBlock items={study.takeaways} title="Key Takeaways" />
       </section>
 
-      <section className="case-links-card">
-        <div>
-          <p className="section-eyebrow">Links</p>
-          <h2>Continue from the brief</h2>
-        </div>
-        <div className="inline-actions">
-          {study.links.map((link, index) => (
-            <ActionButton external={link.external} href={link.href} key={link.label} variant={index === 0 ? "primary" : "secondary"}>
-              {link.label}
-            </ActionButton>
-          ))}
-        </div>
-      </section>
     </main>
   );
 }
@@ -67,6 +52,9 @@ function PublicationIntro({ study }: CaseStudyIntroProps) {
             <span className={author === "Zhenkai Zhang" ? "is-owner" : ""} key={author}>
               {index ? <span aria-hidden="true">, </span> : null}
               {author}
+              {study.correspondingAuthors?.includes(author) ? (
+                <sup className="corresponding-author-mark" aria-label="corresponding author">*</sup>
+              ) : null}
             </span>
           ))}
         </p>

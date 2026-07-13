@@ -31,7 +31,10 @@ export function Timeline({ items, presentation = "default", tone }: TimelineProp
             <h2>{item.title}</h2>
             {item.chineseTitle ? <p className="timeline-chinese-title">{item.chineseTitle}</p> : null}
             {isPublications && item.cardVisuals?.length ? (
-              <div className="publication-visual-strip" aria-label={`${item.title} research visuals`}>
+              <div
+                className={`publication-visual-strip${item.cardVisuals.length > 1 ? " has-multiple" : ""}`}
+                aria-label={`${item.title} research visuals`}
+              >
                 {item.cardVisuals.map((visual) => (
                   <figure className="publication-card-visual" key={visual.src}>
                     <img alt={visual.alt} loading="lazy" src={visual.src} />
