@@ -1,7 +1,10 @@
 import { Navigate, useParams } from "react-router-dom";
 import { OlympicMethodRoute } from "../components/case-study/OlympicMethodRoute";
+import { MiniProgramDetail } from "../components/case-study/MiniProgramDetail";
+import { ResearchMethodMap } from "../components/case-study/ResearchMethodMaps";
 import { ActionButton } from "../components/portfolio/ActionButton";
 import { getCaseStudy } from "../data/caseStudies";
+import type { AgentProjectCaseStudy, PublicationCaseStudy } from "../data/caseStudies";
 
 export function CaseStudyPage() {
   const { id } = useParams();
@@ -11,18 +14,28 @@ export function CaseStudyPage() {
     return <Navigate replace to="/publications" />;
   }
 
-  const isPublication = Boolean(study.authors?.length && study.abstract);
+  if (study.kind === "mini-program") {
+    return (
+      <main className={`page-shell case-study-page mini-program-page tone-${study.tone} page-enter`}>
+        <MiniProgramDetail study={study} />
+      </main>
+    );
+  }
+
+  const methodVisualization = study.kind === "publication" ? study.methodVisualization : undefined;
 
   return (
     <main className={`page-shell case-study-page tone-${study.tone} page-enter`}>
-      {isPublication ? <PublicationIntro study={study} /> : <ProjectIntro study={study} />}
+      {study.kind === "publication" ? <PublicationIntro study={study} /> : <ProjectIntro study={study} />}
 
       <section className="case-section case-method-section">
         <div className="case-section-heading is-method-only">
           <p className="section-eyebrow">Method / System</p>
         </div>
-        {study.id === "olympic-prediction" ? (
+        {methodVisualization === "olympic" ? (
           <OlympicMethodRoute />
+        ) : methodVisualization ? (
+          <ResearchMethodMap kind={methodVisualization} />
         ) : (
           <MethodDiagram steps={study.methodSteps} />
         )}
@@ -36,10 +49,6 @@ export function CaseStudyPage() {
     </main>
   );
 }
-
-type CaseStudyIntroProps = {
-  study: NonNullable<ReturnType<typeof getCaseStudy>>;
-};
 
 function splitAbstractIntoParagraphs(text: string, breakAfter: string[] = []) {
   if (breakAfter.length === 0) return [text];
@@ -60,7 +69,7 @@ function splitAbstractIntoParagraphs(text: string, breakAfter: string[] = []) {
   return paragraphs;
 }
 
-function PublicationIntro({ study }: CaseStudyIntroProps) {
+function PublicationIntro({ study }: { study: PublicationCaseStudy }) {
   const abstractParagraphs = splitAbstractIntoParagraphs(
     study.abstract ?? "",
     study.abstractParagraphBreaks,
@@ -112,7 +121,7 @@ function PublicationIntro({ study }: CaseStudyIntroProps) {
   );
 }
 
-function ProjectIntro({ study }: CaseStudyIntroProps) {
+function ProjectIntro({ study }: { study: AgentProjectCaseStudy }) {
   return (
     <>
       <section className="case-hero">

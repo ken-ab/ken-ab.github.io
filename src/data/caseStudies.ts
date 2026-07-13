@@ -1,12 +1,27 @@
 import bambooConnectionsFigure from "../assets/case-studies/bamboo-connections-framework.png";
 import briDigitalEconomyFigure from "../assets/case-studies/bri-digital-economy.png";
 import moeTimelineFigure from "../assets/case-studies/moe-timeline.png";
-import olympicHostEffectFigure from "../assets/case-studies/olympic-host-effect.png";
 import olympicModelFrameworkFigure from "../assets/case-studies/olympic-model-framework.png";
 import robotVisionFigure from "../assets/case-studies/robot-vision-detection.png";
+import qianfanChallengeScreenshot from "../assets/project-details/qianfan-challenge.png";
+import qianfanHomeScreenshot from "../assets/project-details/qianfan-home.png";
+import qianfanMiniProgramQr from "../assets/project-details/qianfan-mini-program-qr.png";
+import qianfanProjectsScreenshot from "../assets/project-details/qianfan-projects.png";
+import qianfanUniversitiesScreenshot from "../assets/project-details/qianfan-universities.png";
+import wangCheckinScreenshot from "../assets/project-details/wang-checkin.png";
+import wangExerciseScreenshot from "../assets/project-details/wang-exercise.png";
+import wangHomeScreenshot from "../assets/project-details/wang-home.png";
+import wangMineScreenshot from "../assets/project-details/wang-mine.png";
+import wangMiniProgramQr from "../assets/project-details/wang-mini-program-qr.png";
 import type { PortfolioLink, Tone } from "./portfolio";
 
-export type CaseStudy = {
+type MethodStep = {
+  label: string;
+  title: string;
+  body: string;
+};
+
+type CaseStudyBase = {
   id: string;
   eyebrow: string;
   title: string;
@@ -14,33 +29,55 @@ export type CaseStudy = {
   tone: Tone;
   period: string;
   role: string;
-  keywords?: string[];
-  authors?: string[];
-  correspondingAuthors?: string[];
-  abstract?: string;
-  abstractParagraphBreaks?: string[];
-  paperUrl?: string;
   oneLineSummary: string;
-  visuals?: Array<{
-    src: string;
-    alt: string;
-    caption: string;
-  }>;
-  methodTitle: string;
-  methodLead: string;
-  methodSteps: Array<{
-    label: string;
-    title: string;
-    body: string;
-  }>;
   contribution: string[];
   takeaways: string[];
   links: PortfolioLink[];
 };
 
+export type PublicationCaseStudy = CaseStudyBase & {
+  kind: "publication";
+  keywords: string[];
+  authors: string[];
+  correspondingAuthors?: string[];
+  abstract: string;
+  abstractParagraphBreaks?: string[];
+  paperUrl?: string;
+  methodVisualization: "bamboo" | "digital-trade" | "moe" | "olympic" | "robot-vision";
+  visuals: Array<{ src: string; alt: string; caption: string }>;
+  methodTitle: string;
+  methodLead: string;
+  methodSteps: MethodStep[];
+};
+
+export type AgentProjectCaseStudy = CaseStudyBase & {
+  kind: "agent-project";
+  methodTitle: string;
+  methodLead: string;
+  methodSteps: MethodStep[];
+};
+
+export type MiniProgramCaseStudy = CaseStudyBase & {
+  kind: "mini-program";
+  keywords: string[];
+  qrCode: string;
+  asOf?: string;
+  metrics: Array<{ label: string; value: string; note?: string }>;
+  metricNote?: string;
+  batchBreakdown?: Array<{ label: string; value: number }>;
+  screenshots: Array<{ src: string; alt: string; label: string }>;
+  featureBlocks: Array<{ title: string; body: string }>;
+  systemFlow: string[];
+  deploymentProof: string[];
+};
+
+export type CaseStudy = PublicationCaseStudy | AgentProjectCaseStudy | MiniProgramCaseStudy;
+
 export const caseStudies: CaseStudy[] = [
   {
+    kind: "publication",
     id: "moe",
+    methodVisualization: "moe",
     eyebrow: "Research Brief / MoE Architecture",
     title: "Exploring and Enhancing Advanced MoE Models: From DeepSpeed-MoE to DeepSeek-V3",
     subtitle: "A first-author conference paper reviewing advanced Mixture-of-Experts architectures and their performance-efficiency trade-offs.",
@@ -100,6 +137,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "Back to Publications", href: "/publications" }],
   },
   {
+    kind: "agent-project",
     id: "finance-agent",
     eyebrow: "Project Brief / Agentic AI System",
     title: "Finance-Agent / A-share Investment Advisor Agent System",
@@ -150,7 +188,9 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
+    kind: "publication",
     id: "olympic-prediction",
+    methodVisualization: "olympic",
     eyebrow: "Research Brief / Applied Sciences",
     title: "Predicting Olympic Medal Performance for 2028: Machine Learning Models and the Impact of Host and Coaching Effects",
     subtitle: "A first-author Applied Sciences paper on medal prediction, host effects, and exceptional coaching effects.",
@@ -176,11 +216,6 @@ export const caseStudies: CaseStudy[] = [
         src: olympicModelFrameworkFigure,
         alt: "Olympic medal prediction framework covering MPXG, FMPM, host effects, and great-coach effects.",
         caption: "Two prediction paths model medal-winning and first-medal countries, followed by host- and coach-effect analysis.",
-      },
-      {
-        src: olympicHostEffectFigure,
-        alt: "Historical host-country Olympic medal scores and host-effect comparison.",
-        caption: "Historical host-country medal trajectories provide the evidence used to quantify the host effect.",
       },
     ],
     methodTitle: "Medal prediction plus effect quantification",
@@ -224,7 +259,9 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
+    kind: "publication",
     id: "sustainability-bamboo",
+    methodVisualization: "bamboo",
     eyebrow: "Research Brief / Sustainability",
     title: "Behavior Prediction of Connections in Eco-Designed Thin-Walled Steel–Ply–Bamboo Structures Based on Machine Learning for Mechanical Properties",
     subtitle: "A Sustainability paper using machine learning to predict mechanical behavior in eco-designed structural connections.",
@@ -298,7 +335,9 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
+    kind: "publication",
     id: "robot-vision",
+    methodVisualization: "robot-vision",
     eyebrow: "Research Brief / Review",
     title: "Research Progress on the Integration of Robot Vision, Computer Vision, and Machine Learning: Technological Evolution, Challenges, and Industrial Applications",
     subtitle: "A review paper on technological evolution, challenges, and industrial applications.",
@@ -360,7 +399,9 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
+    kind: "publication",
     id: "deic-digital-trade",
+    methodVisualization: "digital-trade",
     eyebrow: "Research Brief / Digital Economy",
     title: "Enhancing Export Potential of Digital Service Trade in BRI Countries: A Stochastic Frontier Gravity Model Analysis of Digital Economy Development and Mediation Pathways",
     subtitle: "A DEIC 2025 paper using stochastic frontier gravity modeling and mediation-pathway analysis.",
@@ -418,6 +459,141 @@ export const caseStudies: CaseStudy[] = [
       "This is a supporting evidence page for quantitative modeling breadth.",
     ],
     links: [{ label: "Back to Publications", href: "/publications" }],
+  },
+  {
+    kind: "mini-program",
+    id: "laowang-checkin",
+    eyebrow: "Deployed Mini Program / Healthy Ageing",
+    title: "Lao Wang Exercise Check-in Mini Program",
+    subtitle:
+      "An age-friendly WeChat mini program that turns exercise, diet, and vital-sign routines into low-friction daily check-ins, records, reminders, and community support.",
+    tone: "systems",
+    period: "2026.05 - 2026.06",
+    role: "Product & Full-stack Development",
+    keywords: ["WeChat Mini Program", "uni-app", "Vue 3", "Pinia", "Express", "Healthy Ageing"],
+    qrCode: wangMiniProgramQr,
+    metrics: [],
+    metricNote:
+      "WeChat usage figures are intentionally withheld until a verified WeAnalysis export is available; no estimated user numbers are published.",
+    oneLineSummary:
+      "A production mini program that gives older users one clear path from exercise setup to health check-in, records, reminders, and community participation.",
+    screenshots: [
+      { src: wangHomeScreenshot, alt: "Lao Wang mini program home screen running in the H5 build.", label: "Home / daily entry" },
+      { src: wangExerciseScreenshot, alt: "Exercise duration, cadence, and metronome setup screen.", label: "Exercise setup" },
+      { src: wangCheckinScreenshot, alt: "Exercise, 16:8 diet, and vital-sign check-in choices.", label: "Health check-ins" },
+      { src: wangMineScreenshot, alt: "Profile screen with records, reminder, privacy, and service entries.", label: "Records + reminders" },
+    ],
+    deploymentProof: ["Production API deployed", "Mini-program QR available", "Current build captured", "Admin and reminder services"],
+    systemFlow: ["Older user", "Mini program", "Express API", "Check-in records", "Reminders + community"],
+    featureBlocks: [
+      {
+        title: "Age-friendly interaction",
+        body: "Large targets, restrained navigation, warm green contrast, and short task paths reduce friction for older users.",
+      },
+      {
+        title: "Exercise workflow",
+        body: "Users configure duration, cadence, and metronome cues before recording the completed activity.",
+      },
+      {
+        title: "Health routines",
+        body: "Exercise, 16:8 diet, blood pressure, and blood glucose are organized as separate, understandable check-in modes.",
+      },
+      {
+        title: "Continuity and support",
+        body: "Records, reminders, an AI knowledge entry, community sharing, and family-contact settings support repeated use.",
+      },
+    ],
+    contribution: [
+      "Built the uni-app/Vue 3 mini-program interface, Pinia state layer, and Express-connected product flow.",
+      "Implemented exercise timing, cadence, health check-ins, records, community, reminders, and deployment integration.",
+      "Designed the interface around older-user readability and low-friction daily operation.",
+    ],
+    takeaways: [
+      "The project is deployable product work rather than a static UI prototype.",
+      "Only functions visible in the current build are described as live; unverified emergency-SMS behavior is excluded.",
+    ],
+    links: [{ label: "Back to Projects", href: "/development-projects" }],
+  },
+  {
+    kind: "mini-program",
+    id: "jingjiang-platform",
+    eyebrow: "Deployed Mini Program / Public-sector Data Platform",
+    title: "Jingjiang University–Industry Cooperation Platform",
+    subtitle:
+      "A mini program, API, and management system that makes university projects, regional coverage, policies, and challenge batches searchable and governable.",
+    tone: "systems",
+    period: "2026.04 - 2026.06",
+    role: "Product, Data Pipeline & Full-stack Development",
+    keywords: ["WeChat Mini Program", "Vue 3", "Express", "MySQL", "Project Map", "Data Governance"],
+    qrCode: qianfanMiniProgramQr,
+    asOf: "2026-07-13",
+    metrics: [
+      { label: "Provinces", value: "18", note: "enabled provinces with public projects" },
+      { label: "Universities", value: "79", note: "enabled universities and institutes" },
+      { label: "Public projects", value: "201", note: "currently visible project records" },
+      { label: "Policies", value: "7", note: "public policy documents" },
+      { label: "Challenge batches", value: "3", note: "published demand batches" },
+      { label: "Listed demands", value: "39", note: "16 + 7 + 16 across three batches" },
+    ],
+    batchBreakdown: [
+      { label: "Batch 01", value: 16 },
+      { label: "Batch 02", value: 7 },
+      { label: "Batch 03", value: 16 },
+    ],
+    oneLineSummary:
+      "A deployed data product that turns fragmented university–industry collaboration records into a searchable mini program and an auditable administration workflow.",
+    screenshots: [
+      {
+        src: qianfanHomeScreenshot,
+        alt: "Jingjiang platform home screen showing live province, university, project, and policy counts.",
+        label: "Live mini-program home",
+      },
+      {
+        src: qianfanChallengeScreenshot,
+        alt: "Challenge-batch screen showing the third batch, 16 demands, 13 companies, and published project values.",
+        label: "Challenge batches",
+      },
+      {
+        src: qianfanUniversitiesScreenshot,
+        alt: "University and research-institute catalogue running in the current H5 build.",
+        label: "University catalogue",
+      },
+      {
+        src: qianfanProjectsScreenshot,
+        alt: "Project catalogue showing university, province, and collaboration status fields.",
+        label: "Project catalogue",
+      },
+    ],
+    deploymentProof: ["Public production API", "Mini-program QR available", "Live data catalogue", "Import governance workflow"],
+    systemFlow: ["Mini program", "Express API", "MySQL catalogue", "Admin dashboard", "Import + error rollback"],
+    featureBlocks: [
+      {
+        title: "National project discovery",
+        body: "Users browse collaboration coverage by province, university, and project instead of working through disconnected spreadsheets.",
+      },
+      {
+        title: "Challenge matching",
+        body: "Three published batches organize enterprise demands, participating organizations, and follow-up project information.",
+      },
+      {
+        title: "Policy access",
+        body: "Public policy documents are exposed through a dedicated mini-program library and PDF reading flow.",
+      },
+      {
+        title: "Governed data operations",
+        body: "The administration system supports bulk imports, validation feedback, error receipts, and reversible import tasks.",
+      },
+    ],
+    contribution: [
+      "Built the Vue/uni-app mini program, Express API integration, and administration workflows.",
+      "Implemented the project-map, university/project detail, policy, statistics, and challenge-batch experiences.",
+      "Designed batch-import validation, error reporting, and rollback behavior for maintainable public-sector data operations.",
+    ],
+    takeaways: [
+      "The live catalogue demonstrates product delivery, data governance, and backend integration in one system.",
+      "The dated metrics are a verified snapshot from the public production API, not marketing estimates.",
+    ],
+    links: [{ label: "Back to Projects", href: "/development-projects" }],
   },
 ];
 

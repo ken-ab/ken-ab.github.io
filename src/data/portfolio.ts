@@ -330,7 +330,7 @@ export const developmentProjects: DevelopmentProject[] = [
       "Supported bulk data import with error feedback.",
       "Served cooperation scenarios between government, enterprises and universities.",
     ],
-    actions: [{ label: "Demo", href: "#" }],
+    actions: [{ label: "View Detail", href: "/brief/jingjiang-platform" }],
     emphasis: "medium",
     sections: {
       problem:
@@ -366,7 +366,7 @@ export const developmentProjects: DevelopmentProject[] = [
       "Built community and admin management features.",
       "Deployed online with backend services.",
     ],
-    actions: [{ label: "Demo", href: "#" }],
+    actions: [{ label: "View Detail", href: "/brief/laowang-checkin" }],
     emphasis: "medium",
     sections: {
       problem:

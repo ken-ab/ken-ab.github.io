@@ -1,5 +1,5 @@
 import { ArrowRight, ChartNoAxesCombined, House, Medal, UserRoundCog } from "lucide-react";
-import olympicModelComparisonRadar from "../../assets/case-studies/olympic-model-comparison-radar.png";
+import olympicModelComparisonRadar from "../../assets/case-studies/olympic-model-comparison-radar-cropped.png";
 
 export function OlympicMethodRoute() {
   return (
@@ -121,14 +121,14 @@ export function OlympicMethodRoute() {
             <g className="olympic-model-evidence-callout">
               <path d="M934 244 L952 250 L970 244" />
               <image
-                height="247.5"
+                height="247"
                 href={olympicModelComparisonRadar}
                 preserveAspectRatio="xMidYMid meet"
-                width="700"
-                x="610"
+                width="619"
+                x="651"
                 y="250"
               />
-              <rect height="247.5" rx="18" width="700" x="610" y="250" />
+              <rect height="247" rx="18" width="619" x="651" y="250" />
             </g>
 
             <g className="olympic-best-badge" filter="url(#olympic-pencil)">
