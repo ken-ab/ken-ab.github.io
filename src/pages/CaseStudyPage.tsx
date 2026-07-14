@@ -1,4 +1,5 @@
 import { Navigate, useParams } from "react-router-dom";
+import { FinanceAgentDetail } from "../components/case-study/FinanceAgentDetail";
 import { OlympicMethodRoute } from "../components/case-study/OlympicMethodRoute";
 import { MiniProgramDetail } from "../components/case-study/MiniProgramDetail";
 import { ResearchMethodMap } from "../components/case-study/ResearchMethodMaps";
@@ -18,6 +19,14 @@ export function CaseStudyPage() {
     return (
       <main className={`page-shell case-study-page mini-program-page tone-${study.tone} page-enter`}>
         <MiniProgramDetail study={study} />
+      </main>
+    );
+  }
+
+  if (study.kind === "agent-project" && study.visualization === "finance-agent") {
+    return (
+      <main className={`page-shell case-study-page finance-agent-page tone-${study.tone} page-enter`}>
+        <FinanceAgentDetail study={study} />
       </main>
     );
   }

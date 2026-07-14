@@ -1,8 +1,8 @@
 import { ArrowRight, QrCode, ScanLine } from "lucide-react";
-import type { ProjectShowcase } from "../../data/portfolio";
+import type { MiniProgramProjectShowcase as MiniProgramProjectShowcaseData } from "../../data/portfolio";
 
 type MiniProgramProjectShowcaseProps = {
-  showcase: ProjectShowcase;
+  showcase: MiniProgramProjectShowcaseData;
   title: string;
 };
 

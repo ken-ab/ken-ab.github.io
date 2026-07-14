@@ -8,10 +8,11 @@ import qianfanHomeScreenshot from "../assets/project-details/qianfan-home.png";
 import qianfanMiniProgramQr from "../assets/project-details/qianfan-mini-program-qr.png";
 import qianfanProjectsScreenshot from "../assets/project-details/qianfan-projects.png";
 import qianfanUniversitiesScreenshot from "../assets/project-details/qianfan-universities.png";
-import wangCheckinScreenshot from "../assets/project-details/wang-checkin.png";
-import wangExerciseScreenshot from "../assets/project-details/wang-exercise.png";
-import wangHomeScreenshot from "../assets/project-details/wang-home.png";
-import wangMineScreenshot from "../assets/project-details/wang-mine.png";
+import wangAiScreenshot from "../assets/project-details/laowang-ai-detail.webp";
+import wangCheckinsScreenshot from "../assets/project-details/laowang-checkins-detail.webp";
+import wangCommunityScreenshot from "../assets/project-details/laowang-community-detail.webp";
+import wangHomeScreenshot from "../assets/project-details/laowang-home-detail.webp";
+import wangPosterScreenshot from "../assets/project-details/laowang-poster-detail.webp";
 import wangMiniProgramQr from "../assets/project-details/wang-mini-program-qr.png";
 import type { PortfolioLink, Tone } from "./portfolio";
 
@@ -30,8 +31,6 @@ type CaseStudyBase = {
   period: string;
   role: string;
   oneLineSummary: string;
-  contribution: string[];
-  takeaways: string[];
   links: PortfolioLink[];
 };
 
@@ -48,19 +47,35 @@ export type PublicationCaseStudy = CaseStudyBase & {
   methodTitle: string;
   methodLead: string;
   methodSteps: MethodStep[];
+  contribution: string[];
+  takeaways: string[];
 };
 
 export type AgentProjectCaseStudy = CaseStudyBase & {
   kind: "agent-project";
+  visualization?: "finance-agent";
+  keywords?: string[];
+  githubUrl?: string;
+  facts?: Array<{ value: string; label: string; note: string }>;
+  toolFamilies?: string[];
+  reportSections?: string[];
+  experimentalNote?: string;
   methodTitle: string;
   methodLead: string;
   methodSteps: MethodStep[];
+  contribution: string[];
+  takeaways: string[];
 };
 
 export type MiniProgramCaseStudy = CaseStudyBase & {
   kind: "mini-program";
   keywords: string[];
   qrCode: string;
+  proofCopy: {
+    eyebrow: string;
+    title: string;
+    supporting: string;
+  };
   metricGroups: Array<{
     label: string;
     source: string;
@@ -70,8 +85,15 @@ export type MiniProgramCaseStudy = CaseStudyBase & {
   }>;
   verificationNote?: string;
   batchBreakdown?: Array<{ label: string; value: number }>;
-  screenshots: Array<{ src: string; alt: string; label: string }>;
-  featureBlocks: Array<{ title: string; body: string }>;
+  screenshots: Array<{
+    src: string;
+    alt: string;
+    label: string;
+    width: number;
+    height: number;
+    featured?: boolean;
+  }>;
+  featureBlocks: Array<{ title: string; body: string; flow?: string[] }>;
   systemFlow: string[];
   deploymentProof: string[];
 };
@@ -144,14 +166,43 @@ export const caseStudies: CaseStudy[] = [
   {
     kind: "agent-project",
     id: "finance-agent",
+    visualization: "finance-agent",
     eyebrow: "Project Brief / Agentic AI System",
     title: "Finance-Agent / A-share Investment Advisor Agent System",
     subtitle: "A multi-agent prototype that decomposes A-share research into specialist analysis branches and produces traceable Markdown reports.",
     tone: "systems",
     period: "2025.10 - 2026.01",
     role: "Project Builder",
+    keywords: ["LangGraph", "MCP", "Multi-Agent", "ReAct", "Evaluation", "Reflection"],
+    githubUrl: "https://github.com/ken-ab/Finance-Agent",
     oneLineSummary:
       "Finance-Agent addresses one-shot financial analysis limitations by splitting A-share research into parallel specialist agents, then using evaluation and reflection to improve report completeness.",
+    facts: [
+      { value: "4", label: "Parallel specialists", note: "Fundamental, technical, valuation, and news analysis" },
+      { value: "8", label: "MCP tool families", note: "Market, reports, indices, macro, analysis, and news access" },
+      { value: "1", label: "Bounded replan", note: "One reflection round before the workflow terminates" },
+    ],
+    toolFamilies: [
+      "Stock market",
+      "Financial reports",
+      "Indices",
+      "Market overview",
+      "Macroeconomic",
+      "Date utilities",
+      "Analysis",
+      "News crawler",
+    ],
+    reportSections: [
+      "Executive summary",
+      "Fundamental analysis",
+      "Technical analysis",
+      "Valuation analysis",
+      "News and risk",
+      "Final assessment",
+      "Source trace",
+    ],
+    experimentalNote:
+      "Experimental side track: Qwen LoRA scripts explore news sentiment and risk scoring, but they are not presented as a mandatory stage in the core LangGraph runtime.",
     methodTitle: "LangGraph + MCP + evaluator-reflection loop",
     methodLead:
       "The repository implements a graph-style workflow where data tools feed specialist agents before a summary, evaluation, and bounded reflection stage.",
@@ -477,6 +528,11 @@ export const caseStudies: CaseStudy[] = [
     role: "Product & Full-stack Development",
     keywords: ["WeChat Mini Program", "uni-app", "Vue 3", "Pinia", "Express", "Healthy Ageing"],
     qrCode: wangMiniProgramQr,
+    proofCopy: {
+      eyebrow: "RECENTLY LAUNCHED",
+      title: "Loved by its early users",
+      supporting: "The first operating snapshot shows meaningful reach and daily engagement.",
+    },
     metricGroups: [
       {
         label: "WeAnalysis · Last 30 Days",
@@ -490,27 +546,17 @@ export const caseStudies: CaseStudy[] = [
           { label: "Average daily page views", value: "1,691", note: "average viewed pages per day" },
         ],
       },
-      {
-        label: "Production Backend",
-        source: "Read-only production database aggregation",
-        asOf: "2026-07-14",
-        metrics: [
-          { label: "Registered users", value: "508", note: "accounts in the production user table" },
-          { label: "Health check-ins", value: "7,277", note: "exercise + diet + vital-sign check-ins" },
-          { label: "Finished exercise timers", value: "141", note: "sessions with FINISHED status" },
-          { label: "Active check-in users", value: "264", note: "distinct users, 2026-06-14 to 2026-07-13" },
-        ],
-      },
     ],
     oneLineSummary:
-      "A production mini program that gives older users one clear path from exercise setup to health check-in, records, reminders, and community participation.",
+      "Built end to end with Codex-assisted web coding—from product structure and interaction design to API integration and deployment—turning an original idea into an independently shipped mini program.",
     screenshots: [
-      { src: wangHomeScreenshot, alt: "Lao Wang mini program home screen running in the H5 build.", label: "Home / daily entry" },
-      { src: wangExerciseScreenshot, alt: "Exercise duration, cadence, and metronome setup screen.", label: "Exercise setup" },
-      { src: wangCheckinScreenshot, alt: "Exercise, 16:8 diet, and vital-sign check-in choices.", label: "Health check-ins" },
-      { src: wangMineScreenshot, alt: "Profile screen with records, reminder, privacy, and service entries.", label: "Records + reminders" },
+      { src: wangHomeScreenshot, alt: "Deployed Lao Wang mini-program home screen.", label: "Home", width: 1080, height: 2221, featured: true },
+      { src: wangCommunityScreenshot, alt: "Feed-style Lao Wang exercise community in the deployed mini program.", label: "Community", width: 1080, height: 2238 },
+      { src: wangPosterScreenshot, alt: "Check-in poster editor with image, caption, and sharing controls.", label: "Check-in poster", width: 1080, height: 2223 },
+      { src: wangCheckinsScreenshot, alt: "Exercise, diet, blood-pressure, and blood-glucose check-in choices.", label: "Health check-ins", width: 1080, height: 2216 },
+      { src: wangAiScreenshot, alt: "Lao Wang AI answering an exercise guidance question inside the deployed mini program.", label: "Lao Wang AI", width: 1080, height: 2220 },
     ],
-    deploymentProof: ["Production API deployed", "Mini-program QR available", "Current build captured", "Admin and reminder services"],
+    deploymentProof: ["Production API deployed", "Mini-program QR available", "Live WeChat screens captured", "Admin and reminder services"],
     systemFlow: ["Older user", "Mini program", "Express API", "Check-in records", "Reminders + community"],
     featureBlocks: [
       {
@@ -518,26 +564,18 @@ export const caseStudies: CaseStudy[] = [
         body: "Large targets, restrained navigation, warm green contrast, and short task paths reduce friction for older users.",
       },
       {
-        title: "Exercise workflow",
-        body: "Users configure duration, cadence, and metronome cues before recording the completed activity.",
+        title: "Exercise + multi-mode check-ins",
+        body: "One product links exercise timing with exercise, 16:8 diet, blood-pressure, and blood-glucose check-ins.",
       },
       {
-        title: "Health routines",
-        body: "Exercise, 16:8 diet, blood pressure, and blood glucose are organized as separate, understandable check-in modes.",
+        title: "Familiar community sharing",
+        body: "After a check-in, users can generate a polished poster and Moments-ready or community-ready copy, then share through a familiar feed-style experience.",
       },
       {
-        title: "Continuity and support",
-        body: "Records, reminders, an AI knowledge entry, community sharing, and family-contact settings support repeated use.",
+        title: "Lao Wang AI workflow",
+        body: "The assistant distinguishes app, general, and health-risk questions, retrieves confirmed product knowledge, applies safety boundaries, and streams a concise answer. It also supports poster and community-caption generation.",
+        flow: ["Classify", "Retrieve", "Guardrails", "Generate", "Stream"],
       },
-    ],
-    contribution: [
-      "Built the uni-app/Vue 3 mini-program interface, Pinia state layer, and Express-connected product flow.",
-      "Implemented exercise timing, cadence, health check-ins, records, community, reminders, and deployment integration.",
-      "Designed the interface around older-user readability and low-friction daily operation.",
-    ],
-    takeaways: [
-      "The project is deployable product work rather than a static UI prototype.",
-      "Only functions visible in the current build are described as live; unverified emergency-SMS behavior is excluded.",
     ],
     links: [{ label: "Back to Projects", href: "/development-projects" }],
   },
@@ -553,6 +591,11 @@ export const caseStudies: CaseStudy[] = [
     role: "Product, Data Pipeline & Full-stack Development",
     keywords: ["WeChat Mini Program", "Vue 3", "Express", "MySQL", "Project Map", "Data Governance"],
     qrCode: qianfanMiniProgramQr,
+    proofCopy: {
+      eyebrow: "DELIVERY COMPLETE",
+      title: "Delivered and in operation",
+      supporting: "The public catalogue and dated production metrics verify the completed delivery.",
+    },
     metricGroups: [
       {
         label: "Public Catalogue Snapshot",
@@ -580,21 +623,30 @@ export const caseStudies: CaseStudy[] = [
         src: qianfanHomeScreenshot,
         alt: "Jingjiang platform home screen showing live province, university, project, and policy counts.",
         label: "Live mini-program home",
+        width: 375,
+        height: 811,
+        featured: true,
       },
       {
         src: qianfanChallengeScreenshot,
         alt: "Challenge-batch screen showing the third batch, 16 demands, 13 companies, and published project values.",
         label: "Challenge batches",
+        width: 430,
+        height: 900,
       },
       {
         src: qianfanUniversitiesScreenshot,
         alt: "University and research-institute catalogue running in the current H5 build.",
         label: "University catalogue",
+        width: 430,
+        height: 900,
       },
       {
         src: qianfanProjectsScreenshot,
         alt: "Project catalogue showing university, province, and collaboration status fields.",
         label: "Project catalogue",
+        width: 430,
+        height: 900,
       },
     ],
     deploymentProof: ["Public production API", "Mini-program QR available", "Live data catalogue", "Import governance workflow"],
@@ -616,15 +668,6 @@ export const caseStudies: CaseStudy[] = [
         title: "Governed data operations",
         body: "The administration system supports bulk imports, validation feedback, error receipts, and reversible import tasks.",
       },
-    ],
-    contribution: [
-      "Built the Vue/uni-app mini program, Express API integration, and administration workflows.",
-      "Implemented the project-map, university/project detail, policy, statistics, and challenge-batch experiences.",
-      "Designed batch-import validation, error reporting, and rollback behavior for maintainable public-sector data operations.",
-    ],
-    takeaways: [
-      "The live catalogue demonstrates product delivery, data governance, and backend integration in one system.",
-      "The dated metrics are a verified snapshot from the public production API, not marketing estimates.",
     ],
     links: [{ label: "Back to Projects", href: "/development-projects" }],
   },

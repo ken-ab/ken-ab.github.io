@@ -1,5 +1,6 @@
 import type { DevelopmentProject } from "../../data/portfolio";
 import { ActionButton } from "./ActionButton";
+import { FinanceAgentProjectShowcase } from "./FinanceAgentProjectShowcase";
 import { MiniProgramProjectShowcase } from "./MiniProgramProjectShowcase";
 import { TagList } from "./TagList";
 
@@ -30,26 +31,34 @@ export function SystemProjectCard({ project }: SystemProjectCardProps) {
 
       <p className="system-description">{project.description}</p>
 
-      {project.showcase ? (
+      {project.showcase?.kind === "mini-program" ? (
         <MiniProgramProjectShowcase showcase={project.showcase} title={project.title} />
-      ) : featured ? <AgentMap /> : null}
+      ) : project.showcase?.kind === "agent-system" ? (
+        <FinanceAgentProjectShowcase showcase={project.showcase} title={project.title} />
+      ) : null}
 
-      <div className="system-modules">
-        {sectionLabels.map(([label, key]) => (
-          <section className="system-module" key={key}>
-            <h3>{label}</h3>
-            <p>{project.sections[key]}</p>
-          </section>
-        ))}
-      </div>
+      {!project.showcase && project.sections ? (
+        <div className="system-modules">
+          {sectionLabels.map(([label, key]) => (
+            <section className="system-module" key={key}>
+              <h3>{label}</h3>
+              <p>{project.sections![key]}</p>
+            </section>
+          ))}
+        </div>
+      ) : null}
 
-      <ul className="highlight-list system-highlights">
-        {project.highlights?.map((highlight) => (
-          <li key={highlight}>{highlight}</li>
-        ))}
-      </ul>
+      {!project.showcase ? (
+        <>
+          <ul className="highlight-list system-highlights">
+            {project.highlights?.map((highlight) => (
+              <li key={highlight}>{highlight}</li>
+            ))}
+          </ul>
 
-      <TagList tags={project.tags} />
+          <TagList tags={project.tags} />
+        </>
+      ) : null}
 
       {project.actions?.length ? (
         <div className="inline-actions">
@@ -61,18 +70,5 @@ export function SystemProjectCard({ project }: SystemProjectCardProps) {
         </div>
       ) : null}
     </article>
-  );
-}
-
-function AgentMap() {
-  return (
-    <div aria-label="Finance-Agent architecture sketch" className="agent-map">
-      <span className="agent-node node-fundamental">Fundamental</span>
-      <span className="agent-node node-technical">Technical</span>
-      <span className="agent-node node-valuation">Valuation</span>
-      <span className="agent-node node-news">News</span>
-      <span className="agent-node node-evaluator">Evaluator</span>
-      <span className="agent-node node-summary">Summary Agent</span>
-    </div>
   );
 }

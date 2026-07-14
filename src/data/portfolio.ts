@@ -8,9 +8,9 @@ import qianfanChallengeScreenshot from "../assets/project-details/qianfan-challe
 import qianfanHomeScreenshot from "../assets/project-details/qianfan-home.png";
 import qianfanMiniProgramQr from "../assets/project-details/qianfan-mini-program-qr.png";
 import qianfanProjectsScreenshot from "../assets/project-details/qianfan-projects.png";
-import wangCheckinScreenshot from "../assets/project-details/wang-checkin.png";
-import wangExerciseScreenshot from "../assets/project-details/wang-exercise.png";
-import wangHomeScreenshot from "../assets/project-details/wang-home.png";
+import wangCheckinsCardScreenshot from "../assets/project-details/laowang-checkins-card.webp";
+import wangCommunityCardScreenshot from "../assets/project-details/laowang-community-card.webp";
+import wangHomeCardScreenshot from "../assets/project-details/laowang-home-card.webp";
 import wangMiniProgramQr from "../assets/project-details/wang-mini-program-qr.png";
 
 export type Tone = "research" | "career" | "systems";
@@ -41,7 +41,7 @@ export type TimelineEntry = {
   emphasis?: "featured" | "medium" | "compact";
 };
 
-export type ProjectShowcase = {
+export type MiniProgramProjectShowcase = {
   kind: "mini-program";
   status: string;
   qrCode: string;
@@ -60,8 +60,23 @@ export type ProjectShowcase = {
   flow: string[];
 };
 
+export type AgentSystemProjectShowcase = {
+  kind: "agent-system";
+  status: string;
+  query: string;
+  agents: string[];
+  toolFamilies: string[];
+  facts: Array<{
+    value: string;
+    label: string;
+  }>;
+  reportSections: string[];
+};
+
+export type ProjectShowcase = MiniProgramProjectShowcase | AgentSystemProjectShowcase;
+
 export type DevelopmentProject = TimelineEntry & {
-  sections: {
+  sections?: {
     problem: string;
     architecture: string;
     work: string;
@@ -351,14 +366,27 @@ export const developmentProjects: DevelopmentProject[] = [
       { label: "GitHub", href: "https://github.com/ken-ab/Finance-Agent", external: true },
     ],
     emphasis: "featured",
-    sections: {
-      problem:
-        "A-share research requires consistent data, separated analytical viewpoints and reports that remain traceable instead of one-shot model prose.",
-      architecture:
-        "MCP tools feed LangGraph/ReAct agents for fundamentals, technicals, valuation and news before a summary agent consolidates the report.",
-      work: "Designed the multi-agent decomposition, evaluator loop, report structure and Qwen3-8B LoRA news factor integration.",
-      outcome:
-        "Covered 4000+ A-share stocks with specialized agents, traceable Markdown output and reflection-based replanning.",
+    showcase: {
+      kind: "agent-system",
+      status: "Open-source system / source verified",
+      query: "Analyze BYD (002594)",
+      agents: ["Fundamental", "Technical", "Valuation", "News"],
+      toolFamilies: [
+        "Stock market",
+        "Financial reports",
+        "Indices",
+        "Market overview",
+        "Macroeconomic",
+        "Date utilities",
+        "Analysis",
+        "News crawler",
+      ],
+      facts: [
+        { value: "4", label: "Parallel specialist agents" },
+        { value: "8", label: "MCP tool families" },
+        { value: "1", label: "Bounded reflection round" },
+      ],
+      reportSections: ["Fundamental", "Technical", "Valuation", "News & risk"],
     },
   },
   {
@@ -394,15 +422,6 @@ export const developmentProjects: DevelopmentProject[] = [
       ],
       flow: ["Mini program", "Express API", "Governed catalogue"],
     },
-    sections: {
-      problem:
-        "University cooperation data is scattered across projects, policies and regional context, making it hard to browse and maintain.",
-      architecture:
-        "Mini program front end, admin dashboard, batch import pipeline, project map and policy document modules.",
-      work: "Built the product interface, management flows, bulk import behavior and error receipt feedback.",
-      outcome:
-        "Created a governable display and maintenance platform for government, enterprise and university cooperation scenarios.",
-    },
   },
   {
     id: "laowang-checkin",
@@ -411,7 +430,7 @@ export const developmentProjects: DevelopmentProject[] = [
     chineseTitle: "老王运动打卡小程序",
     type: "Mini Program / Health Check-in / AI Assistant",
     description:
-      "A health-oriented exercise check-in mini program with AI assistant, community features, family emergency contacts, WeChat subscription reminders and admin backend.",
+      "A deployed exercise, multi-mode check-in, community and AI-assisted sharing product built as a complete mini-program and backend workflow.",
     tags: [
       "WeChat Mini Program",
       "AI Assistant",
@@ -435,25 +454,16 @@ export const developmentProjects: DevelopmentProject[] = [
       status: "Deployed · live mini program",
       qrCode: wangMiniProgramQr,
       screenshots: [
-        { src: wangHomeScreenshot, alt: "Lao Wang mini-program home screen.", label: "Daily entry", width: 375, height: 811 },
-        { src: wangExerciseScreenshot, alt: "Lao Wang exercise timer and cadence setup.", label: "Exercise timer", width: 375, height: 811 },
-        { src: wangCheckinScreenshot, alt: "Lao Wang health check-in choices.", label: "Health check-ins", width: 375, height: 811 },
+        { src: wangHomeCardScreenshot, alt: "Lao Wang mini-program home screen.", label: "Home", width: 560, height: 1151 },
+        { src: wangCommunityCardScreenshot, alt: "Lao Wang feed-style exercise community.", label: "Community", width: 560, height: 1160 },
+        { src: wangCheckinsCardScreenshot, alt: "Lao Wang multi-mode health check-in choices.", label: "Health check-ins", width: 560, height: 1149 },
       ],
       metrics: [
         { value: "872", label: "cumulative users", source: "WeAnalysis" },
         { value: "127", label: "avg. daily visitors", source: "30-day WeAnalysis" },
-        { value: "7,277", label: "health check-ins", source: "production" },
+        { value: "252", label: "avg. daily opens", source: "30-day WeAnalysis" },
       ],
-      flow: ["Daily routine", "Health record", "Reminder loop"],
-    },
-    sections: {
-      problem:
-        "Health check-in tools need low-friction daily usage, reminders, family support and an operations backend.",
-      architecture:
-        "Mini program, AI assistant, check-in records, community layer, emergency contacts and subscription reminders.",
-      work: "Built check-in flows, timing tools, health records, reminder mechanisms, admin features and deployment.",
-      outcome:
-        "Delivered an online product path covering user check-in, family support, community and operations management.",
+      flow: ["Exercise + check-in", "Community sharing", "AI guidance"],
     },
   },
 ];

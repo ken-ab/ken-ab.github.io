@@ -25,10 +25,10 @@ export function MiniProgramDetail({ study }: { study: MiniProgramCaseStudy }) {
       <section className="mini-proof-section" aria-labelledby="mini-proof-title">
         <header className="mini-section-heading">
           <div>
-            <p className="section-eyebrow">Deployment Evidence</p>
-            <h2 id="mini-proof-title">A working product, not a static prototype</h2>
+            <p className="section-eyebrow">{study.proofCopy.eyebrow}</p>
+            <h2 id="mini-proof-title">{study.proofCopy.title}</h2>
           </div>
-          <p>Scan the live entry point, inspect the current build, and read the dated operating evidence.</p>
+          <p>{study.proofCopy.supporting}</p>
         </header>
 
         <div className="mini-proof-layout">
@@ -106,15 +106,30 @@ export function MiniProgramDetail({ study }: { study: MiniProgramCaseStudy }) {
         <header className="mini-section-heading">
           <div>
             <p className="section-eyebrow">Running Product</p>
-            <h2 id="mini-screens-title">Screens captured from the current codebase</h2>
+            <h2 id="mini-screens-title">
+              {study.id === "laowang-checkin"
+                ? "Screens from the deployed mini program"
+                : "Screens from the delivered product"}
+            </h2>
           </div>
-          <p>The images below come from the locally running H5 build connected to the production service configuration.</p>
+          <p>
+            {study.id === "laowang-checkin"
+              ? "These are real WeChat screens captured from the deployed mini program."
+              : "These screens come from the current delivered build and its production catalogue."}
+          </p>
         </header>
-        <div className={`mini-phone-gallery${study.screenshots.length === 1 ? " is-single" : ""}`}>
+        <div className={`mini-phone-gallery${study.screenshots.length === 1 ? " is-single" : ""}${study.screenshots.length === 5 ? " is-editorial-five" : ""}`}>
           {study.screenshots.map((shot) => (
-            <figure className="mini-phone-shot" key={shot.label}>
+            <figure className={`mini-phone-shot${shot.featured ? " is-featured" : ""}`} key={shot.label}>
               <div className="mini-phone-chrome"><i /><i /><i /></div>
-              <img alt={shot.alt} src={shot.src} />
+              <img
+                alt={shot.alt}
+                decoding="async"
+                height={shot.height}
+                loading={shot.featured ? "eager" : "lazy"}
+                src={shot.src}
+                width={shot.width}
+              />
               <figcaption>{shot.label}</figcaption>
             </figure>
           ))}
@@ -157,26 +172,22 @@ export function MiniProgramDetail({ study }: { study: MiniProgramCaseStudy }) {
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{feature.title}</h3>
               <p>{feature.body}</p>
+              {feature.flow?.length ? (
+                <div className="mini-feature-flow" aria-label={`${feature.title} flow`}>
+                  {feature.flow.map((step, flowIndex) => (
+                    <div className="mini-feature-flow-step" key={step}>
+                      <i aria-hidden="true" />
+                      <strong>{step}</strong>
+                      {flowIndex < feature.flow!.length - 1 ? <ArrowRight aria-hidden="true" size={13} /> : null}
+                    </div>
+                  ))}
+                  <b aria-hidden="true" />
+                </div>
+              ) : null}
             </article>
           ))}
         </div>
       </section>
-
-      <section className="case-evidence-grid mini-evidence-grid">
-        <Evidence title="What I Built" items={study.contribution} />
-        <Evidence title="Delivery Evidence" items={study.takeaways} />
-      </section>
     </>
-  );
-}
-
-function Evidence({ items, title }: { items: string[]; title: string }) {
-  return (
-    <section className="case-evidence-card">
-      <h2>{title}</h2>
-      <ul>
-        {items.map((item) => <li key={item}>{item}</li>)}
-      </ul>
-    </section>
   );
 }
