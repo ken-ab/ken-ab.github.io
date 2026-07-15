@@ -1,4 +1,6 @@
 import type { LocalizedText } from "../i18n/LanguageContext";
+import olympicModelFrameworkCard from "../assets/publication-cards/olympic-model-framework-card.webp";
+import moeTimelineCard from "../assets/publication-cards/moe-timeline-card.webp";
 
 export type ResearchProjectCaseStudy = {
   kind: "research-project";
@@ -22,6 +24,12 @@ export type PublicationSummary = {
   venue: string;
   summary: LocalizedText;
   result: LocalizedText;
+  homeVisual?: {
+    src: string;
+    alt: LocalizedText;
+    width: number;
+    height: number;
+  };
   paperUrl?: string;
 };
 
@@ -78,13 +86,21 @@ export const routerBenchMini: ResearchProjectCaseStudy = {
   ],
 };
 
+export const routerBenchV4Routes = [
+  { method: "Always Cheap", accuracy: "78.67%", latency: "1,178 ms", averageCost: "0.00023762" },
+  { method: "Always Strong", accuracy: "83.33%", latency: "2,619 ms", averageCost: "0.00064448" },
+  { method: "Handcrafted Task-Aware", accuracy: "82.67%", latency: "1,767 ms", averageCost: "0.00050139", featured: true },
+  { method: "Learned Cost-Aware", accuracy: "80.00%", latency: "2,391 ms", averageCost: "0.00043693" },
+  { method: "Calibrated Reflection", accuracy: "80.00%", latency: "2,202 ms", averageCost: "0.00047537" },
+] as const;
+
 export const selectedPublications: PublicationSummary[] = [
   {
     id: "olympic",
     briefId: "olympic-prediction",
     canonicalTitle:
       "Predicting Olympic Medal Performance for 2028: Machine Learning Models and the Impact of Host and Coaching Effects",
-    titleZh: "2028 年奥运奖牌表现预测：机器学习模型及东道主与教练效应",
+    titleZh: "2028年奥运奖牌表现预测：机器学习模型及东道主与教练效应",
     publicationType: { en: "First-Author Machine Learning Research", zh: "第一作者 · 机器学习研究" },
     authorRole: { en: "First Author", zh: "第一作者" },
     venue: "Applied Sciences 15(14), 7793 (2025)",
@@ -94,7 +110,16 @@ export const selectedPublications: PublicationSummary[] = [
     },
     result: {
       en: "XGBoost selected for medal forecasting · FCNN test accuracy 85.5%",
-      zh: "奖牌预测选择 XGBoost · FCNN 测试准确率 85.5%",
+      zh: "40多万条奥赛记录 · 2个模型和2个有趣效应",
+    },
+    homeVisual: {
+      src: olympicModelFrameworkCard,
+      alt: {
+        en: "Research framework for the Olympic medal prediction models and effect analysis.",
+        zh: "奥运奖牌预测模型与效应分析研究框架。",
+      },
+      width: 989,
+      height: 760,
     },
     paperUrl: "https://doi.org/10.3390/app15147793",
   },
@@ -102,7 +127,7 @@ export const selectedPublications: PublicationSummary[] = [
     id: "moe",
     briefId: "moe",
     canonicalTitle: "Exploring and Enhancing Advanced MoE Models: From Deepspeed-MoE to DeepSeek-V3",
-    titleZh: "先进 MoE 模型的探索与增强：从 Deepspeed-MoE 到 DeepSeek-V3",
+    titleZh: "MoE模型的探索与增强：从 Deepspeed-MoE 到 DeepSeek-V3",
     publicationType: { en: "First-Author Review · Efficient AI", zh: "第一作者综述 · 高效 AI" },
     authorRole: { en: "First Author · Review", zh: "第一作者 · 综述" },
     venue: "IEEE AINIT 2025",
@@ -113,6 +138,15 @@ export const selectedPublications: PublicationSummary[] = [
     result: {
       en: "Seven representative architectures · five benchmark families",
       zh: "7 类代表架构 · 5 类基准任务",
+    },
+    homeVisual: {
+      src: moeTimelineCard,
+      alt: {
+        en: "Timeline of representative MoE architectures across language, vision, multimodal, and recommendation systems.",
+        zh: "语言、视觉、多模态与推荐系统中代表性 MoE 架构的演进时间线。",
+      },
+      width: 1280,
+      height: 730,
     },
     paperUrl: "https://doi.org/10.1109/AINIT65432.2025.11035928",
   },
@@ -187,9 +221,9 @@ export const homepageEngineering = [
   },
   {
     id: "laowang",
-    title: "Lao Wang",
-    summary: { en: "Deployed exercise and health check-in mini program", zh: "已上线的运动与健康打卡小程序" },
-    evidence: { en: "872 cumulative users", zh: "累计用户 872" },
+    title: { en: "Lao Wang", zh: "老王运动打卡" },
+    summary: { en: "Deployed exercise and health check-in mini program", zh: "用 AI 辅助独立开发的小程序" },
+    evidence: { en: "872 cumulative users · 200+ daily active users", zh: "累计用户 872 · 日活用户 200+" },
     href: "/brief/laowang-checkin",
   },
 ];
@@ -197,10 +231,10 @@ export const homepageEngineering = [
 export const experienceHighlights = [
   {
     title: { en: "National Supercomputing Center in Wuxi", zh: "国家超级计算无锡中心" },
-    evidence: { en: "Algorithm Engineer Intern · 230K records", zh: "算法工程师实习生 · 23 万条记录" },
+    evidence: { en: "Algorithm Engineer Intern · 230K records", zh: "算法工程师实习生" },
   },
   {
     title: { en: "MCM/ICM 2026", zh: "MCM/ICM 2026" },
-    evidence: { en: "Meritorious Winner", zh: "Meritorious Winner · M 奖" },
+    evidence: { en: "Meritorious Winner", zh: "M 奖" },
   },
 ];

@@ -6,6 +6,7 @@ import { bilingual, useLanguage } from "../../i18n/LanguageContext";
 export function MiniProgramDetail({ study }: { study: MiniProgramCaseStudy }) {
   const { language } = useLanguage();
   const localized = language === "zh" ? miniProgramZh[study.id] : undefined;
+  const isJingjiang = study.id === "jingjiang-platform";
   const maxBatch = Math.max(...(study.batchBreakdown?.map((item) => item.value) ?? [1]));
 
   return (
@@ -14,7 +15,9 @@ export function MiniProgramDetail({ study }: { study: MiniProgramCaseStudy }) {
         <p className="mini-detail-keywords">{study.keywords.join(" · ")}</p>
         <div className="mini-detail-hero-grid">
           <div>
-            <span className="mini-live-badge"><i aria-hidden="true" /> {bilingual(language, "deployed mini program", "已上线小程序")}</span>
+            <span className="mini-live-badge"><i aria-hidden="true" /> {isJingjiang
+              ? bilingual(language, "delivered mini program / platform", "已交付的小程序/平台")
+              : bilingual(language, "deployed mini program", "已上线小程序")}</span>
             <h1>{localized?.title ?? study.title}</h1>
             <p>{localized?.subtitle ?? study.subtitle}</p>
           </div>
@@ -27,12 +30,14 @@ export function MiniProgramDetail({ study }: { study: MiniProgramCaseStudy }) {
       </section>
 
       <section className="mini-proof-section" aria-labelledby="mini-proof-title">
-        <header className="mini-section-heading">
+        <header className={`mini-section-heading${isJingjiang ? " is-compact-title" : ""}`}>
           <div>
-            <p className="section-eyebrow">{localized?.proof.eyebrow ?? study.proofCopy.eyebrow}</p>
-            <h2 id="mini-proof-title">{localized?.proof.title ?? study.proofCopy.title}</h2>
+            <p className="section-eyebrow" id={isJingjiang ? "mini-proof-title" : undefined}>{isJingjiang
+              ? bilingual(language, "Detailed Data", "详细数据")
+              : localized?.proof.eyebrow ?? study.proofCopy.eyebrow}</p>
+            {!isJingjiang ? <h2 id="mini-proof-title">{localized?.proof.title ?? study.proofCopy.title}</h2> : null}
           </div>
-          <p>{localized?.proof.supporting ?? study.proofCopy.supporting}</p>
+          {!isJingjiang ? <p>{localized?.proof.supporting ?? study.proofCopy.supporting}</p> : null}
         </header>
 
         <div className="mini-proof-layout">
@@ -43,7 +48,6 @@ export function MiniProgramDetail({ study }: { study: MiniProgramCaseStudy }) {
               <strong>{bilingual(language, "Scan to open", "扫码打开")}</strong>
             </div>
             <img alt={bilingual(language, `${study.title} WeChat mini-program QR code`, `${localized?.title ?? study.title}微信小程序码`)} src={study.qrCode} />
-            <p>{bilingual(language, "Use WeChat to scan the original mini-program code.", "请使用微信扫描原始小程序码。")}</p>
           </aside>
 
           <div className="mini-proof-body">
@@ -97,30 +101,28 @@ export function MiniProgramDetail({ study }: { study: MiniProgramCaseStudy }) {
               </div>
             ) : null}
 
-            <ul className="mini-deployment-list">
-              {study.deploymentProof.map((proof, proofIndex) => (
-                <li key={proof}><CheckCircle2 aria-hidden="true" size={17} />{localized?.deploymentProof[proofIndex] ?? proof}</li>
-              ))}
-            </ul>
+            {!isJingjiang ? (
+              <ul className="mini-deployment-list">
+                {study.deploymentProof.map((proof, proofIndex) => (
+                  <li key={proof}><CheckCircle2 aria-hidden="true" size={17} />{localized?.deploymentProof[proofIndex] ?? proof}</li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         </div>
       </section>
 
       <section className="mini-screen-section" aria-labelledby="mini-screens-title">
-        <header className="mini-section-heading">
+        <header className={`mini-section-heading${isJingjiang ? " is-compact-title" : ""}`}>
           <div>
-            <p className="section-eyebrow">{bilingual(language, "Running Product", "运行中的产品")}</p>
-            <h2 id="mini-screens-title">
-              {study.id === "laowang-checkin"
-                ? bilingual(language, "Screens from the deployed mini program", "已上线小程序的真实页面")
-                : bilingual(language, "Screens from the delivered product", "已交付产品的真实页面")}
-            </h2>
+            <p className="section-eyebrow" id={isJingjiang ? "mini-screens-title" : undefined}>{isJingjiang
+              ? bilingual(language, "Running Screenshots", "运行截图")
+              : bilingual(language, "Running Product", "运行中的产品")}</p>
+            {!isJingjiang ? (
+              <h2 id="mini-screens-title">{bilingual(language, "Screens from the deployed mini program", "已上线小程序的真实页面")}</h2>
+            ) : null}
           </div>
-          <p>
-            {study.id === "laowang-checkin"
-              ? bilingual(language, "These are real WeChat screens captured from the deployed mini program.", "以下截图来自已经上线的微信小程序。")
-              : bilingual(language, "These screens come from the current delivered build and its production catalogue.", "以下截图来自当前已交付版本及其生产数据目录。")}
-          </p>
+          {!isJingjiang ? <p>{bilingual(language, "These are real WeChat screens captured from the deployed mini program.", "以下截图来自已经上线的微信小程序。")}</p> : null}
         </header>
         <div className={`mini-phone-gallery${study.screenshots.length === 1 ? " is-single" : ""}${study.screenshots.length === 5 ? " is-editorial-five" : ""}`}>
           {study.screenshots.map((shot, shotIndex) => (
@@ -141,12 +143,12 @@ export function MiniProgramDetail({ study }: { study: MiniProgramCaseStudy }) {
       </section>
 
       <section className="mini-system-section" aria-labelledby="mini-system-title">
-        <header className="mini-section-heading">
+        <header className={`mini-section-heading${isJingjiang ? " is-compact-title" : ""}`}>
           <div>
-            <p className="section-eyebrow">{bilingual(language, "System Flow", "系统流程")}</p>
-            <h2 id="mini-system-title">{bilingual(language, "From user action to maintained data", "从用户操作到可持续维护的数据")}</h2>
+            <p className="section-eyebrow" id={isJingjiang ? "mini-system-title" : undefined}>{bilingual(language, "System Flow", "系统流程")}</p>
+            {!isJingjiang ? <h2 id="mini-system-title">{bilingual(language, "From user action to maintained data", "从用户操作到可持续维护的数据")}</h2> : null}
           </div>
-          <p>{bilingual(language, "The diagram separates the user-facing entry, service layer, stored records, and operational follow-up.", "该流程区分用户入口、服务层、数据记录与后续运营。")}</p>
+          {!isJingjiang ? <p>{bilingual(language, "The diagram separates the user-facing entry, service layer, stored records, and operational follow-up.", "该流程区分用户入口、服务层、数据记录与后续运营。")}</p> : null}
         </header>
         <div className="mini-system-flow">
           {study.systemFlow.map((step, index) => (
@@ -164,10 +166,10 @@ export function MiniProgramDetail({ study }: { study: MiniProgramCaseStudy }) {
       </section>
 
       <section className="mini-feature-section" aria-labelledby="mini-features-title">
-        <header className="mini-section-heading">
+        <header className={`mini-section-heading${isJingjiang ? " is-compact-title" : ""}`}>
           <div>
-            <p className="section-eyebrow">{bilingual(language, "Product Decisions", "产品决策")}</p>
-            <h2 id="mini-features-title">{bilingual(language, "What the product had to make understandable", "产品必须让用户一眼理解什么")}</h2>
+            <p className="section-eyebrow" id={isJingjiang ? "mini-features-title" : undefined}>{bilingual(language, "Product Decisions", "产品决策")}</p>
+            {!isJingjiang ? <h2 id="mini-features-title">{bilingual(language, "What the product had to make understandable", "产品必须让用户一眼理解什么")}</h2> : null}
           </div>
         </header>
         <div className="mini-feature-grid">

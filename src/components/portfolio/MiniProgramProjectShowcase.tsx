@@ -1,4 +1,5 @@
 import { ArrowRight, QrCode, ScanLine } from "lucide-react";
+import { Link } from "react-router-dom";
 import type { MiniProgramProjectShowcase as MiniProgramProjectShowcaseData } from "../../data/portfolio";
 import { miniProgramZh } from "../../i18n/content";
 import { bilingual, useLanguage } from "../../i18n/LanguageContext";
@@ -7,12 +8,66 @@ type MiniProgramProjectShowcaseProps = {
   showcase: MiniProgramProjectShowcaseData;
   title: string;
   projectId: string;
+  compact?: boolean;
+  detailHref?: string;
 };
 
-export function MiniProgramProjectShowcase({ projectId, showcase, title }: MiniProgramProjectShowcaseProps) {
+export function MiniProgramProjectShowcase({ compact = false, detailHref, projectId, showcase, title }: MiniProgramProjectShowcaseProps) {
   const { language } = useLanguage();
   const localized = language === "zh" ? miniProgramZh[projectId] : undefined;
   const metricLabels = localized?.metricGroup.labels;
+
+  if (compact) {
+    return (
+      <section className="project-showcase is-compact" aria-label={`${title} deployed product preview`}>
+        <header className="project-compact-heading">
+          <h2>{title}</h2>
+          <img
+            alt={`${title} mini-program QR code`}
+            className="project-compact-qr"
+            decoding="async"
+            loading="eager"
+            src={showcase.qrCode}
+          />
+        </header>
+
+        <div className="project-compact-gallery">
+          {showcase.screenshots.map((screenshot) => (
+            <figure className="project-compact-phone" key={screenshot.label}>
+              <div className="project-phone-top"><i /><i /><i /></div>
+              <img
+                alt={screenshot.alt}
+                decoding="async"
+                height={screenshot.height}
+                loading="eager"
+                src={screenshot.src}
+                width={screenshot.width}
+              />
+              <figcaption>{screenshot.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <div className="project-compact-footer">
+          <dl className="project-compact-metrics">
+            {showcase.metrics.slice(0, 3).map((metric, index) => (
+              <div key={metric.label}>
+                <dt>{metric.value}</dt>
+                <dd>{metricLabels?.[index] ?? metric.label}</dd>
+              </div>
+            ))}
+          </dl>
+          {detailHref ? (
+            <Link className="project-compact-detail" to={detailHref}>
+              {bilingual(language, "DETAIL", "详情")}
+              <ArrowRight aria-hidden="true" size={14} />
+            </Link>
+          ) : null}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="project-showcase" aria-label={`${title} deployed product preview`}>
       <div className="project-showcase-heading">

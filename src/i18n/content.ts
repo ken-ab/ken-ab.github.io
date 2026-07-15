@@ -175,8 +175,8 @@ export const miniProgramZh: Record<string, MiniProgramTranslation> = {
     metricGroup: {
       label: "微信小程序数据分析 · 最近 30 天",
       source: "微信 WeAnalysis",
-      labels: ["累计用户数", "日均访问人数", "日均打开次数", "日均访问页面数"],
-      notes: ["累计微信访问用户", "每天平均独立访客", "每天平均打开小程序次数", "每天平均浏览页面数"],
+      labels: ["累计用户数", "日活用户", "日均打开次数", "日均访问页面数"],
+      notes: ["累计微信访问用户", "运营快照中的日活跃用户", "每天平均打开小程序次数", "每天平均浏览页面数"],
     },
     screenshotLabels: ["首页", "社区", "打卡海报", "健康打卡", "老王 AI"],
     screenshotAlts: ["已上线老王运动打卡小程序首页。", "已上线小程序中的运动社区动态页。", "带换图、换文字和分享控制的打卡海报编辑页。", "运动、16:8 饮食、血压和血糖打卡入口。", "老王 AI 在小程序内回答运动指导问题。"],
@@ -190,11 +190,11 @@ export const miniProgramZh: Record<string, MiniProgramTranslation> = {
     deploymentProof: ["生产 API 已部署", "小程序码可用", "真实微信页面已核验", "后台与提醒服务已接入"],
   },
   "jingjiang-platform": {
-    title: "靖江市千帆靖发产学研用平台",
+    title: "靖江市千帆靖发产学研用平台/小程序",
     subtitle: "让高校项目、区域覆盖、政策和揭榜批次可检索、可维护的小程序、API 与管理系统。",
-    summary: "把分散的产学研合作记录转化为可检索的小程序和可审计的后台数据治理流程。",
-    role: "产品、数据流水线与全栈开发",
-    proof: { eyebrow: "已完成交付", title: "已交付并投入运行", supporting: "公开项目库与带日期的生产数据证明了系统已完成交付。" },
+    summary: "根据实际业务需求，独立负责小程序、后端 API、管理系统和数据库开发，并完成批量数据导入、校验反馈与生产部署。",
+    role: "端到端系统开发与数据治理",
+    proof: { eyebrow: "详细数据", title: "", supporting: "" },
     metricGroup: {
       label: "公开项目库快照",
       source: "生产环境公开 API",

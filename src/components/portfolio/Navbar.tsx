@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { bilingual, useLanguage } from "../../i18n/LanguageContext";
 
 const navItems = [
+  { en: "Home", zh: "首页", href: "/", end: true },
   { en: "Research", zh: "研究项目", href: "/research" },
   { en: "Engineering", zh: "工程项目", href: "/engineering" },
   { en: "Experience", zh: "经历", href: "/experience" },
@@ -23,6 +24,7 @@ export function Navbar() {
           {navItems.map((item) => (
             <NavLink
               className={({ isActive }) => (isActive ? "nav-link is-active" : "nav-link")}
+              end={item.end}
               key={item.href}
               to={item.href}
             >

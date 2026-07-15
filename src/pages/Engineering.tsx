@@ -1,25 +1,21 @@
-import { ArrowRight, CheckCircle2, Code2, Database, LockKeyhole, Workflow } from "lucide-react";
+import { ArrowRight, CheckCircle2, Database, LockKeyhole, Workflow } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ActionButton } from "../components/portfolio/ActionButton";
+import { MiniProgramProjectShowcase } from "../components/portfolio/MiniProgramProjectShowcase";
+import { developmentProjects } from "../data/portfolio";
 import { bilingual, useLanguage } from "../i18n/LanguageContext";
 
 export function Engineering() {
   const { language } = useLanguage();
+  const laoWangProject = developmentProjects.find((project) => project.id === "laowang-checkin");
+  const laoWangShowcase = laoWangProject?.showcase?.kind === "mini-program"
+    ? laoWangProject.showcase
+    : undefined;
 
   return (
     <main className="page-shell engineering-page-v2 page-enter">
-      <section className="phase1-page-hero tone-systems" aria-labelledby="engineering-title">
-        <p className="section-eyebrow">{bilingual(language, "Engineering", "工程项目")}</p>
-        <div>
-          <h1 id="engineering-title">{bilingual(language, "Working systems, presented as engineering evidence.", "以真实系统证明工程交付能力。")}</h1>
-          <p>
-            {bilingual(
-              language,
-              "These projects demonstrate system design, implementation, deployment, and operational delivery. They complement my research experience without being presented as direct research transfer.",
-              "这些项目展示系统设计、实现、部署与运营交付能力，是科研经历的补充，但不被包装为论文成果的直接转化。",
-            )}
-          </p>
-        </div>
+      <section className="secondary-page-title" aria-labelledby="engineering-title">
+        <h1 id="engineering-title">{bilingual(language, "Engineering Projects", "工程项目")}</h1>
       </section>
 
       <section className="engineering-featured" aria-labelledby="finance-agent-title">
@@ -60,7 +56,7 @@ export function Engineering() {
       </section>
 
       <section className="engineering-medium-grid">
-        <article className="engineering-medium-card" id="energyquant">
+        <article className="engineering-medium-card is-energyquant" id="energyquant">
           <header>
             <span>02 · {bilingual(language, "Enterprise Workflow", "企业工作流")}</span>
             <LockKeyhole aria-hidden="true" size={23} />
@@ -88,38 +84,27 @@ export function Engineering() {
         </article>
 
         <article className="engineering-medium-card is-laowang">
-          <header>
-            <span>03 · {bilingual(language, "Deployed Product", "已上线产品")}</span>
-            <Code2 aria-hidden="true" size={23} />
-          </header>
-          <h2>{bilingual(language, "Lao Wang Exercise Check-in Mini Program", "老王运动打卡小程序")}</h2>
-          <p>
-            {bilingual(
-              language,
-              "A deployed WeChat mini program and backend for exercise, multi-mode health check-ins, community sharing, and an AI assistant.",
-              "覆盖运动、多项健康打卡、社区分享与 AI 助手的微信小程序及后端系统，已上线运行。",
-            )}
-          </p>
-          <dl className="laowang-objective-metrics">
-            <div><dt>872</dt><dd>{bilingual(language, "cumulative users", "累计用户")}</dd></div>
-            <div><dt>127</dt><dd>{bilingual(language, "avg. daily visitors", "日均访问人数")}</dd></div>
-            <div><dt>252</dt><dd>{bilingual(language, "avg. daily opens", "日均打开次数")}</dd></div>
-          </dl>
-          <Link className="engineering-text-link" to="/brief/laowang-checkin">{bilingual(language, "View deployed product", "查看已上线产品")} <ArrowRight aria-hidden="true" size={16} /></Link>
+          {laoWangShowcase ? (
+            <MiniProgramProjectShowcase
+              compact
+              detailHref="/brief/laowang-checkin"
+              projectId="laowang-checkin"
+              showcase={laoWangShowcase}
+              title={bilingual(language, "Lao Wang Exercise Check-in Mini Program", "老王运动打卡小程序")}
+            />
+          ) : null}
         </article>
       </section>
 
       <section className="more-engineering" aria-labelledby="more-engineering-title">
         <header className="phase1-section-heading">
           <div>
-            <p className="section-eyebrow">{bilingual(language, "More Engineering Projects", "更多工程项目")}</p>
-            <h2 id="more-engineering-title">{bilingual(language, "Additional delivery evidence.", "补充交付证据。")}</h2>
+            <p className="section-eyebrow" id="more-engineering-title">{bilingual(language, "More Engineering Projects", "更多工程项目")}</p>
           </div>
         </header>
         <article>
           <div>
-            <span>{bilingual(language, "Mini Program · Admin System · Data Governance", "小程序 · 管理后台 · 数据治理")}</span>
-            <h3>{bilingual(language, "Jingjiang University–Industry Cooperation Platform", "靖江市千帆靖发产学研用平台")}</h3>
+            <h3>{bilingual(language, "Jingjiang University–Industry Cooperation Platform / Mini Program", "靖江市千帆靖发产学研用平台/小程序")}</h3>
             <p>
               {bilingual(
                 language,

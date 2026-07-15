@@ -650,7 +650,7 @@ export const caseStudies: CaseStudy[] = [
         window: "2026-06-14 – 2026-07-13",
         metrics: [
           { label: "Cumulative users", value: "872", note: "cumulative WeChat visitor users" },
-          { label: "Average daily visitors", value: "127", note: "average unique visitors per day" },
+          { label: "Daily active users", value: "200+", note: "daily active users in the operating snapshot" },
           { label: "Average daily opens", value: "252", note: "average mini-program opens per day" },
           { label: "Average daily page views", value: "1,691", note: "average viewed pages per day" },
         ],
@@ -692,18 +692,18 @@ export const caseStudies: CaseStudy[] = [
     kind: "mini-program",
     id: "jingjiang-platform",
     eyebrow: "Deployed Mini Program / Public-sector Data Platform",
-    title: "Jingjiang University–Industry Cooperation Platform",
+    title: "Jingjiang Qianfan Jingfa University–Industry–Research–Application Platform / Mini Program",
     subtitle:
       "A mini program, API, and management system that makes university projects, regional coverage, policies, and challenge batches searchable and governable.",
     tone: "systems",
-    period: "2026.04 - 2026.06",
-    role: "Product, Data Pipeline & Full-stack Development",
+    period: "2026.04—2026.06",
+    role: "End-to-end System Development & Data Governance",
     keywords: ["WeChat Mini Program", "Vue 3", "Express", "MySQL", "Project Map", "Data Governance"],
     qrCode: qianfanMiniProgramQr,
     proofCopy: {
-      eyebrow: "DELIVERY COMPLETE",
-      title: "Delivered and in operation",
-      supporting: "The public catalogue and dated production metrics verify the completed delivery.",
+      eyebrow: "DETAILED DATA",
+      title: "",
+      supporting: "",
     },
     metricGroups: [
       {
@@ -726,7 +726,7 @@ export const caseStudies: CaseStudy[] = [
       { label: "Batch 03", value: 16 },
     ],
     oneLineSummary:
-      "A deployed data product that turns fragmented university–industry collaboration records into a searchable mini program and an auditable administration workflow.",
+      "Based on real operational requirements, I independently developed the mini program, backend API, administration system, and database, including batch import, validation feedback, and production deployment.",
     screenshots: [
       {
         src: qianfanHomeScreenshot,

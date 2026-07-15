@@ -418,9 +418,9 @@ export const developmentProjects: DevelopmentProject[] = [
   },
   {
     id: "jingjiang-platform",
-    period: "2026.04 - 2026.06",
-    title: "Jingjiang University Cooperation Project Platform",
-    chineseTitle: "靖江高校合作项目展示平台",
+    period: "2026.04—2026.06",
+    title: "Jingjiang Qianfan Jingfa University–Industry–Research–Application Platform / Mini Program",
+    chineseTitle: "靖江市千帆靖发产学研用平台/小程序",
     type: "Mini Program / Admin System / Government-University Collaboration",
     description:
       "A mini program and backend system for government-enterprise-university cooperation, including national project map, policy PDF display, project matching and batch data import governance.",
@@ -487,7 +487,7 @@ export const developmentProjects: DevelopmentProject[] = [
       ],
       metrics: [
         { value: "872", label: "cumulative users", source: "WeAnalysis" },
-        { value: "127", label: "avg. daily visitors", source: "30-day WeAnalysis" },
+        { value: "200+", label: "daily active users", source: "30-day WeAnalysis" },
         { value: "252", label: "avg. daily opens", source: "30-day WeAnalysis" },
       ],
       flow: ["Exercise + check-in", "Community sharing", "AI guidance"],
