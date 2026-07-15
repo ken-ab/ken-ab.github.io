@@ -1,4 +1,4 @@
-import { BookOpen, FileSearch, FileText, FlaskConical } from "lucide-react";
+import { BookOpen, FileText, FlaskConical, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ActionButton } from "../components/portfolio/ActionButton";
 import { additionalPublications, routerBenchMini, selectedPublications } from "../data/siteStructure";
@@ -11,13 +11,13 @@ export function Research() {
   return (
     <main className="page-shell research-page-v2 page-enter">
       <section className="secondary-page-title" aria-labelledby="research-title">
-        <h1 id="research-title">My Publications</h1>
+        <h1 id="research-title">{bilingual(language, "My Publications", "研究与论文")}</h1>
       </section>
 
       <section className="research-current-section" aria-labelledby="current-research-title">
         <header className="phase1-section-heading">
           <div>
-            <p className="section-eyebrow">{bilingual(language, "01 · Current Research", "01 · 当前研究")}</p>
+            <p className="section-eyebrow">{bilingual(language, "02 · Current Research", "02 · 当前研究")}</p>
             <h2 id="current-research-title">RouterBench-Mini</h2>
           </div>
           <span className="research-section-note">{bilingual(language, "Accuracy · Cost · Latency", "准确率 · 成本 · 延迟")}</span>
@@ -28,7 +28,7 @@ export function Research() {
             <div className="status-pills">
               {routerBenchMini.status.map((status) => <span key={status.en}>{localize(status)}</span>)}
             </div>
-            <h3>{localize(routerBenchMini.question)}</h3>
+            <h3>{bilingual(language, "Cost-aware model routing and escalation strategies for multimodal tasks", "面向多模态任务的成本感知模型路由与升级策略研究")}</h3>
             <p>{localize(routerBenchMini.summary)}</p>
             <div className="research-current-actions">
               <ActionButton href="/brief/routerbench-mini" variant="primary">
@@ -66,7 +66,7 @@ export function Research() {
       <section className="selected-publications-section" aria-labelledby="selected-publications-title">
         <header className="phase1-section-heading">
           <div>
-            <p className="section-eyebrow" id="selected-publications-title">{bilingual(language, "02 · Selected Publications", "02 · 精选论文")}</p>
+            <p className="section-eyebrow" id="selected-publications-title">{bilingual(language, "01 · Selected Publications", "01 · 精选论文")}</p>
           </div>
         </header>
 
@@ -87,7 +87,7 @@ export function Research() {
               <p className="selected-publication-summary">{localize(publication.summary)}</p>
               <strong className="selected-publication-result">{localize(publication.result)}</strong>
               <footer>
-                <Link className="research-action-pill" to={`/brief/${publication.briefId}`}><FileSearch aria-hidden="true" size={15} /> DETAIL</Link>
+                <Link className="research-action-pill" to={`/brief/${publication.briefId}`}><Search aria-hidden="true" size={15} /> DETAIL</Link>
                 {publication.paperUrl ? <a className="research-action-pill" href={publication.paperUrl} rel="noreferrer" target="_blank"><FileText aria-hidden="true" size={15} /> PAPER</a> : null}
               </footer>
             </article>
@@ -113,7 +113,7 @@ export function Research() {
               </div>
               <p className="additional-summary">{localize(publication.summary)}</p>
               <div className="additional-actions">
-                <Link className="research-action-pill" to={`/brief/${publication.briefId}`} aria-label={`${publication.canonicalTitle} detail`}><FileSearch aria-hidden="true" size={15} /> DETAIL</Link>
+                <Link className="research-action-pill" to={`/brief/${publication.briefId}`} aria-label={`${publication.canonicalTitle} detail`}><Search aria-hidden="true" size={15} /> DETAIL</Link>
                 {publication.paperUrl ? <a className="research-action-pill" href={publication.paperUrl} rel="noreferrer" target="_blank" aria-label={`${publication.canonicalTitle} paper`}><FileText aria-hidden="true" size={15} /> PAPER</a> : null}
               </div>
             </article>

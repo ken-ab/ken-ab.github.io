@@ -113,15 +113,17 @@ export const publicationZh: Record<string, PublicationTranslation> = {
 };
 
 export const financeZh = {
-  status: "技术项目简报",
-  title: "Finance-Agent：多智能体 A 股研究与分析系统",
-  role: "项目开发者",
+  status: "技术项目概览",
+  title: "面向 A 股研究任务的多智能体分析与报告生成系统",
+  role: "系统与模型开发",
   subtitle: "多智能体 A 股研究原型：把公司研究拆分为专业分析分支，并生成可追踪的 Markdown 报告。",
-  summary: "Finance-Agent 针对一次性金融分析容易遗漏信息的问题，让多个专业智能体并行研究，再用评估与反思提升报告完整性。",
+  summary: "Finance-Agent针对一次性金融分析容易遗漏信息的问题，让多个专业智能体分别完成基本面、技术面、估值与新闻研究，并通过汇总、评估和一次有界反思提升报告完整性。",
+  contribution: "负责MCP接入、多智能体工作流搭建及Qwen3模型的LoRA微调；微调模型用于新闻情感分析与风险评估，金融分析提示词与领域逻辑由团队成员协作完成。",
+  contributionEn: "Built the MCP integration and multi-agent workflow, and performed LoRA fine-tuning on a Qwen3 model for news sentiment analysis and risk assessment. Financial-analysis prompts and domain logic were developed collaboratively by other team members.",
   facts: [
-    { label: "并行专业智能体", note: "基本面、技术面、估值与新闻分析" },
-    { label: "MCP 工具族", note: "覆盖市场、财报、指数、宏观、分析与新闻" },
-    { label: "有界重规划", note: "工作流终止前最多执行一次反思" },
+    { label: "专业分析智能体", note: "基本面、技术面、估值与新闻分析" },
+    { label: "MCP工具类别", note: "覆盖市场、财报、指数、宏观、分析与新闻" },
+    { label: "最大反思轮次", note: "报告不完整时最多触发一次重新规划" },
   ],
   architecture: {
     eyebrow: "系统架构",

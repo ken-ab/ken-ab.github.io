@@ -17,7 +17,7 @@ export function Navbar() {
       <nav aria-label="Primary navigation" className="site-nav">
         <Link aria-label="Ken Zhang home" className="brand-mark" to="/">
           <span className="brand-icon">K</span>
-          <span>Ken Zhang</span>
+          <span>{bilingual(language, "Ken Zhang", "张桢铠")}</span>
         </Link>
 
         <div className="nav-center">

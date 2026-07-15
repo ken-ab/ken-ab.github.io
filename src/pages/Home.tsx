@@ -8,7 +8,6 @@ import {
   experienceHighlights,
   homepageEngineering,
   routerBenchMini,
-  routerBenchV4Routes,
   selectedPublications,
 } from "../data/siteStructure";
 import { homeZh } from "../i18n/content";
@@ -87,31 +86,10 @@ export function Home() {
               )}
             </p>
           </div>
-          <div className="routerbench-v4-table-wrap">
-            <div className="routerbench-v4-table-heading">
-              <span>V4</span>
-              <strong>{bilingual(language, "Confirmatory results · 150 held-out tasks", "确认性结果 · 150 道 held-out 任务")}</strong>
-            </div>
-            <table className="routerbench-v4-table">
-              <thead>
-                <tr>
-                  <th>{bilingual(language, "Routing method", "路由方式")}</th>
-                  <th>{bilingual(language, "Accuracy", "准确率")}</th>
-                  <th>{bilingual(language, "Latency", "延迟")}</th>
-                  <th>{bilingual(language, "Avg. cost", "平均成本")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {routerBenchV4Routes.map((route) => (
-                  <tr className={"featured" in route ? "is-featured" : undefined} key={route.method}>
-                    <th scope="row">{route.method}</th>
-                    <td>{route.accuracy}</td>
-                    <td>{route.latency}</td>
-                    <td>¥{route.averageCost}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="routerbench-home-result">
+            <small>{bilingual(language, "Independent Research Project", "独立研究项目")}</small>
+            <strong>−22.5% <span>{bilingual(language, "calling cost", "调用成本")}</span></strong>
+            <p>{bilingual(language, "Frozen Task-Aware vs. Always Strong", "固定 Task-Aware 对比 Always Strong")}</p>
           </div>
           <ArrowUpRight aria-hidden="true" className="card-corner-arrow" size={20} />
         </Link>

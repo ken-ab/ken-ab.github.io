@@ -24,10 +24,12 @@ export function FinanceAgentDetail({ study }: { study: AgentProjectCaseStudy }) 
       <section className="finance-detail-hero">
         <div className="finance-detail-copy">
           <p className="finance-detail-keywords">{study.keywords?.join(" · ")}</p>
-          <span className="finance-detail-status"><i aria-hidden="true" /> {bilingual(language, "Technical project brief", financeZh.status)}</span>
-          <h1>{study.title}</h1>
-          {language === "zh" ? <p className="translated-title">{financeZh.title}</p> : null}
-          <p>{bilingual(language, study.subtitle, financeZh.subtitle)}</p>
+          <span className="finance-detail-status"><i aria-hidden="true" /> {bilingual(language, "Technical Project Overview", financeZh.status)}</span>
+          <h1>Finance-Agent</h1>
+          <h2 className="finance-detail-positioning">
+            {bilingual(language, "A Multi-Agent System for A-share Investment Research", financeZh.title)}
+          </h2>
+          <p>{bilingual(language, study.oneLineSummary, financeZh.summary)}</p>
           {study.githubUrl ? (
             <div className="finance-detail-actions">
               <ActionButton external href={study.githubUrl} variant="primary">
@@ -38,16 +40,19 @@ export function FinanceAgentDetail({ study }: { study: AgentProjectCaseStudy }) 
         </div>
 
         <aside className="finance-detail-meta">
-          <span>{study.period}</span>
-          <strong>{bilingual(language, study.role, financeZh.role)}</strong>
-          <p>{bilingual(language, study.oneLineSummary, financeZh.summary)}</p>
+          <dl>
+            <div><dt>{bilingual(language, "Project period", "项目周期")}</dt><dd>{study.period}</dd></div>
+            <div><dt>{bilingual(language, "My role", "我的角色")}</dt><dd>{bilingual(language, "Systems & Model Development", "系统与模型开发")}</dd></div>
+            <div><dt>{bilingual(language, "Project type", "项目性质")}</dt><dd>{bilingual(language, "Team Project / Open-source Prototype", "团队项目 / 开源原型")}</dd></div>
+          </dl>
+          <span>{bilingual(language, "My contribution", "我的贡献")}</span>
+          <p>{bilingual(language, financeZh.contributionEn, financeZh.contribution)}</p>
         </aside>
       </section>
 
       <section className="finance-fact-strip" aria-label={bilingual(language, "Verified Finance-Agent facts", "已核验的 Finance-Agent 事实")}>
         {study.facts?.map((fact, index) => (
           <article key={fact.label}>
-            <span>{String(index + 1).padStart(2, "0")}</span>
             <strong>{fact.value}</strong>
             <div>
               <h2>{bilingual(language, fact.label, financeZh.facts[index]?.label ?? fact.label)}</h2>
