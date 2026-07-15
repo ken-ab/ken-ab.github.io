@@ -376,11 +376,11 @@ export const developmentProjects: DevelopmentProject[] = [
   {
     id: "finance-agent",
     period: "2025.10 - 2026.01",
-    title: "Finance-Agent: A Multi-Agent System for A-share Investment Research",
-    chineseTitle: "Finance-Agent：多智能体 A 股研究与分析系统",
+    title: "MCP-Based A-share Intelligent Analysis System",
+    chineseTitle: "基于 MCP 协议的 A 股智能分析系统",
     type: "AI Agent / Finance / Multi-agent System",
     description:
-      "Built a multi-agent A-share investment research system using MCP tools, LangGraph and ReAct. The system decomposes stock analysis into fundamental, technical, valuation and news agents, then consolidates findings into traceable Markdown reports with evaluator-reflection loops.",
+      "Built on the MCP framework, the system coordinates multiple agents to provide structured references for investment decisions.",
     tags: ["MCP", "LangGraph", "ReAct", "Multi-Agent", "A-share", "Qwen3-8B", "LoRA", "News Factor Model", "Markdown Report"],
     highlights: [
       "Covered 4000+ A-share stocks.",

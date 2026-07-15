@@ -102,9 +102,20 @@ export function Research() {
           </div>
         </header>
         <div className="additional-publication-list">
-          {additionalPublications.map((publication, index) => (
+          {additionalPublications.map((publication) => (
             <article key={publication.id}>
-              <span className="additional-index">{String(index + 1).padStart(2, "0")}</span>
+              {publication.homeVisual ? (
+                <figure className="additional-visual">
+                  <img
+                    alt={localize(publication.homeVisual.alt)}
+                    decoding="async"
+                    height={publication.homeVisual.height}
+                    loading="lazy"
+                    src={publication.homeVisual.src}
+                    width={publication.homeVisual.width}
+                  />
+                </figure>
+              ) : null}
               <div className="additional-main">
                 <p>{localize(publication.publicationType)} · {localize(publication.authorRole)}</p>
                 <h3>{publication.canonicalTitle}</h3>

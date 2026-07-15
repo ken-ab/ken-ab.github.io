@@ -21,17 +21,16 @@ export function Engineering() {
       <section className="engineering-featured" aria-labelledby="finance-agent-title">
         <div className="engineering-featured-copy">
           <p className="section-eyebrow">01 · {bilingual(language, "Agent System", "智能体系统")}</p>
-          <h2 id="finance-agent-title">Finance-Agent: A Multi-Agent System for A-share Investment Research</h2>
-          {language === "zh" ? <p className="translated-title">Finance-Agent：多智能体 A 股研究与分析系统</p> : null}
+          <h2 id="finance-agent-title">{bilingual(language, "MCP-Based A-share Intelligent Analysis System", "基于 MCP 协议的 A 股智能分析系统")}</h2>
           <p>
             {bilingual(
               language,
-              "A LangGraph workflow that keeps fundamental, technical, valuation, and news analysis as parallel, traceable branches, then checks the merged Markdown report through evaluation and one bounded reflection round.",
-              "以 LangGraph 将基本面、技术面、估值和新闻分析保留为并行且可追踪的分支，再通过评估与一次有界反思检查汇总后的 Markdown 报告。",
+              "Built on the MCP framework, the system coordinates multiple agents to provide structured references for investment decisions.",
+              "该系统基于 MCP 框架构建多 Agent 协作架构，能够为用户提供结构化的投资决策参考。",
             )}
           </p>
           <div className="engineering-featured-actions">
-            <ActionButton href="/brief/finance-agent" variant="primary">{bilingual(language, "Technical project brief", "技术项目简报")}</ActionButton>
+            <ActionButton href="/brief/finance-agent" variant="primary">{bilingual(language, "Technical project overview", "技术项目概览")}</ActionButton>
             <ActionButton external href="https://github.com/ken-ab/Finance-Agent">GitHub</ActionButton>
           </div>
         </div>

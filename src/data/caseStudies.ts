@@ -185,15 +185,15 @@ export const caseStudies: CaseStudy[] = [
     id: "finance-agent",
     visualization: "finance-agent",
     eyebrow: "Project Brief / Agentic AI System",
-    title: "Finance-Agent",
+    title: "MCP-Based A-share Intelligent Analysis System",
     subtitle: "A multi-agent prototype that decomposes A-share research into specialist analysis branches and produces traceable Markdown reports.",
     tone: "systems",
     period: "2025.10 - 2026.01",
-    role: "Systems & Model Development",
+    role: "Algorithm Engineer",
     keywords: ["LangGraph", "MCP", "Multi-Agent", "ReAct", "Evaluation", "Reflection"],
     githubUrl: "https://github.com/ken-ab/Finance-Agent",
     oneLineSummary:
-      "Finance-Agent addresses information gaps in one-shot financial analysis by assigning fundamental, technical, valuation, and news research to specialist agents, then improving report completeness through synthesis, evaluation, and one bounded reflection round.",
+      "This multi-agent financial research system is built with LangGraph, MCP, and ReAct. An independent MCP Server exposes eight financial-data tool families to four specialist agents for parallel fundamental, technical, valuation, and news analysis. A Summary Agent produces a structured Markdown report, an Evaluator Agent checks completeness and task alignment, and a Reflection Agent may issue one bounded replanning instruction before the final report is produced.",
     facts: [
       { value: "4", label: "Specialist Agents", note: "Fundamental, technical, valuation, and news analysis" },
       { value: "8", label: "MCP Tool Families", note: "Market, reports, indices, macro, analysis, and news access" },
@@ -631,10 +631,10 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: "Deployed Mini Program / Healthy Ageing",
     title: "Lao Wang Exercise Check-in Mini Program",
     subtitle:
-      "An age-friendly WeChat mini program that turns exercise, diet, and vital-sign routines into low-friction daily check-ins, records, reminders, and community support.",
+      "Lao Wang Exercise Check-in is an age-friendly WeChat mini program for older adults, offering a simple and warm experience for daily exercise tracking and health companionship. It integrates exercise check-ins, metronome timing, streak statistics, AI health Q&A, community interaction, check-in poster generation, and WeChat reminders. Built with Vue 3 and uni-app with a Node.js backend, it covers the complete path from product design and full-stack development to production deployment.",
     tone: "systems",
     period: "2026.05 - 2026.06",
-    role: "Product & Full-stack Development",
+    role: "Independent Development",
     keywords: ["WeChat Mini Program", "uni-app", "Vue 3", "Pinia", "Express", "Healthy Ageing"],
     qrCode: wangMiniProgramQr,
     proofCopy: {
@@ -653,11 +653,12 @@ export const caseStudies: CaseStudy[] = [
           { label: "Daily active users", value: "200+", note: "daily active users in the operating snapshot" },
           { label: "Average daily opens", value: "252", note: "average mini-program opens per day" },
           { label: "Average daily page views", value: "1,691", note: "average viewed pages per day" },
+          { label: "Lao Wang AI conversations", value: "2,392", note: "recorded AI conversation count" },
         ],
       },
     ],
     oneLineSummary:
-      "Built end to end with Codex-assisted web coding—from product structure and interaction design to API integration and deployment—turning an original idea into an independently shipped mini program.",
+      "Independently delivered the complete product—from interaction design and frontend implementation to backend services, API integration, and production deployment.",
     screenshots: [
       { src: wangHomeScreenshot, alt: "Deployed Lao Wang mini-program home screen.", label: "Home", width: 1080, height: 2221, featured: true },
       { src: wangCommunityScreenshot, alt: "Feed-style Lao Wang exercise community in the deployed mini program.", label: "Community", width: 1080, height: 2238 },
@@ -665,7 +666,7 @@ export const caseStudies: CaseStudy[] = [
       { src: wangCheckinsScreenshot, alt: "Exercise, diet, blood-pressure, and blood-glucose check-in choices.", label: "Health check-ins", width: 1080, height: 2216 },
       { src: wangAiScreenshot, alt: "Lao Wang AI answering an exercise guidance question inside the deployed mini program.", label: "Lao Wang AI", width: 1080, height: 2220 },
     ],
-    deploymentProof: ["Production API deployed", "Mini-program QR available", "Live WeChat screens captured", "Admin and reminder services"],
+    deploymentProof: ["Production API operating", "Core user journeys validated in production", "Age-friendly interaction refined through operation", "Admin and reminder services connected"],
     systemFlow: ["Older user", "Mini program", "Express API", "Check-in records", "Reminders + community"],
     featureBlocks: [
       {

@@ -41,7 +41,7 @@ export function ProfileCard() {
           alt={bilingual(language, "Portrait of Zhenkai Zhang", "张桢铠个人照片")}
           height="1024"
           src={profilePhoto}
-          width="1536"
+          width="953"
         />
       </div>
 

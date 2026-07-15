@@ -10,7 +10,7 @@ const detailTitles: Record<string, { en: string; zh: string }> = {
   "sustainability-bamboo": { en: "Bamboo Connection Prediction", zh: "竹—钢连接行为预测" },
   "robot-vision": { en: "Robot Vision Review", zh: "机器人视觉综述" },
   "deic-digital-trade": { en: "Digital Service Trade", zh: "数字服务贸易" },
-  "finance-agent": { en: "Finance-Agent", zh: "Finance-Agent 多智能体系统" },
+  "finance-agent": { en: "MCP-Based A-share Intelligent Analysis System", zh: "基于 MCP 协议的 A 股智能分析系统" },
   "mcm-2026": { en: "MCM 2026 Research Project", zh: "MCM 2026 竞赛研究" },
   "laowang-checkin": { en: "Lao Wang Exercise Check-in", zh: "老王运动打卡" },
   "jingjiang-platform": { en: "Jingjiang University Cooperation Platform", zh: "靖江产学研用平台" },

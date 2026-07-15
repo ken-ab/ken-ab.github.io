@@ -1,6 +1,9 @@
 import type { LocalizedText } from "../i18n/LanguageContext";
 import olympicModelFrameworkCard from "../assets/publication-cards/olympic-model-framework-card.webp";
 import moeTimelineCard from "../assets/publication-cards/moe-timeline-card.webp";
+import bambooConnectionsFigure from "../assets/case-studies/bamboo-connections-framework.png";
+import robotVisionFigure from "../assets/case-studies/robot-vision-detection.png";
+import briDigitalEconomyFigure from "../assets/case-studies/bri-digital-economy.png";
 
 export type ResearchProjectCaseStudy = {
   kind: "research-project";
@@ -167,6 +170,12 @@ export const additionalPublications: PublicationSummary[] = [
       zh: "以因子分析、八模型比较和贝叶斯优化，将 51 个试件的 249 组测量转化为连接类型选择流程。",
     },
     result: { en: "RF ≈61% → BO-optimized RF ≈67%", zh: "RF 约 61% → BO 优化后约 67%" },
+    homeVisual: {
+      src: bambooConnectionsFigure,
+      alt: { en: "Research workflow for thin-walled steel and bamboo connection prediction.", zh: "薄壁钢—竹连接行为预测研究流程图。" },
+      width: 2180,
+      height: 1501,
+    },
     paperUrl: "https://doi.org/10.3390/su17156753",
   },
   {
@@ -183,6 +192,12 @@ export const additionalPublications: PublicationSummary[] = [
       zh: "连接视觉架构、感知任务、部署挑战与工业机器人应用的综述研究。",
     },
     result: { en: "Architecture–task–challenge–industry taxonomy", zh: "架构—任务—挑战—产业分类框架" },
+    homeVisual: {
+      src: robotVisionFigure,
+      alt: { en: "Robot-vision object detection in an urban street scene.", zh: "城市道路场景中的机器人视觉目标检测。" },
+      width: 980,
+      height: 651,
+    },
     paperUrl: "https://doi.org/10.30967/IJCRSET/Yujie-Gao/174",
   },
   {
@@ -199,6 +214,12 @@ export const additionalPublications: PublicationSummary[] = [
       zh: "面向 36 个国家的随机前沿引力分析，并结合中介路径与 XGBoost–GA 前瞻预测扩展。",
     },
     result: { en: "36 BRI countries · two mediation pathways", zh: "36 个 BRI 国家 · 两条中介路径" },
+    homeVisual: {
+      src: briDigitalEconomyFigure,
+      alt: { en: "Belt and Road digital economy framework.", zh: "一带一路数字经济框架图。" },
+      width: 680,
+      height: 374,
+    },
     paperUrl:
       "https://www.researchgate.net/publication/394217388_Enhancing_Export_Potential_of_Digital_Service_Trade_in_BRI_Countries_A_Stochastic_Frontier_Gravity_Model_Analysis_of_Digital_Economy_Development_and_Mediation_Pathways",
   },
@@ -207,8 +228,8 @@ export const additionalPublications: PublicationSummary[] = [
 export const homepageEngineering = [
   {
     id: "finance-agent",
-    title: "Finance-Agent",
-    summary: { en: "Multi-agent A-share investment research system", zh: "多智能体 A 股研究与分析系统" },
+    title: { en: "MCP-Based A-share Intelligent Analysis System", zh: "基于 MCP 协议的 A 股智能分析系统" },
+    summary: { en: "Multi-agent A-share research and reporting system", zh: "多 Agent 协作的 A 股研究与报告系统" },
     evidence: { en: "4 specialist agents · 8 MCP tool families", zh: "4 个专业 Agent · 8 类 MCP 工具" },
     href: "/brief/finance-agent",
   },

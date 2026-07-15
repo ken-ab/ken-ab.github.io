@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { getCaseStudy } from "../../data/caseStudies";
 import { bilingual, useLanguage } from "../../i18n/LanguageContext";
 
 const navItems = [
@@ -11,6 +12,16 @@ const navItems = [
 
 export function Navbar() {
   const { language, toggleLanguage } = useLanguage();
+  const { pathname } = useLocation();
+  const briefId = pathname.startsWith("/brief/") ? pathname.split("/")[2] : undefined;
+  const briefStudy = getCaseStudy(briefId);
+  const activeSection = briefId === "routerbench-mini" || briefStudy?.kind === "publication"
+    ? "/research"
+    : briefStudy?.kind === "competition-project"
+      ? "/experience"
+      : briefStudy
+        ? "/engineering"
+        : pathname;
 
   return (
     <header className="site-header">
@@ -21,16 +32,19 @@ export function Navbar() {
         </Link>
 
         <div className="nav-center">
-          {navItems.map((item) => (
-            <NavLink
-              className={({ isActive }) => (isActive ? "nav-link is-active" : "nav-link")}
-              end={item.end}
-              key={item.href}
-              to={item.href}
-            >
-              {bilingual(language, item.en, item.zh)}
-            </NavLink>
-          ))}
+          {navItems.map((item) => {
+            const isActive = item.end ? activeSection === item.href : activeSection.startsWith(item.href);
+            return (
+              <Link
+                aria-current={isActive ? "page" : undefined}
+                className={isActive ? "nav-link is-active" : "nav-link"}
+                key={item.href}
+                to={item.href}
+              >
+                {bilingual(language, item.en, item.zh)}
+              </Link>
+            );
+          })}
         </div>
 
         <div className="nav-actions">

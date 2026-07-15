@@ -25,10 +25,7 @@ export function FinanceAgentDetail({ study }: { study: AgentProjectCaseStudy }) 
         <div className="finance-detail-copy">
           <p className="finance-detail-keywords">{study.keywords?.join(" · ")}</p>
           <span className="finance-detail-status"><i aria-hidden="true" /> {bilingual(language, "Technical Project Overview", financeZh.status)}</span>
-          <h1>Finance-Agent</h1>
-          <h2 className="finance-detail-positioning">
-            {bilingual(language, "A Multi-Agent System for A-share Investment Research", financeZh.title)}
-          </h2>
+          <h1>{bilingual(language, "MCP-Based A-share Intelligent Analysis System", financeZh.title)}</h1>
           <p>{bilingual(language, study.oneLineSummary, financeZh.summary)}</p>
           {study.githubUrl ? (
             <div className="finance-detail-actions">
@@ -40,13 +37,9 @@ export function FinanceAgentDetail({ study }: { study: AgentProjectCaseStudy }) 
         </div>
 
         <aside className="finance-detail-meta">
-          <dl>
-            <div><dt>{bilingual(language, "Project period", "项目周期")}</dt><dd>{study.period}</dd></div>
-            <div><dt>{bilingual(language, "My role", "我的角色")}</dt><dd>{bilingual(language, "Systems & Model Development", "系统与模型开发")}</dd></div>
-            <div><dt>{bilingual(language, "Project type", "项目性质")}</dt><dd>{bilingual(language, "Team Project / Open-source Prototype", "团队项目 / 开源原型")}</dd></div>
-          </dl>
-          <span>{bilingual(language, "My contribution", "我的贡献")}</span>
-          <p>{bilingual(language, financeZh.contributionEn, financeZh.contribution)}</p>
+          <span>{study.period}</span>
+          <strong>{bilingual(language, "Algorithm Engineer", "算法工程师")}</strong>
+          <p>{bilingual(language, financeZh.responsibilityEn, financeZh.responsibility)}</p>
         </aside>
       </section>
 
@@ -115,8 +108,7 @@ export function FinanceAgentDetail({ study }: { study: AgentProjectCaseStudy }) 
         </div>
 
         <div className="finance-output-copy">
-          <p className="section-eyebrow">{bilingual(language, "Evaluation & Reflection", financeZh.output.eyebrow)}</p>
-          <h2 id="finance-output-title">{bilingual(language, "The report is checked before the graph stops", financeZh.output.title)}</h2>
+          <h2 className="finance-output-kicker" id="finance-output-title">{bilingual(language, "Evaluation & Reflection", financeZh.output.eyebrow)}</h2>
           <ol>
             <li><ShieldCheck aria-hidden="true" size={20} /><span><strong>{bilingual(language, "Evaluate", "评估")}</strong> {bilingual(language, "section coverage, logic, and task alignment.", financeZh.output.steps[0])}</span></li>
             <li><RefreshCw aria-hidden="true" size={20} /><span><strong>{bilingual(language, "Reflect", "反思")}</strong> {bilingual(language, "with a replan instruction only when the evaluator requests revision.", financeZh.output.steps[1])}</span></li>

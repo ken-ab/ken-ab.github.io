@@ -54,7 +54,7 @@ export const timelineZh: Record<string, TimelineTranslation> = {
 export const developmentZh: Record<string, { type: string; description: string }> = {
   "finance-agent": {
     type: "AI 智能体 / 金融 / 多智能体系统",
-    description: "基于 MCP、LangGraph 和 ReAct 的多智能体 A 股研究系统，将基本面、技术面、估值和新闻分析拆为可追踪分支，再通过评估与反思生成结构化报告。",
+    description: "该系统基于 MCP 框架构建多 Agent 协作架构，能够为用户提供结构化的投资决策参考。",
   },
   "jingjiang-platform": {
     type: "微信小程序 / 管理系统 / 政产学研合作",
@@ -114,12 +114,12 @@ export const publicationZh: Record<string, PublicationTranslation> = {
 
 export const financeZh = {
   status: "技术项目概览",
-  title: "面向 A 股研究任务的多智能体分析与报告生成系统",
-  role: "系统与模型开发",
+  title: "基于 MCP 协议的 A 股智能分析系统",
+  role: "算法工程师",
   subtitle: "多智能体 A 股研究原型：把公司研究拆分为专业分析分支，并生成可追踪的 Markdown 报告。",
-  summary: "Finance-Agent针对一次性金融分析容易遗漏信息的问题，让多个专业智能体分别完成基本面、技术面、估值与新闻研究，并通过汇总、评估和一次有界反思提升报告完整性。",
-  contribution: "负责MCP接入、多智能体工作流搭建及Qwen3模型的LoRA微调；微调模型用于新闻情感分析与风险评估，金融分析提示词与领域逻辑由团队成员协作完成。",
-  contributionEn: "Built the MCP integration and multi-agent workflow, and performed LoRA fine-tuning on a Qwen3 model for news sentiment analysis and risk assessment. Financial-analysis prompts and domain logic were developed collaboratively by other team members.",
+  summary: "这是一个基于 LangGraph、MCP 和 ReAct 构建的多智能体金融研究系统。系统通过独立 MCP Server 提供 8 类金融数据工具，由基本面、技术面、估值和新闻 4 个专业 Agent 并行分析，再由 Summary Agent 汇总为结构化 Markdown 报告。报告生成后，Evaluator Agent 检查完整性与任务匹配度；若需要修订，Reflection Agent 会生成重新规划指令，并最多触发一次有界反思后输出最终报告。",
+  responsibility: "主要负责数据源工具化封装、股票分析工作流的设计，以及模型训练与微调工作。",
+  responsibilityEn: "Focused on packaging data sources as tools, designing the stock-analysis workflow, and training and fine-tuning models.",
   facts: [
     { label: "专业分析智能体", note: "基本面、技术面、估值与新闻分析" },
     { label: "MCP工具类别", note: "覆盖市场、财报、指数、宏观、分析与新闻" },
@@ -138,7 +138,6 @@ export const financeZh = {
   },
   output: {
     eyebrow: "评估与反思",
-    title: "图工作流会在结束前检查报告",
     steps: [
       "检查章节覆盖、逻辑和任务匹配度。",
       "仅在评估器要求修订时，生成一次重规划指令。",
@@ -170,15 +169,15 @@ type MiniProgramTranslation = {
 export const miniProgramZh: Record<string, MiniProgramTranslation> = {
   "laowang-checkin": {
     title: "老王运动打卡小程序",
-    subtitle: "把运动、饮食和生命体征记录做成低摩擦日常打卡，并连接提醒、记录与社区支持。",
-    summary: "借助 Codex 辅助编程，从产品结构、交互设计到 API 集成与部署，独立把原创想法交付为上线小程序。",
-    role: "产品与全栈开发",
-    proof: { eyebrow: "已上线产品", title: "运营快照记录累计用户 872", supporting: "带日期的 WeAnalysis 快照客观展示用户覆盖与日常使用，不推断用户态度。" },
+    subtitle: "老王运动打卡是一款适老化微信小程序，面向中老年用户提供简单、温暖的日常运动记录与健康陪伴体验。产品集成运动打卡、节拍器计时、连续打卡统计、AI 健康问答、社区互动、打卡海报生成与微信提醒等功能，并围绕大字体、清晰反馈和简化操作持续优化交互体验；项目基于 Vue 3 与 uni-app 构建，配套 Node.js 后端服务，覆盖了从产品设计、前后端开发到部署上线的完整落地流程。",
+    summary: "从产品设计、交互实现到前后端开发与部署上线，独立完成完整产品落地。",
+    role: "独立开发",
+    proof: { eyebrow: "运行数据", title: "", supporting: "" },
     metricGroup: {
       label: "微信小程序数据分析 · 最近 30 天",
       source: "微信 WeAnalysis",
-      labels: ["累计用户数", "日活用户", "日均打开次数", "日均访问页面数"],
-      notes: ["累计微信访问用户", "运营快照中的日活跃用户", "每天平均打开小程序次数", "每天平均浏览页面数"],
+      labels: ["累计用户数", "日活用户", "日均打开次数", "日均访问页面数", "老王 AI 对话总数"],
+      notes: ["", "", "", "", ""],
     },
     screenshotLabels: ["首页", "社区", "打卡海报", "健康打卡", "老王 AI"],
     screenshotAlts: ["已上线老王运动打卡小程序首页。", "已上线小程序中的运动社区动态页。", "带换图、换文字和分享控制的打卡海报编辑页。", "运动、16:8 饮食、血压和血糖打卡入口。", "老王 AI 在小程序内回答运动指导问题。"],
@@ -189,7 +188,7 @@ export const miniProgramZh: Record<string, MiniProgramTranslation> = {
       { title: "熟悉的社区分享", body: "打卡后可生成精美海报和朋友圈或社区文案，再通过熟悉的动态信息流分享。" },
       { title: "老王 AI 工作流", body: "助手区分小程序操作、一般问题与健康风险问题，检索已确认的产品知识，执行安全边界并流式生成简洁回答，也支持海报和社区文案生成。", flow: ["问题分类", "知识检索", "安全边界", "模型生成", "流式回复"] },
     ],
-    deploymentProof: ["生产 API 已部署", "小程序码可用", "真实微信页面已核验", "后台与提醒服务已接入"],
+    deploymentProof: ["生产 API 持续运行", "核心用户流程已完成生产验证", "适老化交互在运营中持续优化", "后台与提醒服务已接入"],
   },
   "jingjiang-platform": {
     title: "靖江市千帆靖发产学研用平台/小程序",
