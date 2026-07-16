@@ -42,25 +42,25 @@ export const routerBenchMini: ResearchProjectCaseStudy = {
   title: { en: "RouterBench-Mini", zh: "RouterBench-Mini" },
   status: [{ en: "Recent Research", zh: "近期研究" }],
   summary: {
-    en: "A cost-aware multimodal routing study that asks when a cheaper model is sufficient—and when a stronger model is worth the extra cost and latency.",
-    zh: "一项成本感知的多模态模型路由研究：判断何时较低成本模型已经足够，何时应为更强模型支付额外的成本与延迟。",
+    en: "A controlled study of when a lower-cost multimodal model is sufficient and when routing to a stronger model is worth the additional cost and latency.",
+    zh: "一项受控实验，研究低成本多模态模型何时已经足够，以及何时值得为更强模型付出额外的调用成本与延迟。",
   },
   question: {
-    en: "Can a frozen task-aware policy preserve most of an always-strong model's accuracy while reducing calling cost and observed latency across text, vision, and tool-use tasks?",
-    zh: "在文本、视觉与工具调用任务中，固定的任务感知策略能否在保留 Always Strong 大部分准确率的同时，降低调用成本与观测延迟？",
+    en: "Can a multimodal agent determine when a lower-cost model is sufficient and when a stronger model provides enough additional value to justify its higher cost and latency?",
+    zh: "在文本、视觉和工具调用任务中，多模态智能体能否判断低成本模型何时已经足够，以及强模型带来的额外质量提升是否值得更高的调用成本和延迟？",
   },
   methods: [
     {
-      en: "Sampled 600 tasks across text, vision, and tool-use settings, including development data and two non-overlapping 150-task held-out batches.",
-      zh: "在文本、视觉和工具调用场景中采样 600 道任务，包含开发集以及两批互不重叠、各 150 题的 held-out 评测。",
+      en: "Compared Always Cheap, Always Strong, Task-Aware, Learned Router, and Reflection under shared prompts, scoring, and API cost accounting.",
+      zh: "在统一提示、评分与 API 成本核算下，比较 Always Cheap、Always Strong、Task-Aware、Learned Router 与 Reflection。",
     },
     {
-      en: "Iterated from V1 to V4 while keeping the final comparison disciplined: V3's batch informed later feature selection, whereas V4's B batch remained untouched until final confirmation.",
-      zh: "从 V1 迭代至 V4，并严格区分评测用途：V3 的 A 组参与了后续特征方案选择，V4 的 B 组在最终确认前保持未触碰。",
+      en: "Used 300 original development tasks and set A for method and feature comparison, then froze the selected recipe before opening set B.",
+      zh: "使用原始 300 道开发题和 A 组进行方法与特征比较，并在查看 B 组前冻结最终方案。",
     },
     {
-      en: "Used the pooled 300 held-out tasks only to compare frozen baselines that did not change between V3 and V4.",
-      zh: "合并后的 300 道 held-out 任务仅用于比较 V3 与 V4 之间未发生改变的冻结基线。",
+      en: "Reserved set B as the untouched 150-task confirmation set for the final frozen method recipe.",
+      zh: "将 B 组保留为 150 道完全未参与选择的最终确认集，用于评估冻结后的方法方案。",
     },
   ],
   results: [
