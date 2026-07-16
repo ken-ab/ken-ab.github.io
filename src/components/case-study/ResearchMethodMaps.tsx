@@ -152,7 +152,7 @@ export function ResearchMethodMap({ kind }: { kind: MethodMapKey }) {
 
 type FrameProps = {
   children: ReactNode;
-  description: string;
+  description?: string;
   eyebrow: string;
   figureClass: string;
   status?: string;
@@ -161,6 +161,7 @@ type FrameProps = {
 
 function MethodMapFrame({ children, description, eyebrow, figureClass, status, title }: FrameProps) {
   const { language } = useLanguage();
+  const accessibleDescription = description ?? title;
   return (
     <figure className={`research-method-map ${figureClass}`}>
       <header className="research-map-header">
@@ -170,10 +171,10 @@ function MethodMapFrame({ children, description, eyebrow, figureClass, status, t
         </div>
         <span className={`research-map-live${status ? " is-review" : ""}`}><i aria-hidden="true" /> {researchText(language, status ?? "animated route")}</span>
       </header>
-      <div className="research-map-viewport" role="img" aria-label={researchText(language, description)}>
+      <div className="research-map-viewport" role="img" aria-label={researchText(language, accessibleDescription)}>
         {children}
       </div>
-      <figcaption>{researchText(language, description)}</figcaption>
+      {description ? <figcaption>{researchText(language, description)}</figcaption> : null}
     </figure>
   );
 }
@@ -490,9 +491,8 @@ export function MoeRoutingBackgroundMap() {
   const { language } = useLanguage();
   const t = (text: string) => researchText(language, text);
   return (
-    <MethodMapFrame
-      description="This diagram illustrates a generic Top-k sparse routing mechanism. It is provided as background knowledge and does not represent a new architecture proposed in this paper."
-      eyebrow="INPUT TOKENS → ROUTER / GATE → TOP-K EXPERTS → AGGREGATION"
+      <MethodMapFrame
+        eyebrow="INPUT TOKENS → ROUTER / GATE → TOP-K EXPERTS → AGGREGATION"
       figureClass="is-moe moe-routing-background"
       status="BACKGROUND ONLY"
       title="Background: How Sparse MoE Routing Works"

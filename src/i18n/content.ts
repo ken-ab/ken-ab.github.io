@@ -102,7 +102,7 @@ export const publicationZh: Record<string, PublicationTranslation> = {
   moe: {
     title: "MoE模型的探索与增强：从 Deepspeed-MoE 到 DeepSeek-V3",
     summary: "一篇比较性综述，系统梳理了从2022年以来七类前沿的代表性 MoE 架构，并综合分析文献报告的性能—效率证据。",
-    abstractSummary: "本文是一篇比较性综述，解释 MoE 的基础机制与局限，并系统梳理 GLaM、Switch Transformer、DeepSpeed-MoE、PR-MoE、Mixtral 8×7B、DBRX 和 DeepSeek-V3 七类代表性系统。页面中的性能数值来自模型原论文、技术报告或公开评测结果，并非作者在统一环境中重新训练和测试所得。由于缺少足够可比的公开结果，Switch Transformer、DeepSpeed-MoE 与 PR-MoE 主要用于架构和系统层面的定性分析。",
+    abstractSummary: "本文是一篇比较性综述，解释 MoE 的基础机制与局限，并系统梳理 GLaM、Switch Transformer、DeepSpeed-MoE、PR-MoE、Mixtral 8×7B、DBRX 和 DeepSeek-V3 七类代表性系统，比较它们在路由方式、专家组织、激活参数规模、并行训练和架构优化方面的设计差异。在性能分析部分，文章汇总模型原论文、技术报告及公开评测中的结果，从综合能力、常识推理、世界知识、代码和数学五个维度，对部分 MoE 模型与 LLaMA、Mistral、Qwen、GPT 和 Claude 等 Transformer 模型进行横向比较。最后，文章归纳细粒度专家划分、共享专家隔离、稀疏激活、金字塔残差结构等主要优化思路，并讨论 MoE 模型在高效大模型构建、开源协作和未来路由机制研究中的发展方向。",
     visualAlts: ["2017 至 2024 年稀疏 MoE 系统整体演进背景时间线。"],
     visualCaptions: ["该时间线用于展示稀疏 MoE 系统的整体发展脉络。本文从更广泛的技术演进中选取七类代表性系统进行重点比较。"],
     problem: [
@@ -179,7 +179,7 @@ export const publicationZh: Record<string, PublicationTranslation> = {
         "不同来源论文的测试设置并不完全一致。",
       ],
       routingBackgroundNote: "该图用于解释一般性的 Top-k 稀疏路由机制，仅作为背景知识，并非本文提出的新模型架构。",
-      literatureComputeFinding: "在部分被综述的比较设置中，文献报告 MoE 可在保持相近性能的同时将推理计算量降低至少约 50%。",
+      literatureComputeFinding: "在部分被综述的比较实验中，与性能相近的传统稠密 Transformer 模型相比，MoE 通过仅激活部分专家参数，可在基本保持模型性能的同时，将推理计算量降低至少约 50%。",
       limitations: [
         "Benchmark 数值来自不同来源论文，测试设置并未完全统一。",
         "部分架构缺少足够可比的公开结果，因此只能进行定性分析。",

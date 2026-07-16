@@ -1,8 +1,9 @@
-import { BookOpenText, CircleAlert, FileCheck2, Layers3, Scale } from "lucide-react";
+import { BookOpenText } from "lucide-react";
 import type { PublicationCaseStudy } from "../../data/caseStudies";
 import { publicationZh } from "../../i18n/content";
 import { bilingual, useLanguage } from "../../i18n/LanguageContext";
 import { ActionButton } from "../portfolio/ActionButton";
+import { MoeBenchmarkEvidence, moeReviewContributions } from "./MoeBenchmarkEvidence";
 import { MoeRoutingBackgroundMap } from "./ResearchMethodMaps";
 import { MoeSystemTimeline } from "./MoeSystemTimeline";
 import "./MoeReviewDetail.css";
@@ -34,14 +35,13 @@ export function MoeReviewDetail({ study }: { study: PublicationCaseStudy }) {
   const comparisonHeaders = language === "zh"
     ? ["系统", "路由与专家设计", "激活参数量", "主要综述结论", "定量综合状态"]
     : ["System", "Routing / Expert Design", "Active Parameters", "Main Review Takeaway", "Quantitative Synthesis Status"];
-  const benchmarkDimensions = localizedReview?.benchmark.dimensions ?? review.benchmark.dimensions;
   const abstractParagraphs = splitAbstractIntoParagraphs(study.abstract, study.abstractParagraphBreaks);
+  const contributions = moeReviewContributions.map((item) => item[language]);
 
   return (
     <>
       <section className="paper-brief-hero moe-review-hero" aria-labelledby="paper-brief-title">
         <p className="paper-keywords">{study.keywords.join(" · ")}</p>
-        <p className="moe-review-type">{bilingual(language, "First-Author Comparative Review", "第一作者 · 比较性综述")}</p>
         <h1 id="paper-brief-title">{localized?.title ?? study.title}</h1>
         <p className="paper-authors" aria-label={bilingual(language, "Paper authors", "论文作者")}>
           {study.authors.map((author, index) => (
@@ -125,70 +125,22 @@ export function MoeReviewDetail({ study }: { study: PublicationCaseStudy }) {
         </div>
       </section>
 
-      <section className="moe-review-section" aria-labelledby="moe-benchmark-title">
-        <header className="moe-review-section-heading">
-          <p className="section-eyebrow">{bilingual(language, "Cross-paper Evidence", "跨论文证据")}</p>
-          <h2 id="moe-benchmark-title">{bilingual(language, "Literature-reported Benchmark Synthesis", "文献报告基准结果综合")}</h2>
+      <section className="moe-review-section moe-benchmark-evidence" aria-labelledby="moe-benchmark-title">
+        <header className="moe-review-section-heading moe-benchmark-heading">
+          <h2 id="moe-benchmark-title">{bilingual(language, "Benchmark Synthesis (Compared with Mainstream Transformer Models)", "基准结果综合（与主流Transformer模型相比）")}</h2>
         </header>
-        <div className="moe-benchmark-evidence-note">
-          <CircleAlert aria-hidden="true" size={23} />
-          <p>{localizedReview?.benchmark.evidenceNote ?? review.benchmark.evidenceNote}</p>
-        </div>
-        <div className="moe-benchmark-board">
-          <section className="moe-benchmark-dimensions">
-            <span>{bilingual(language, "Five synthesis dimensions", "五个综合维度")}</span>
-            <ol>{benchmarkDimensions.map((dimension, index) => <li key={dimension}><b>0{index + 1}</b>{dimension}</li>)}</ol>
-          </section>
-          <section className="moe-benchmark-coverage is-included">
-            <FileCheck2 aria-hidden="true" size={20} />
-            <h3>{bilingual(language, "Benchmark-supported synthesis", "可进行基准综合的模型组")}</h3>
-            <p>{review.benchmark.includedSystems.join(" · ")}</p>
-          </section>
-          <section className="moe-benchmark-coverage is-qualitative">
-            <Layers3 aria-hidden="true" size={20} />
-            <h3>{bilingual(language, "Architecture / system review only", "仅进行架构 / 系统分析")}</h3>
-            <p>{review.benchmark.architectureOnlySystems.join(" · ")}</p>
-          </section>
-          <section className="moe-benchmark-coverage is-baseline">
-            <Scale aria-hidden="true" size={20} />
-            <h3>{bilingual(language, "Dense baseline context", "密集模型基线背景")}</h3>
-            <p>{localizedReview?.benchmark.denseBaselineNote ?? review.benchmark.denseBaselineNote}</p>
-          </section>
-        </div>
-        <ul className="moe-benchmark-clarifications">
-          {(localizedReview?.benchmark.clarifications ?? review.benchmark.clarifications).map((item) => <li key={item}>{item}</li>)}
-        </ul>
+        <MoeBenchmarkEvidence />
       </section>
 
-      <section className="moe-review-section" aria-labelledby="moe-findings-title">
-        <header className="moe-review-section-heading">
-          <p className="section-eyebrow">{bilingual(language, "Synthesis", "综合结论")}</p>
-          <h2 id="moe-findings-title">{bilingual(language, "Key Findings", "主要发现")}</h2>
-        </header>
-        <ol className="moe-key-findings">
-          {(localizedReview?.findings ?? review.findings).map((finding, index) => (
-            <li key={finding}><span>0{index + 1}</span><p>{finding}</p></li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="case-evidence-grid moe-review-evidence">
+      <section className="case-evidence-grid moe-review-evidence moe-review-conclusion-grid">
         <ReviewEvidenceBlock
-          items={localized?.problem ?? study.problemAddressed}
-          title={bilingual(language, "Review Gap", "综述所填补的空白")}
-        />
-        <ReviewEvidenceBlock
-          items={localized?.innovations ?? study.innovations}
+          items={contributions}
           title={bilingual(language, "Review Contributions", "综述贡献")}
         />
-      </section>
-
-      <section className="moe-review-section moe-limitations" aria-labelledby="moe-limitations-title">
-        <header className="moe-review-section-heading">
-          <p className="section-eyebrow">{bilingual(language, "Research Boundaries", "研究边界")}</p>
-          <h2 id="moe-limitations-title">{bilingual(language, "Limitations of the Review", "综述的局限性")}</h2>
-        </header>
-        <ul>{(localizedReview?.limitations ?? review.limitations).map((item) => <li key={item}>{item}</li>)}</ul>
+        <ReviewEvidenceBlock
+          items={localizedReview?.limitations ?? review.limitations}
+          title={bilingual(language, "Limitations of the Review", "综述局限性")}
+        />
       </section>
     </>
   );

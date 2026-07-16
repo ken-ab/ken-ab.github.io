@@ -95,6 +95,93 @@
   overflow-wrap: anywhere;
 }
 
+.moe-benchmark-heading {
+  margin-bottom: 26px;
+}
+
+.moe-benchmark-heading h2 {
+  max-width: 920px;
+  color: var(--moe-wine);
+  font-size: clamp(27px, 3.1vw, 39px);
+}
+
+.moe-benchmark-figures {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.moe-benchmark-figures figure {
+  overflow: hidden;
+  min-width: 0;
+  border: 1px solid color-mix(in srgb, var(--moe-wine) 28%, var(--paper-line));
+  border-radius: 8px;
+  background: #f7f7f7;
+  box-shadow: 0 17px 42px rgba(35, 27, 24, 0.09);
+}
+
+.moe-benchmark-figures img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.moe-benchmark-figures figcaption {
+  padding: 13px 16px 14px;
+  border-top: 1px solid color-mix(in srgb, var(--moe-wine) 18%, var(--paper-line));
+  color: var(--moe-wine);
+  background: rgba(248, 244, 235, 0.96);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.045em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.moe-benchmark-summary {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 18px;
+  border-top: 1px solid var(--paper-line);
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.moe-benchmark-summary p {
+  padding: 21px 23px 22px;
+  color: var(--ink-soft);
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 15px;
+  line-height: 1.72;
+}
+
+.moe-benchmark-summary p + p {
+  border-top: 1px solid var(--paper-line);
+}
+
+.moe-benchmark-summary p::first-line {
+  color: var(--moe-wine);
+  font-weight: 700;
+}
+
+.moe-review-conclusion-grid {
+  margin-top: 68px;
+}
+
+.moe-review-conclusion-grid .case-evidence-card {
+  min-height: 100%;
+}
+
+.moe-review-conclusion-grid .case-evidence-card:first-child {
+  border-top-color: var(--moe-wine);
+}
+
+.moe-review-conclusion-grid .case-evidence-card:last-child {
+  border-top-color: var(--moe-gold);
+}
+
 @media (max-width: 760px) {
   .moe-evolution-section--hero {
     margin-top: 22px;
@@ -140,4 +227,18 @@
   .moe-system-timeline strong {
     font-size: 15px;
   }
+
+  .moe-benchmark-figures {
+    grid-template-columns: 1fr;
+  }
+
+  .moe-benchmark-figures {
+    gap: 12px;
+  }
+
+  .moe-benchmark-summary p {
+    padding: 18px 5px;
+    font-size: 14px;
+  }
+
 }
