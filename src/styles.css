@@ -6067,9 +6067,9 @@ img {
   --engineering-green: #346355;
   --phase1-line: rgba(52, 47, 40, 0.16);
   --phase1-card: rgba(251, 250, 245, 0.72);
-  --hero-gap-kicker-title: 48px;
-  --hero-gap-title-rule: 52px;
-  --hero-gap-rule-copy: 46px;
+  --hero-gap-kicker-title: 64px;
+  --hero-gap-title-rule: 64px;
+  --hero-gap-rule-copy: 54px;
   --hero-gap-copy: 16px;
   --hero-gap-copy-actions: 32px;
   --hero-gap-next-section: 54px;
@@ -6092,19 +6092,18 @@ img {
   font-size: 30px;
 }
 
-.finance-output-copy .finance-output-kicker {
-  color: var(--finance-red);
-  font-size: clamp(30px, 3.5vw, 43px);
-}
-
 .mini-metric-grid.is-five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 
-.mini-editorial-section-title {
+.finance-section-heading .finance-section-label,
+.finance-output-copy .finance-section-label,
+.mini-section-heading .mini-editorial-section-title {
   color: var(--wine);
-  font-family: Georgia, "Times New Roman", "Songti SC", serif;
-  font-size: clamp(27px, 3vw, 38px);
-  font-weight: 520;
-  line-height: 1.08;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 /* July 2026 editorial rhythm refinement */

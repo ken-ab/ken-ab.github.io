@@ -25,7 +25,11 @@ export function FinanceAgentDetail({ study }: { study: AgentProjectCaseStudy }) 
         <div className="finance-detail-copy">
           <p className="finance-detail-keywords">{study.keywords?.join(" · ")}</p>
           <span className="finance-detail-status"><i aria-hidden="true" /> {bilingual(language, "Technical Project Overview", financeZh.status)}</span>
-          <h1>{bilingual(language, "MCP-Based A-share Intelligent Analysis System", financeZh.title)}</h1>
+          <h1>
+            {language === "zh" ? (
+              <>基于 MCP 协议的<br />A 股智能分析系统</>
+            ) : "MCP-Based A-share Intelligent Analysis System"}
+          </h1>
           <p>{bilingual(language, study.oneLineSummary, financeZh.summary)}</p>
           {study.githubUrl ? (
             <div className="finance-detail-actions">
@@ -56,24 +60,20 @@ export function FinanceAgentDetail({ study }: { study: AgentProjectCaseStudy }) 
       </section>
 
       <section className="finance-architecture-section" aria-labelledby="finance-architecture-title">
-        <header className="finance-section-heading">
-          <div>
-            <p className="section-eyebrow">{bilingual(language, "System Architecture", financeZh.architecture.eyebrow)}</p>
-            <h2 id="finance-architecture-title">{bilingual(language, "One query, four perspectives, one inspected report", financeZh.architecture.title)}</h2>
-          </div>
-          <p>{bilingual(language, "The graph keeps each analytical role visible, then routes incomplete reports through one bounded reflection round.", financeZh.architecture.lead)}</p>
+        <header className="finance-section-heading is-label-only">
+          <h2 className="finance-section-label" id="finance-architecture-title">
+            {bilingual(language, "System Architecture", financeZh.architecture.eyebrow)}
+          </h2>
         </header>
 
         <FinanceAgentSystemMap agents={agents} toolFamilies={toolFamilies} />
       </section>
 
       <section className="finance-tools-section" aria-labelledby="finance-tools-title">
-        <header className="finance-section-heading is-compact">
-          <div>
-            <p className="section-eyebrow">{bilingual(language, "MCP Tooling", financeZh.tools.eyebrow)}</p>
-            <h2 id="finance-tools-title">{bilingual(language, "Eight registered tool families", financeZh.tools.title)}</h2>
-          </div>
-          <p>{bilingual(language, "Each family is present in the repository tool registration layer; this is a capability map, not a performance claim.", financeZh.tools.lead)}</p>
+        <header className="finance-section-heading is-label-only">
+          <h2 className="finance-section-label" id="finance-tools-title">
+            {bilingual(language, "MCP Tooling", financeZh.tools.eyebrow)}
+          </h2>
         </header>
         <div className="finance-tool-grid">
           {toolFamilies.map((tool, index) => (
@@ -108,7 +108,7 @@ export function FinanceAgentDetail({ study }: { study: AgentProjectCaseStudy }) 
         </div>
 
         <div className="finance-output-copy">
-          <h2 className="finance-output-kicker" id="finance-output-title">{bilingual(language, "Evaluation & Reflection", financeZh.output.eyebrow)}</h2>
+          <h2 className="finance-section-label" id="finance-output-title">{bilingual(language, "Evaluation & Reflection", financeZh.output.eyebrow)}</h2>
           <ol>
             <li><ShieldCheck aria-hidden="true" size={20} /><span><strong>{bilingual(language, "Evaluate", "评估")}</strong> {bilingual(language, "section coverage, logic, and task alignment.", financeZh.output.steps[0])}</span></li>
             <li><RefreshCw aria-hidden="true" size={20} /><span><strong>{bilingual(language, "Reflect", "反思")}</strong> {bilingual(language, "with a replan instruction only when the evaluator requests revision.", financeZh.output.steps[1])}</span></li>
