@@ -60,27 +60,48 @@ const researchMapZh: Record<string, string> = {
   "rules meet perception": "规则与感知融合",
   "OUTPUT": "输出",
   "Industrial robots": "工业机器人",
-  "Tokens are routed to a small set of experts, aggregated, then studied across seven representative MoE families and five benchmark dimensions to explain the capacity–compute trade-off.": "Token 被路由到少量专家并加权聚合，再通过七类代表性 MoE 架构和五个基准维度解释容量—计算权衡。",
-  "SPARSE ROUTING → ARCHITECTURE EVOLUTION → BENCHMARK": "稀疏路由 → 架构演进 → 基准比较",
-  "How MoE activates capacity without activating every parameter": "MoE 如何在不激活全部参数的情况下使用模型容量",
-  "INPUT TOKENS": "输入 TOKEN",
-  "SPARSE DECISION": "稀疏决策",
-  "score experts / top-k": "专家评分 / Top-k",
-  "EXPERT BANK · TOP-2 ACTIVE": "专家库 · 激活 TOP-2",
-  "MERGE": "聚合",
-  "Token-level": "Token 级",
-  "aggregation": "加权聚合",
-  "weighted expert outputs": "专家输出加权",
-  "EFFICIENCY RESULT": "效率结果",
-  "less inference compute": "推理计算量更低",
-  "performance preserved": "保持模型性能",
-  "7 REPRESENTATIVE ARCHITECTURE FAMILIES": "7 类代表性架构",
-  "BENCHMARK · 5 DIMENSIONS": "基准 · 5 个维度",
   "Aggregate": "综合",
   "Commonsense": "常识",
-  "Knowledge": "知识",
   "Code": "代码",
   "Math": "数学",
+  "COMPARATIVE REVIEW": "比较性综述",
+  "LITERATURE SCOPE → ARCHITECTURE TAXONOMY → EVIDENCE SYNTHESIS → FINDINGS & LIMITATIONS": "文献范围 → 架构分类 → 证据综合 → 结论与局限",
+  "Review Scope and Comparative Framework": "综述范围与比较框架",
+  "The review selects seven representative MoE systems, organizes architectural choices, separates qualitative and quantitative evidence, and synthesizes literature-reported findings with explicit limitations.": "本文选取七类代表性 MoE 系统，整理架构选择，区分定性与定量证据，并在明确研究局限的前提下综合文献报告结果。",
+  "LITERATURE SCOPE": "文献范围",
+  "7 representative MoE systems": "7 类代表性 MoE 系统",
+  "ARCHITECTURE TAXONOMY": "架构分类",
+  "Routing strategy": "路由策略",
+  "Expert granularity": "专家粒度",
+  "Active parameters": "激活参数量",
+  "Residual / shared experts": "残差与共享专家",
+  "Training and inference systems": "训练和推理系统",
+  "EVIDENCE SEPARATION": "证据区分",
+  "Architecture-focused review": "架构分析组",
+  "Reviewed for architectural and system innovations, but excluded from the main quantitative table because comparable benchmark evidence was unavailable.": "重点分析架构和系统创新，但由于缺少可比的 Benchmark 结果，未进入主要定量比较表。",
+  "Benchmark-supported synthesis": "可进行基准综合的模型组",
+  "Dense and proprietary baselines": "密集模型与闭源模型基线",
+  "Available literature-reported results are synthesized across multiple benchmark families.": "将已有文献中公开的结果按照多个基准维度进行综合整理。",
+  "CROSS-PAPER BENCHMARK SYNTHESIS": "跨论文基准综合",
+  "Literature-reported results": "文献报告结果",
+  "World Knowledge": "世界知识",
+  "FINDINGS AND LIMITATIONS": "结论与局限",
+  "Sparse activation improves parameter efficiency": "稀疏激活提高参数效率",
+  "Fine-grained and shared experts strengthen specialization": "细粒度与共享专家增强专业化",
+  "Code and math show strong MoE performance patterns": "MoE 在代码和数学任务中表现突出",
+  "Evaluation settings differ across source papers": "不同来源论文的测试设置并不完全一致",
+  "BACKGROUND ONLY": "背景知识",
+  "INPUT TOKENS → ROUTER / GATE → TOP-K EXPERTS → AGGREGATION": "输入 TOKEN → 路由器 / 门控 → TOP-K 专家 → 聚合",
+  "Background: How Sparse MoE Routing Works": "背景知识：稀疏 MoE 如何工作",
+  "This diagram illustrates a generic Top-k sparse routing mechanism. It is provided as background knowledge and does not represent a new architecture proposed in this paper.": "该图用于解释一般性的 Top-k 稀疏路由机制，仅作为背景知识，并非本文提出的新模型架构。",
+  "INPUT": "输入",
+  "Token representations": "Token 表征",
+  "ROUTER / GATE": "路由器 / 门控",
+  "Score experts and select Top-k": "专家评分并选择 Top-k",
+  "EXPERT BANK · TOP-K ACTIVE": "专家库 · 激活 TOP-K",
+  "Generic sparse selection": "通用稀疏选择",
+  "AGGREGATION": "聚合",
+  "Weighted expert outputs": "专家输出加权",
   "The paper combines frontier estimation, machine-learning forecasting, and two mediation paths to explain and project digital-service export potential across Belt and Road countries.": "研究结合前沿估计、机器学习预测和两条中介路径，解释并预测“一带一路”国家的数字服务出口潜力。",
   "PANEL DATA → FRONTIER ESTIMATION → MEDIATION + FORECAST": "面板数据 → 前沿估计 → 中介 + 预测",
   "Three analytical lanes, one export-potential decision system": "三条分析路线，一个出口潜力决策系统",
@@ -134,10 +155,11 @@ type FrameProps = {
   description: string;
   eyebrow: string;
   figureClass: string;
+  status?: string;
   title: string;
 };
 
-function MethodMapFrame({ children, description, eyebrow, figureClass, title }: FrameProps) {
+function MethodMapFrame({ children, description, eyebrow, figureClass, status, title }: FrameProps) {
   const { language } = useLanguage();
   return (
     <figure className={`research-method-map ${figureClass}`}>
@@ -146,7 +168,7 @@ function MethodMapFrame({ children, description, eyebrow, figureClass, title }: 
           <span>{researchText(language, eyebrow)}</span>
           <strong>{researchText(language, title)}</strong>
         </div>
-        <span className="research-map-live"><i aria-hidden="true" /> {researchText(language, "animated route")}</span>
+        <span className={`research-map-live${status ? " is-review" : ""}`}><i aria-hidden="true" /> {researchText(language, status ?? "animated route")}</span>
       </header>
       <div className="research-map-viewport" role="img" aria-label={researchText(language, description)}>
         {children}
@@ -402,84 +424,99 @@ function RobotIconNode({ icon, label, note, x, y }: { icon: "camera" | "chip" | 
 function MoeMethodMap() {
   const { language } = useLanguage();
   const t = (text: string) => researchText(language, text);
+  const systems = ["GLaM", "Switch Transformer", "DeepSpeed-MoE", "PR-MoE", "Mixtral 8×7B", "DBRX", "DeepSeek-V3"];
+  const taxonomy = ["Routing strategy", "Expert granularity", "Active parameters", "Residual / shared experts", "Training and inference systems"];
+  const architectureOnly = ["Switch Transformer", "DeepSpeed-MoE", "PR-MoE"];
+  const benchmarkSupported = ["GLaM", "Mixtral", "DBRX", "DeepSeek-V3", "Dense and proprietary baselines"];
+  const dimensions = ["Aggregate", "Commonsense", "World Knowledge", "Code", "Math"];
+  const findings = [
+    "Sparse activation improves parameter efficiency",
+    "Fine-grained and shared experts strengthen specialization",
+    "Code and math show strong MoE performance patterns",
+    "Evaluation settings differ across source papers",
+  ];
   return (
     <MethodMapFrame
-      description="Tokens are routed to a small set of experts, aggregated, then studied across seven representative MoE families and five benchmark dimensions to explain the capacity–compute trade-off."
-      eyebrow="SPARSE ROUTING → ARCHITECTURE EVOLUTION → BENCHMARK"
+      description="The review selects seven representative MoE systems, organizes architectural choices, separates qualitative and quantitative evidence, and synthesizes literature-reported findings with explicit limitations."
+      eyebrow="LITERATURE SCOPE → ARCHITECTURE TAXONOMY → EVIDENCE SYNTHESIS → FINDINGS & LIMITATIONS"
       figureClass="is-moe"
-      title="How MoE activates capacity without activating every parameter"
+      status="COMPARATIVE REVIEW"
+      title="Review Scope and Comparative Framework"
     >
-      <svg className="research-route-svg" viewBox="0 0 1320 680" xmlns="http://www.w3.org/2000/svg">
-        <MapDefs accent="#6d3f50" id="moe" />
-        <rect className="research-map-grid" fill="url(#moe-grid)" height="680" rx="24" width="1320" />
+      <div className="moe-review-framework">
+        <article className="moe-review-stage is-scope">
+          <span>01 / {t("LITERATURE SCOPE")}</span>
+          <h3>{t("7 representative MoE systems")}</h3>
+          <ul>{systems.map((system) => <li key={system}>{system}</li>)}</ul>
+        </article>
 
-        <g className="moe-token-stack" transform="translate(36 198)">
-          <text className="route-node-role" x="0" y="-24">{t("INPUT TOKENS")}</text>
-          {[0, 1, 2, 3].map((index) => <rect height="52" key={index} rx="14" width="124" x={index * 8} y={index * 10} />)}
-          <text className="moe-token-text" x="62" y="35">TOKEN</text>
-        </g>
-        <RouteNode detail="score experts / top-k" label={["Router", "+ Gate"]} role="SPARSE DECISION" tone="wine" width={174} x={214} y={186} />
+        <article className="moe-review-stage is-taxonomy">
+          <span>02 / {t("ARCHITECTURE TAXONOMY")}</span>
+          <ul>{taxonomy.map((dimension) => <li key={dimension}>{t(dimension)}</li>)}</ul>
+        </article>
 
-        <g className="moe-expert-bank" transform="translate(446 116)">
-          <rect height="250" rx="28" width="292" />
-          <text className="route-node-role" x="22" y="31">{t("EXPERT BANK · TOP-2 ACTIVE")}</text>
-          {[{x:65,y:92,l:"E1",a:true},{x:207,y:92,l:"E2",a:false},{x:65,y:190,l:"E3",a:false},{x:207,y:190,l:"E4",a:true}].map((expert) => (
-            <g className={expert.a ? "moe-expert is-active" : "moe-expert"} key={expert.l}>
-              <circle cx={expert.x} cy={expert.y} r="39" />
-              <text textAnchor="middle" x={expert.x} y={expert.y + 6}>{expert.l}</text>
-              {expert.a ? <circle className="expert-orbit" cx={expert.x} cy={expert.y} fill="none" r="48" /> : null}
-            </g>
-          ))}
-          <path className="moe-gate-line is-active" d="M-58 123 C-14 123 10 92 26 92" />
-          <path className="moe-gate-line" d="M-58 123 C-14 123 130 92 168 92" />
-          <path className="moe-gate-line" d="M-58 123 C-14 123 10 190 26 190" />
-          <path className="moe-gate-line is-active" d="M-58 123 C-14 123 130 190 168 190" />
-        </g>
+        <article className="moe-review-stage is-evidence">
+          <span>03 / {t("EVIDENCE SEPARATION")}</span>
+          <div className="moe-evidence-lanes">
+            <section className="moe-evidence-lane is-architecture">
+              <h3>{t("Architecture-focused review")}</h3>
+              <p className="moe-model-list">{architectureOnly.join(" · ")}</p>
+              <p>{t("Reviewed for architectural and system innovations, but excluded from the main quantitative table because comparable benchmark evidence was unavailable.")}</p>
+            </section>
+            <section className="moe-evidence-lane is-benchmark">
+              <h3>{t("Benchmark-supported synthesis")}</h3>
+              <p className="moe-model-list">{benchmarkSupported.map((item) => t(item)).join(" · ")}</p>
+              <p>{t("Available literature-reported results are synthesized across multiple benchmark families.")}</p>
+            </section>
+          </div>
+        </article>
 
-        <RouteNode detail="weighted expert outputs" label={["Token-level", "aggregation"]} role="MERGE" tone="gold" width={190} x={792} y={186} />
-        <FlowPath d="M160 239 H214" id="moe" />
-        <FlowPath d="M388 239 H446" id="moe" />
-        <FlowPath d="M738 239 H792" id="moe" />
-        <FlowDot d="M160 239 H214 H388 H446" />
-        <FlowDot begin="-2.9s" d="M738 239 H792 H982" tone="gold" />
+        <article className="moe-review-stage is-benchmark-stage">
+          <span>04 / {t("CROSS-PAPER BENCHMARK SYNTHESIS")}</span>
+          <strong>{t("Literature-reported results")}</strong>
+          <ul>{dimensions.map((dimension) => <li key={dimension}>{t(dimension)}</li>)}</ul>
+        </article>
 
-        <g className="moe-result-card" transform="translate(1034 126)">
-          <rect height="214" rx="28" width="250" />
-          <text className="route-node-role" x="24" y="31">{t("EFFICIENCY RESULT")}</text>
-          <text className="moe-result-number" x="24" y="105">≥50%</text>
-          <text className="moe-result-copy" x="24" y="135">{t("less inference compute")}</text>
-          <path d="M26 166h198" />
-          <text className="route-node-detail" x="24" y="191">{t("performance preserved")}</text>
-        </g>
-        <FlowPath d="M982 239 H1034" id="moe" />
+        <article className="moe-review-stage is-findings">
+          <span>05 / {t("FINDINGS AND LIMITATIONS")}</span>
+          <ul>{findings.map((finding) => <li key={finding}>{t(finding)}</li>)}</ul>
+        </article>
+      </div>
+    </MethodMapFrame>
+  );
+}
 
-        <g className="moe-evolution-track" transform="translate(38 430)">
-          <text className="route-node-role" x="0" y="0">{t("7 REPRESENTATIVE ARCHITECTURE FAMILIES")}</text>
-          <path d="M0 68 H862" />
-          {[
-            ["GLaM", 0], ["Switch", 128], ["DeepSpeed-MoE", 256], ["PR-MoE", 384],
-            ["Mixtral", 512], ["DBRX", 640], ["DeepSeek-V3", 768],
-          ].map(([label, x], index) => (
-            <g className="moe-timeline-stop" key={label} transform={`translate(${x} 68)`}>
-              <circle r={index === 6 ? 9 : 6} />
-              <text textAnchor="middle" x="0" y={index % 2 ? 43 : -22}>{label}</text>
-            </g>
-          ))}
-          <circle className="research-flow-dot is-wine" r="5">
-            <animateMotion dur="7s" path="M0 68 H862" repeatCount="indefinite" />
-          </circle>
-        </g>
-
-        <g className="moe-benchmark-panel" transform="translate(950 418)">
-          <rect height="184" rx="24" width="334" />
-          <text className="route-node-role" x="22" y="29">{t("BENCHMARK · 5 DIMENSIONS")}</text>
-          {[["Aggregate",22,48],["Commonsense",170,48],["Knowledge",22,88],["Code",170,88],["Math",96,128]].map(([label,x,y]) => (
-            <SmallPill best={label === "Code" || label === "Math"} key={label} label={String(label)} x={Number(x)} y={Number(y)} />
-          ))}
-        </g>
-        <FlowPath d="M900 498 H950" id="moe" />
-        <FlowPath d="M1117 418 C1117 376 1159 378 1159 340" id="moe" />
-      </svg>
+export function MoeRoutingBackgroundMap() {
+  const { language } = useLanguage();
+  const t = (text: string) => researchText(language, text);
+  return (
+    <MethodMapFrame
+      description="This diagram illustrates a generic Top-k sparse routing mechanism. It is provided as background knowledge and does not represent a new architecture proposed in this paper."
+      eyebrow="INPUT TOKENS → ROUTER / GATE → TOP-K EXPERTS → AGGREGATION"
+      figureClass="is-moe moe-routing-background"
+      status="BACKGROUND ONLY"
+      title="Background: How Sparse MoE Routing Works"
+    >
+      <div className="moe-routing-explainer">
+        <article className="moe-routing-step is-input">
+          <span>01 / {t("INPUT")}</span>
+          <strong>{t("Token representations")}</strong>
+          <div className="moe-token-chips" aria-hidden="true"><i /><i /><i /><i /></div>
+        </article>
+        <article className="moe-routing-step is-router">
+          <span>02 / {t("ROUTER / GATE")}</span>
+          <strong>{t("Score experts and select Top-k")}</strong>
+        </article>
+        <article className="moe-routing-step is-experts">
+          <span>03 / {t("EXPERT BANK · TOP-K ACTIVE")}</span>
+          <strong>{t("Generic sparse selection")}</strong>
+          <div className="moe-expert-dots" aria-hidden="true"><i className="is-active">E1</i><i>E2</i><i className="is-active">E3</i><i>E4</i></div>
+        </article>
+        <article className="moe-routing-step is-merge">
+          <span>04 / {t("AGGREGATION")}</span>
+          <strong>{t("Weighted expert outputs")}</strong>
+        </article>
+      </div>
     </MethodMapFrame>
   );
 }

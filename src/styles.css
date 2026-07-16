@@ -4363,6 +4363,801 @@ img {
   }
 }
 
+/* MoE comparative review brief */
+.moe-review-page {
+  --moe-wine: #6d3f50;
+  --moe-wine-soft: #f2eaed;
+  --moe-blue: #315f78;
+  --moe-green: #386854;
+  --moe-gold: #ad7b29;
+}
+
+.moe-review-hero {
+  max-width: 1040px;
+  padding-top: 52px;
+}
+
+.moe-review-hero h1 {
+  font-size: clamp(34px, 4.15vw, 54px);
+  line-height: 1.06;
+}
+
+.moe-review-type {
+  width: fit-content;
+  margin: 14px auto 0;
+  padding: 7px 11px;
+  border: 1px solid color-mix(in srgb, var(--moe-wine) 30%, var(--paper-line));
+  border-radius: 999px;
+  color: var(--moe-wine);
+  background: color-mix(in srgb, var(--moe-wine) 5%, rgba(255, 255, 255, 0.78));
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.moe-review-overview {
+  max-width: 1080px;
+  margin: 26px auto 0;
+  padding: 20px 22px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.moe-review-overview-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.moe-review-overview-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 9px;
+  align-items: center;
+}
+
+.moe-review-overview-step > span {
+  color: var(--moe-gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.moe-review-overview-step strong {
+  color: var(--ink-soft);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 10px;
+  line-height: 1.35;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.moe-review-overview-step svg {
+  color: color-mix(in srgb, var(--moe-wine) 52%, var(--paper-line));
+}
+
+.moe-review-overview > p {
+  max-width: 920px;
+  margin-top: 18px;
+  color: var(--ink-soft);
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 17px;
+  line-height: 1.68;
+}
+
+.moe-review-abstract {
+  max-width: 980px;
+  margin-top: 58px;
+}
+
+.moe-review-section {
+  max-width: 1180px;
+  margin: 68px auto 0;
+}
+
+.moe-review-section-heading {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 22px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.moe-review-section-heading h2 {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.moe-evolution-section {
+  max-width: 980px;
+}
+
+.moe-evolution-figure {
+  width: 100%;
+}
+
+.moe-evolution-figure img {
+  width: 100%;
+  max-height: none;
+}
+
+.moe-evolution-figure figcaption {
+  padding: 14px 17px 16px;
+  border-top: 1px solid var(--paper-line);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.62;
+}
+
+.research-map-live.is-review {
+  color: var(--moe-wine);
+}
+
+.research-map-live.is-review i {
+  background: var(--moe-wine);
+  box-shadow: none;
+  animation: none;
+}
+
+.moe-review-framework {
+  display: grid;
+  grid-template-columns: minmax(145px, 0.9fr) minmax(155px, 1fr) minmax(330px, 2.15fr) minmax(160px, 1.05fr) minmax(175px, 1.15fr);
+  gap: 10px;
+  padding: 22px;
+  background:
+    linear-gradient(90deg, rgba(109, 63, 80, 0.038) 1px, transparent 1px),
+    linear-gradient(rgba(109, 63, 80, 0.034) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.moe-review-stage {
+  position: relative;
+  min-width: 0;
+  min-height: 330px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--moe-wine) 24%, var(--paper-line));
+  border-radius: 8px;
+  background: rgba(255, 254, 249, 0.92);
+  box-shadow: 0 12px 30px rgba(49, 41, 31, 0.055);
+  animation: moe-review-stage-in 560ms ease both;
+}
+
+.moe-review-stage:nth-child(2) { animation-delay: 70ms; }
+.moe-review-stage:nth-child(3) { animation-delay: 140ms; }
+.moe-review-stage:nth-child(4) { animation-delay: 210ms; }
+.moe-review-stage:nth-child(5) { animation-delay: 280ms; }
+
+.moe-review-stage:not(:last-child)::after {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: -11px;
+  width: 10px;
+  height: 1px;
+  content: "";
+  background: var(--moe-wine);
+}
+
+.moe-review-stage > span,
+.moe-routing-step > span {
+  display: block;
+  color: var(--moe-wine);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 1.45;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.moe-review-stage h3 {
+  margin-top: 11px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.moe-review-stage > ul,
+.moe-evidence-lane,
+.moe-review-stage.is-benchmark-stage > ul {
+  display: grid;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.moe-review-stage li {
+  position: relative;
+  padding-left: 11px;
+  color: var(--ink-soft);
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.moe-review-stage li::before {
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 5px;
+  height: 1px;
+  content: "";
+  background: var(--moe-gold);
+}
+
+.moe-evidence-lanes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 13px;
+}
+
+.moe-evidence-lane {
+  align-content: start;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--paper-line);
+  border-radius: 6px;
+  background: rgba(249, 247, 240, 0.8);
+}
+
+.moe-evidence-lane.is-benchmark {
+  border-color: color-mix(in srgb, var(--moe-green) 38%, var(--paper-line));
+  background: color-mix(in srgb, var(--moe-green) 5%, white);
+}
+
+.moe-evidence-lane h3 {
+  margin: 0;
+  font-size: 13px;
+}
+
+.moe-evidence-lane p {
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.48;
+}
+
+.moe-evidence-lane .moe-model-list {
+  color: var(--moe-wine);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 7.5px;
+  font-weight: 800;
+}
+
+.moe-review-stage.is-benchmark-stage > strong {
+  display: block;
+  margin-top: 14px;
+  padding: 8px;
+  border: 1px solid color-mix(in srgb, var(--moe-green) 35%, var(--paper-line));
+  border-radius: 5px;
+  color: var(--moe-green);
+  background: color-mix(in srgb, var(--moe-green) 5%, white);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.moe-routing-explainer {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 26px;
+  padding: 24px;
+  background:
+    linear-gradient(90deg, rgba(109, 63, 80, 0.032) 1px, transparent 1px),
+    linear-gradient(rgba(109, 63, 80, 0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.moe-routing-step {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  align-content: center;
+  min-height: 142px;
+  padding: 18px;
+  border: 1px solid color-mix(in srgb, var(--moe-wine) 24%, var(--paper-line));
+  border-radius: 8px;
+  background: rgba(255, 254, 249, 0.92);
+}
+
+.moe-routing-step:not(:last-child)::after {
+  position: absolute;
+  top: calc(50% - 6px);
+  right: -22px;
+  width: 11px;
+  height: 11px;
+  content: "";
+  border-top: 1px solid var(--moe-wine);
+  border-right: 1px solid var(--moe-wine);
+  transform: rotate(45deg);
+}
+
+.moe-routing-step strong {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.moe-token-chips,
+.moe-expert-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.moe-token-chips i {
+  width: 31px;
+  height: 20px;
+  border: 1px solid var(--moe-wine);
+  border-radius: 5px;
+  background: var(--moe-wine-soft);
+}
+
+.moe-token-chips i:nth-child(2) { opacity: 0.78; }
+.moe-token-chips i:nth-child(3) { opacity: 0.56; }
+.moe-token-chips i:nth-child(4) { opacity: 0.34; }
+
+.moe-expert-dots i {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--paper-line);
+  border-radius: 50%;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.68);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 850;
+}
+
+.moe-expert-dots i.is-active {
+  border-color: var(--moe-gold);
+  color: color-mix(in srgb, var(--moe-gold) 86%, var(--ink));
+  background: color-mix(in srgb, var(--moe-gold) 10%, white);
+}
+
+.moe-literature-finding {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 13px;
+  max-width: 900px;
+  margin: 14px auto 0;
+  padding: 16px 18px;
+  border-left: 3px solid var(--moe-gold);
+  color: var(--moe-gold);
+  background: color-mix(in srgb, var(--moe-gold) 5%, rgba(255, 255, 255, 0.7));
+}
+
+.moe-literature-finding span {
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.moe-literature-finding p {
+  margin-top: 5px;
+  color: var(--ink-soft);
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 15px;
+  line-height: 1.58;
+}
+
+.moe-comparison-table-wrap {
+  overflow: hidden;
+  border: 1px solid var(--paper-line);
+  border-radius: 9px;
+  background: rgba(251, 250, 245, 0.78);
+  box-shadow: 0 18px 46px rgba(49, 41, 31, 0.065);
+}
+
+.moe-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.moe-comparison-table th,
+.moe-comparison-table td {
+  padding: 15px 13px;
+  border-right: 1px solid var(--paper-line);
+  border-bottom: 1px solid var(--paper-line);
+  color: var(--ink-soft);
+  font-size: 11px;
+  line-height: 1.52;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.moe-comparison-table tr > :last-child { border-right: 0; }
+.moe-comparison-table tbody tr:last-child > * { border-bottom: 0; }
+.moe-comparison-table thead th {
+  color: var(--moe-wine);
+  background: color-mix(in srgb, var(--moe-wine) 5%, rgba(255, 255, 255, 0.82));
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.moe-comparison-table thead th:nth-child(1) { width: 13%; }
+.moe-comparison-table thead th:nth-child(2) { width: 21%; }
+.moe-comparison-table thead th:nth-child(3) { width: 18%; }
+.moe-comparison-table thead th:nth-child(4) { width: 28%; }
+.moe-comparison-table thead th:nth-child(5) { width: 20%; }
+
+.moe-comparison-table tbody th {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.moe-status {
+  display: inline-block;
+  padding: 6px 8px;
+  border: 1px solid var(--paper-line);
+  border-radius: 999px;
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 8px;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.moe-status.is-included { border-color: color-mix(in srgb, var(--moe-green) 42%, var(--paper-line)); color: var(--moe-green); background: color-mix(in srgb, var(--moe-green) 5%, white); }
+.moe-status.is-architecture { border-color: color-mix(in srgb, var(--moe-wine) 30%, var(--paper-line)); color: var(--moe-wine); background: var(--moe-wine-soft); }
+.moe-status.is-partial { border-color: color-mix(in srgb, var(--moe-gold) 42%, var(--paper-line)); color: color-mix(in srgb, var(--moe-gold) 82%, var(--ink)); background: color-mix(in srgb, var(--moe-gold) 6%, white); }
+
+.moe-benchmark-evidence-note {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid color-mix(in srgb, var(--moe-gold) 42%, var(--paper-line));
+  border-radius: 8px;
+  color: var(--moe-gold);
+  background: color-mix(in srgb, var(--moe-gold) 6%, rgba(255, 255, 255, 0.76));
+}
+
+.moe-benchmark-evidence-note p {
+  color: var(--ink-soft);
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 15px;
+  line-height: 1.68;
+}
+
+.moe-benchmark-board {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.moe-benchmark-board > section {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--paper-line);
+  border-radius: 8px;
+  background: rgba(251, 250, 245, 0.74);
+}
+
+.moe-benchmark-board h3,
+.moe-benchmark-dimensions > span {
+  display: block;
+  margin-top: 9px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.moe-benchmark-dimensions > span { margin-top: 0; }
+.moe-benchmark-dimensions ol { display: grid; gap: 7px; margin-top: 14px; }
+.moe-benchmark-dimensions li { display: grid; grid-template-columns: 25px 1fr; gap: 8px; color: var(--ink-soft); font-size: 11px; }
+.moe-benchmark-dimensions b { color: var(--moe-gold); font-family: Georgia, "Times New Roman", serif; }
+.moe-benchmark-coverage svg { color: var(--moe-wine); }
+.moe-benchmark-coverage.is-included svg { color: var(--moe-green); }
+.moe-benchmark-coverage.is-baseline svg { color: var(--moe-gold); }
+.moe-benchmark-coverage p { margin-top: 12px; color: var(--muted); font-size: 10px; line-height: 1.58; }
+
+.moe-benchmark-clarifications {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 24px;
+  margin-top: 18px;
+  padding: 18px 20px;
+  border-top: 1px solid var(--paper-line);
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.moe-benchmark-clarifications li {
+  position: relative;
+  padding-left: 16px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.58;
+}
+
+.moe-benchmark-clarifications li::before {
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 7px;
+  height: 1px;
+  content: "";
+  background: var(--moe-wine);
+}
+
+.moe-key-findings {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.moe-key-findings li {
+  min-height: 150px;
+  padding: 19px;
+  border-top: 3px solid var(--moe-wine);
+  background: rgba(251, 250, 245, 0.74);
+  box-shadow: inset 0 0 0 1px var(--paper-line), 0 15px 36px rgba(49, 41, 31, 0.05);
+}
+
+.moe-key-findings span {
+  color: var(--moe-gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+}
+
+.moe-key-findings p {
+  margin-top: 16px;
+  color: var(--ink-soft);
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.moe-review-evidence .case-evidence-card:first-child { border-top: 3px solid var(--moe-wine); }
+.moe-review-evidence .case-evidence-card:last-child { border-top: 3px solid var(--moe-green); }
+
+.moe-limitations {
+  padding: 26px;
+  border: 1px solid var(--paper-line);
+  border-left: 4px solid var(--moe-wine);
+  border-radius: 8px;
+  background: rgba(251, 250, 245, 0.74);
+  box-shadow: 0 18px 44px rgba(49, 41, 31, 0.055);
+}
+
+.moe-limitations ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.moe-limitations li {
+  position: relative;
+  padding: 15px 15px 15px 30px;
+  border-top: 1px solid color-mix(in srgb, var(--moe-wine) 28%, var(--paper-line));
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.62;
+}
+
+.moe-limitations li::before {
+  position: absolute;
+  top: 14px;
+  left: 4px;
+  color: var(--moe-wine);
+  content: "—";
+  font-weight: 900;
+}
+
+@keyframes moe-review-stage-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1080px) {
+  .moe-review-framework {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .moe-review-stage {
+    min-height: 0;
+  }
+
+  .moe-review-stage.is-evidence {
+    grid-column: 1 / -1;
+  }
+
+  .moe-review-stage:not(:last-child)::after {
+    display: none;
+  }
+
+  .moe-benchmark-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .moe-key-findings {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .moe-review-overview-flow,
+  .moe-routing-explainer,
+  .moe-limitations ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .moe-review-overview-step:nth-child(2) svg,
+  .moe-routing-step:nth-child(2)::after {
+    display: none;
+  }
+
+  .moe-review-framework {
+    grid-template-columns: 1fr;
+    min-width: 0;
+    padding: 16px;
+  }
+
+  .moe-review-stage.is-evidence {
+    grid-column: auto;
+  }
+
+  .moe-comparison-table-wrap {
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .moe-comparison-table,
+  .moe-comparison-table tbody,
+  .moe-comparison-table tr,
+  .moe-comparison-table th,
+  .moe-comparison-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .moe-comparison-table thead {
+    display: none;
+  }
+
+  .moe-comparison-table tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  .moe-comparison-table tr {
+    overflow: hidden;
+    border: 1px solid var(--paper-line);
+    border-top: 3px solid var(--moe-wine);
+    border-radius: 8px;
+    background: rgba(251, 250, 245, 0.78);
+    box-shadow: 0 12px 28px rgba(49, 41, 31, 0.05);
+  }
+
+  .moe-comparison-table tbody th,
+  .moe-comparison-table tbody td {
+    display: grid;
+    grid-template-columns: minmax(108px, 0.34fr) minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px 14px;
+    border-right: 0;
+    border-bottom: 1px solid var(--paper-line);
+  }
+
+  .moe-comparison-table tbody tr > :last-child { border-bottom: 0; }
+
+  .moe-comparison-table tbody th::before,
+  .moe-comparison-table tbody td::before {
+    color: var(--moe-wine);
+    content: attr(data-label);
+    font-family: "Cascadia Mono", Consolas, monospace;
+    font-size: 8px;
+    font-weight: 900;
+    line-height: 1.45;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+}
+
+@media (max-width: 620px) {
+  .moe-review-hero {
+    padding-top: 34px;
+  }
+
+  .moe-review-hero h1 {
+    font-size: 31px;
+  }
+
+  .moe-review-overview {
+    padding: 16px 4px 18px;
+  }
+
+  .moe-review-overview-flow,
+  .moe-routing-explainer,
+  .moe-benchmark-board,
+  .moe-key-findings,
+  .moe-limitations ul,
+  .moe-benchmark-clarifications,
+  .moe-evidence-lanes {
+    grid-template-columns: 1fr;
+  }
+
+  .moe-review-overview-step {
+    grid-template-columns: 30px minmax(0, 1fr);
+    min-height: 42px;
+    padding-left: 10px;
+    border-left: 1px solid color-mix(in srgb, var(--moe-wine) 36%, var(--paper-line));
+  }
+
+  .moe-review-overview-step svg {
+    display: none;
+  }
+
+  .moe-review-overview > p {
+    font-size: 15px;
+  }
+
+  .moe-review-section {
+    margin-top: 52px;
+  }
+
+  .moe-review-framework,
+  .moe-routing-explainer {
+    padding: 12px;
+  }
+
+  .moe-routing-step:not(:last-child)::after {
+    top: auto;
+    right: calc(50% - 5px);
+    bottom: -20px;
+    transform: rotate(135deg);
+  }
+
+  .moe-routing-step {
+    min-height: 126px;
+  }
+
+  .moe-comparison-table tbody th,
+  .moe-comparison-table tbody td {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .moe-benchmark-evidence-note,
+  .moe-literature-finding {
+    grid-template-columns: 1fr;
+  }
+
+  .moe-key-findings li {
+    min-height: 0;
+  }
+
+  .moe-limitations {
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moe-review-stage {
+    animation: none;
+  }
+}
+
 /* Deployed mini-program case studies */
 .mini-program-page {
   --mini-blue: #164f79;

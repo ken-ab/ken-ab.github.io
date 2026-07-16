@@ -66,21 +66,126 @@ export const developmentZh: Record<string, { type: string; description: string }
   },
 };
 
+type ComparativeReviewTranslation = {
+  positioningNote: string;
+  flowSteps: string[];
+  comparisonRows: Array<{
+    design: string;
+    activeParameters: string;
+    takeaway: string;
+    quantitativeStatus: string;
+  }>;
+  benchmark: {
+    evidenceNote: string;
+    dimensions: string[];
+    denseBaselineNote: string;
+    clarifications: string[];
+  };
+  findings: string[];
+  routingBackgroundNote: string;
+  literatureComputeFinding: string;
+  limitations: string[];
+};
+
 type PublicationTranslation = {
+  title?: string;
   summary: string;
   abstractSummary: string;
   visualAlts: string[];
+  visualCaptions?: string[];
   problem: string[];
   innovations: string[];
+  comparativeReview?: ComparativeReviewTranslation;
 };
 
 export const publicationZh: Record<string, PublicationTranslation> = {
   moe: {
-    summary: "研究稀疏专家路由如何在受限计算量下维持大语言模型性能。",
-    abstractSummary: "本文系统梳理现代混合专家模型的稀疏路由机制、代表性架构和性能—效率权衡，并在综合、常识、知识、代码与数学五类基准上比较 MoE 与密集模型。综述归纳了稀疏激活、金字塔残差、自适应专家规模和共享专家隔离等机制，并报告在保持性能的同时至少降低约 50% 推理计算量。",
-    visualAlts: ["2017 至 2024 年主要混合专家模型的演进时间线。"],
-    problem: ["密集 Transformer 每个 token 都激活全部参数，模型扩展会显著增加推理成本。", "现代 MoE 在路由、专家组织和基准表现上差异明显，但缺少统一比较框架。"],
-    innovations: ["统一呈现 Token、Router、Top-k Experts 与加权聚合，并串联多代代表架构。", "综合五类基准，归纳稀疏激活、金字塔残差、自适应专家规模和共享专家隔离等效率机制。"],
+    title: "MoE模型的探索与增强：从 Deepspeed-MoE 到 DeepSeek-V3",
+    summary: "一篇比较性综述，系统梳理了从2022年以来七类前沿的代表性 MoE 架构，并综合分析文献报告的性能—效率证据。",
+    abstractSummary: "本文是一篇比较性综述，解释 MoE 的基础机制与局限，并系统梳理 GLaM、Switch Transformer、DeepSpeed-MoE、PR-MoE、Mixtral 8×7B、DBRX 和 DeepSeek-V3 七类代表性系统。页面中的性能数值来自模型原论文、技术报告或公开评测结果，并非作者在统一环境中重新训练和测试所得。由于缺少足够可比的公开结果，Switch Transformer、DeepSpeed-MoE 与 PR-MoE 主要用于架构和系统层面的定性分析。",
+    visualAlts: ["2017 至 2024 年稀疏 MoE 系统整体演进背景时间线。"],
+    visualCaptions: ["该时间线用于展示稀疏 MoE 系统的整体发展脉络。本文从更广泛的技术演进中选取七类代表性系统进行重点比较。"],
+    problem: [
+      "代表性 MoE 系统在路由、专家组织与系统优化方面存在明显差异，但这些设计选择很少在同一比较框架下呈现。",
+      "性能结果分散在不同论文和技术报告中，难以整体理解不同模型家族之间的容量—计算权衡。",
+    ],
+    innovations: [
+      "将七类代表性 MoE 系统纳入统一架构比较，覆盖路由方式、专家粒度、激活计算量和系统级优化。",
+      "综合整理综合能力、常识推理、世界知识、代码和数学五类结果，同时明确区分仅有架构证据的系统和具有 Benchmark 证据的模型。",
+      "归纳稀疏激活、金字塔残差、细粒度专家和共享专家隔离等反复出现的效率机制。",
+    ],
+    comparativeReview: {
+      positioningNote: "一篇比较性综述，系统梳理了从2022年以来七类前沿的代表性 MoE 架构，并综合分析文献报告的性能—效率证据。",
+      flowSteps: ["文献范围", "架构分类", "证据区分", "结论与局限"],
+      comparisonRows: [
+        {
+          design: "稀疏专家激活",
+          activeParameters: "最大 1.2T 参数版本中，每个 Token 激活约 9.66B 参数",
+          takeaway: "展示了固定计算预算下的稀疏扩展能力",
+          quantitativeStatus: "存在部分文献报告结果",
+        },
+        {
+          design: "Top-1 路由与简化专家选择",
+          activeParameters: "随模型配置变化",
+          takeaway: "简化路由并支持大规模稀疏训练",
+          quantitativeStatus: "仅进行架构分析",
+        },
+        {
+          design: "包含并行优化的 MoE 训练与推理框架",
+          activeParameters: "不使用单一固定激活参数值比较",
+          takeaway: "重点解决可扩展训练、推理及专家/数据并行问题",
+          quantitativeStatus: "仅进行系统分析",
+        },
+        {
+          design: "金字塔专家分配与残差密集连接",
+          activeParameters: "随配置变化",
+          takeaway: "结合金字塔专家组织与残差密集路径",
+          quantitativeStatus: "仅进行架构分析",
+        },
+        {
+          design: "从 8 个专家中选择 Top-2",
+          activeParameters: "约 13B",
+          takeaway: "仅激活部分专家即可获得较强的参数效率",
+          quantitativeStatus: "纳入基准综合",
+        },
+        {
+          design: "从 16 个细粒度专家中选择 Top-4",
+          activeParameters: "36B",
+          takeaway: "相比 Mixtral 使用更细粒度的专家组织，并在部分代码任务中表现突出",
+          quantitativeStatus: "纳入基准综合",
+        },
+        {
+          design: "细粒度路由专家与共享专家隔离",
+          activeParameters: "37B",
+          takeaway: "在保留共享知识的同时增强专家专业化",
+          quantitativeStatus: "纳入基准综合",
+        },
+      ],
+      benchmark: {
+        evidenceNote: "表中数值整理自模型原论文、技术报告及公开评测结果。所有模型并未在一个完全统一的环境中重新测试，因此该比较主要用于观察总体性能—效率趋势，不应被理解为严格的同条件排行榜。",
+        dimensions: ["综合能力", "常识推理", "世界知识", "代码", "数学"],
+        denseBaselineNote: "密集模型和闭源模型基线仅用于辅助观察来源评测中的参数效率与性能差异，不代表完全相同的测试条件。",
+        clarifications: [
+          "Benchmark 覆盖程度因模型和来源论文而异。",
+          "— 代表原始来源中缺少对应可比结果。",
+          "Switch Transformer、DeepSpeed-MoE 与 PR-MoE 不进入主要定量比较表。",
+          "Dense Baselines 用于提供观察背景，而不是宣称所有模型在相同条件下测试。",
+        ],
+      },
+      findings: [
+        "稀疏激活提高参数效率。",
+        "细粒度与共享专家增强专业化。",
+        "在本文整理的证据中，MoE 在代码和数学任务中呈现较强表现模式。",
+        "不同来源论文的测试设置并不完全一致。",
+      ],
+      routingBackgroundNote: "该图用于解释一般性的 Top-k 稀疏路由机制，仅作为背景知识，并非本文提出的新模型架构。",
+      literatureComputeFinding: "在部分被综述的比较设置中，文献报告 MoE 可在保持相近性能的同时将推理计算量降低至少约 50%。",
+      limitations: [
+        "Benchmark 数值来自不同来源论文，测试设置并未完全统一。",
+        "部分架构缺少足够可比的公开结果，因此只能进行定性分析。",
+        "指标缺失以及模型发布时间、提示方式和评测框架差异，限制了严格排名结论。",
+      ],
+    },
   },
   "olympic-prediction": {
     summary: "预测 2028 奥运奖牌表现，并量化东道主与优秀教练效应。",

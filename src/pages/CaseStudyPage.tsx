@@ -4,6 +4,7 @@ import { RouterBenchDetail } from "../components/case-study/RouterBenchDetail";
 import { OlympicMethodRoute } from "../components/case-study/OlympicMethodRoute";
 import { MiniProgramDetail } from "../components/case-study/MiniProgramDetail";
 import { McmProjectDetail } from "../components/case-study/McmProjectDetail";
+import { MoeReviewDetail } from "../components/case-study/MoeReviewDetail";
 import { ResearchMethodMap } from "../components/case-study/ResearchMethodMaps";
 import { ActionButton } from "../components/portfolio/ActionButton";
 import { getCaseStudy } from "../data/caseStudies";
@@ -45,6 +46,14 @@ export function CaseStudyPage() {
     return (
       <main className={`page-shell case-study-page finance-agent-page tone-${study.tone} page-enter`}>
         <FinanceAgentDetail study={study} />
+      </main>
+    );
+  }
+
+  if (study.kind === "publication" && study.id === "moe") {
+    return (
+      <main className={`page-shell case-study-page moe-review-page tone-${study.tone} page-enter`}>
+        <MoeReviewDetail study={study} />
       </main>
     );
   }

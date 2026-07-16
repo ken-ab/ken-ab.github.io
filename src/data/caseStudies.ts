@@ -24,6 +24,31 @@ type MethodStep = {
   body: string;
 };
 
+export type ComparativeReviewContent = {
+  positioningNote: string;
+  flowSteps: string[];
+  comparisonRows: Array<{
+    system: string;
+    design: string;
+    activeParameters: string;
+    takeaway: string;
+    quantitativeStatus: string;
+    statusTone: "architecture" | "partial" | "included";
+  }>;
+  benchmark: {
+    evidenceNote: string;
+    dimensions: string[];
+    includedSystems: string[];
+    architectureOnlySystems: string[];
+    denseBaselineNote: string;
+    clarifications: string[];
+  };
+  findings: string[];
+  routingBackgroundNote: string;
+  literatureComputeFinding: string;
+  limitations: string[];
+};
+
 type CaseStudyBase = {
   id: string;
   eyebrow: string;
@@ -51,6 +76,7 @@ export type PublicationCaseStudy = CaseStudyBase & {
   methodSteps: MethodStep[];
   problemAddressed: string[];
   innovations: string[];
+  comparativeReview?: ComparativeReviewContent;
 };
 
 export type CompetitionProjectCaseStudy = CaseStudyBase & {
@@ -125,8 +151,8 @@ export const caseStudies: CaseStudy[] = [
     id: "moe",
     methodVisualization: "moe",
     eyebrow: "Research Brief / MoE Architecture",
-    title: "Exploring and Enhancing Advanced MoE Models: From Deepspeed-MoE to DeepSeek-V3",
-    subtitle: "A first-author conference paper reviewing advanced Mixture-of-Experts architectures and their performance-efficiency trade-offs.",
+    title: "Exploring and Enhancing Advanced MoE Models: From DeepSpeed-MoE to DeepSeek-V3",
+    subtitle: "A first-author comparative review of seven representative Mixture-of-Experts systems and literature-reported performance-efficiency evidence.",
     tone: "research",
     period: "03/2025",
     role: "First Author",
@@ -137,47 +163,136 @@ export const caseStudies: CaseStudy[] = [
       "This study explores the application and optimization of Mixture of Experts (MoE) models in large-scale language models. We analyze the fundamental principles and limitations of the MoE architecture, followed by an in-depth examination of optimization strategies in advanced MoE architectures, including Switch Transformer, Deepspeed-MoE, PR-MoE, Mixtral 8x7B, Glam, DBRX and DeepSeek-V3. Through comprehensive benchmarks across five dimensions (popular aggregated results, commonsense reasoning, world knowledge, code and math), we compare these MoE models against the LLaMA family, Qwen 2.5 72B Base, GPT family and Claude family. Our findings indicate that MoE is a model architecture capable of maintaining high performance even under computational constraints. Techniques such as pyramid structures with residual connections, sparse activation, adaptive adjustment of expert numbers and sizes and shared expert isolation contribute to performance enhancement. Compared to standard Transformer models, MoE can achieve at least a 50% reduction in inference computation while preserving model performance. Furthermore, MoE achieves higher benchmark scores in mathematical and coding tasks. Open-source MoE models, exemplified by DeepSeek-V3, democratize AI research by lowering barriers to entry and fostering global collaboration. Community-driven initiatives, such as standardized simulation-to-real transfer protocols and resource-sharing platforms, address key challenges.",
     paperUrl: "https://doi.org/10.1109/AINIT65432.2025.11035928",
     oneLineSummary:
-      "This paper studies how Mixture-of-Experts models use sparse expert routing to maintain strong large-language-model performance under computational constraints.",
+      "A first-author comparative review of seven representative Mixture-of-Experts systems, synthesizing architectural choices and literature-reported performance–efficiency evidence.",
     visuals: [
       {
         src: moeTimelineFigure,
         alt: "Timeline of major Mixture-of-Experts models from 2017 to 2024.",
-        caption: "The evolution of sparse MoE systems across language, vision, multimodal learning, and recommendation.",
+        caption: "A literature timeline showing the broader evolution of sparse MoE systems. The review selects seven representative systems from this wider landscape for focused comparison.",
       },
     ],
-    methodTitle: "From compute bottleneck to MoE benchmark synthesis",
+    methodTitle: "Review scope and comparative framework",
     methodLead:
-      "The paper moves from the computational bottleneck of dense Transformers to a structured comparison of modern MoE systems.",
+      "The review separates architectural evidence from literature-reported benchmark evidence before synthesizing findings and limitations.",
     methodSteps: [
       {
         label: "01",
-        title: "Motivation",
-        body: "Frame dense Transformer scaling as a compute and memory bottleneck, especially when every token activates all parameters.",
+        title: "Literature scope",
+        body: "Select seven representative MoE systems from the broader evolution of sparse expert architectures.",
       },
       {
         label: "02",
-        title: "MoE mechanism",
-        body: "Explain sparse expert routing, gating functions, top-k expert activation, and the trade-off between capacity and activated computation.",
+        title: "Architecture taxonomy",
+        body: "Compare routing strategy, expert granularity, active parameters, shared or residual experts, and system optimization.",
       },
       {
         label: "03",
-        title: "Architecture review",
-        body: "Review representative systems including Switch Transformer, DeepSpeed-MoE, PR-MoE, Mixtral 8x7B, GLaM, DBRX, and DeepSeek-V3.",
+        title: "Evidence separation",
+        body: "Distinguish architecture-only systems from models with sufficiently comparable literature-reported benchmark results.",
       },
       {
         label: "04",
-        title: "Benchmark synthesis",
-        body: "Compare MoE and dense model families across popular aggregated results, commonsense reasoning, world knowledge, code, and math.",
+        title: "Synthesis and boundaries",
+        body: "Organize available results across five benchmark families, then state cross-paper findings and limitations.",
       },
     ],
     problemAddressed: [
-      "Dense Transformers activate the full parameter set for every token, making inference increasingly expensive as models scale.",
-      "Modern MoE systems differ in routing, expert organization, and benchmark behavior, but those trade-offs are difficult to compare in one view.",
+      "Representative MoE systems differ substantially in routing, expert organization and system optimization, but these design choices are rarely presented in one comparative view.",
+      "Performance results are distributed across heterogeneous papers and reports, making it difficult to interpret the capacity–compute trade-off across model families.",
     ],
     innovations: [
-      "Builds a unified Token to Router to Top-k Experts to Weighted Aggregation view across Switch Transformer, DeepSpeed-MoE, PR-MoE, Mixtral, GLaM, DBRX, and DeepSeek-V3.",
-      "Synthesizes five benchmark families and identifies sparse activation, pyramid-residual layouts, adaptive expert sizing, and shared-expert isolation as efficiency mechanisms; the paper reports at least 50% lower inference computation while preserving performance.",
+      "Organizes seven representative MoE systems into a unified architectural comparison covering routing, expert granularity, active computation and system-level optimization.",
+      "Synthesizes available results across aggregate ability, commonsense reasoning, world knowledge, code and mathematics, while explicitly separating architecture-only evidence from benchmark-supported comparisons.",
+      "Extracts recurring efficiency mechanisms, including sparse activation, pyramid-residual organization, fine-grained experts and shared expert isolation.",
     ],
+    comparativeReview: {
+      positioningNote: "A first-author comparative review of seven representative Mixture-of-Experts systems, synthesizing architectural choices and literature-reported performance–efficiency evidence.",
+      flowSteps: ["Literature scope", "Architecture taxonomy", "Evidence separation", "Findings and limitations"],
+      comparisonRows: [
+        {
+          system: "GLaM",
+          design: "Sparse expert activation",
+          activeParameters: "9.66B activated in the largest 1.2T-parameter version",
+          takeaway: "Demonstrates sparse scaling under a constrained computational budget.",
+          quantitativeStatus: "Partial literature-reported results",
+          statusTone: "partial",
+        },
+        {
+          system: "Switch Transformer",
+          design: "Top-1 routing with simplified expert selection",
+          activeParameters: "Varies by model configuration",
+          takeaway: "Simplifies routing and supports large-scale sparse training.",
+          quantitativeStatus: "Architecture review only",
+          statusTone: "architecture",
+        },
+        {
+          system: "DeepSpeed-MoE",
+          design: "MoE training and inference framework with parallelism optimization",
+          activeParameters: "Not used as a single fixed comparison value",
+          takeaway: "Focuses on scalable training, inference and expert/data parallelism.",
+          quantitativeStatus: "System review only",
+          statusTone: "architecture",
+        },
+        {
+          system: "PR-MoE",
+          design: "Pyramid expert allocation with residual dense connections",
+          activeParameters: "Varies by configuration",
+          takeaway: "Combines pyramid expert organization with residual dense paths.",
+          quantitativeStatus: "Architecture review only",
+          statusTone: "architecture",
+        },
+        {
+          system: "Mixtral 8×7B",
+          design: "Top-2 routing from 8 experts",
+          activeParameters: "Approximately 13B",
+          takeaway: "Achieves strong parameter efficiency with only a subset of experts activated.",
+          quantitativeStatus: "Included in benchmark synthesis",
+          statusTone: "included",
+        },
+        {
+          system: "DBRX",
+          design: "Top-4 routing from 16 fine-grained experts",
+          activeParameters: "36B",
+          takeaway: "Uses more fine-grained experts than Mixtral and performs strongly on selected coding tasks.",
+          quantitativeStatus: "Included in benchmark synthesis",
+          statusTone: "included",
+        },
+        {
+          system: "DeepSeek-V3",
+          design: "Fine-grained routed experts with shared expert isolation",
+          activeParameters: "37B",
+          takeaway: "Improves expert specialization while retaining access to shared knowledge.",
+          quantitativeStatus: "Included in benchmark synthesis",
+          statusTone: "included",
+        },
+      ],
+      benchmark: {
+        evidenceNote: "Benchmark values were collected from original model papers, technical reports and public evaluation results. The models were not reproduced under one fully unified evaluation environment. The comparison is therefore intended to reveal broad performance–efficiency patterns rather than serve as a strict leaderboard.",
+        dimensions: ["Aggregate", "Commonsense", "World Knowledge", "Code", "Math"],
+        includedSystems: ["GLaM", "Mixtral 8×7B", "DBRX", "DeepSeek-V3"],
+        architectureOnlySystems: ["Switch Transformer", "DeepSpeed-MoE", "PR-MoE"],
+        denseBaselineNote: "Dense and proprietary baselines are retained only to help interpret parameter-efficiency and performance differences in the collected source evaluations.",
+        clarifications: [
+          "Benchmark coverage varies by model and source paper.",
+          "— indicates that a comparable result was unavailable in the original sources.",
+          "Switch Transformer, DeepSpeed-MoE and PR-MoE are excluded from the main quantitative table.",
+          "Dense baselines provide context rather than a claim of identical evaluation conditions.",
+        ],
+      },
+      findings: [
+        "Sparse activation improves parameter efficiency.",
+        "Fine-grained and shared experts strengthen specialization.",
+        "Code and math show strong MoE performance patterns in the reviewed evidence.",
+        "Evaluation settings differ across source papers.",
+      ],
+      routingBackgroundNote: "This diagram illustrates a generic Top-k sparse routing mechanism. It is provided as background knowledge and does not represent a new architecture proposed in this paper.",
+      literatureComputeFinding: "The reviewed literature reports at least 50% lower inference computation in selected comparisons while preserving comparable performance.",
+      limitations: [
+        "The benchmark values originate from different source papers and are not fully controlled under identical evaluation settings.",
+        "Some architectures lack sufficiently comparable public results and are therefore discussed qualitatively rather than quantitatively.",
+        "Missing metrics and differences in model release time, prompting and evaluation frameworks limit strict ranking claims.",
+      ],
+    },
     links: [{ label: "Back to Research", href: "/research" }],
   },
   {
