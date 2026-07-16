@@ -5326,10 +5326,10 @@ img {
 
 .finance-query-node { top: 39%; left: 1.5%; width: 13.5%; }
 .finance-mcp-node { top: 36%; left: 19%; width: 10%; min-height: 145px; }
-.finance-summary-node { top: 39%; left: 62.5%; width: 10%; }
-.finance-evaluator-node { top: 39%; left: 74%; width: 10%; }
-.finance-report-node { top: 17%; left: 88%; width: 10.5%; border-color: rgba(40, 102, 83, 0.48); }
-.finance-reflection-node { top: 69%; left: 74%; width: 11%; border-color: rgba(156, 65, 53, 0.45); }
+.finance-summary-node { top: 39%; left: 65.5%; width: 10%; }
+.finance-evaluator-node { top: 39%; left: 76.5%; width: 10%; }
+.finance-report-node { top: 17%; left: 89%; width: 9.5%; border-color: rgba(40, 102, 83, 0.48); }
+.finance-reflection-node { top: 69%; left: 76.5%; width: 11%; border-color: rgba(156, 65, 53, 0.45); }
 
 .finance-tool-ticks {
   display: grid;
@@ -5346,8 +5346,8 @@ img {
 
 .finance-agent-cluster {
   top: 10%;
-  left: 35%;
-  width: 25%;
+  left: 32%;
+  width: 31%;
   min-height: 80%;
   padding: 13px;
   border-color: rgba(181, 129, 48, 0.4);
@@ -5361,19 +5361,27 @@ img {
   border-bottom: 1px solid rgba(181, 129, 48, 0.25);
 }
 
-.finance-agent-cluster > div {
+.finance-agent-cluster > .finance-agent-layout {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 20px;
+  grid-template-columns: minmax(92px, 0.78fr) minmax(0, 1.22fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.finance-standard-agent-stack {
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .finance-agent-node {
   position: relative;
   display: grid;
-  gap: 10px;
-  min-height: 120px;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px;
+  min-height: 78px;
   align-content: center;
+  align-items: center;
   padding: 12px;
   border: 1px solid rgba(23, 62, 92, 0.2);
   border-radius: 8px;
@@ -5396,6 +5404,222 @@ img {
   background: var(--finance-green);
   box-shadow: 0 0 0 0 rgba(40, 102, 83, 0.34);
   animation: finance-agent-pulse 2.8s ease-out infinite;
+}
+
+.finance-news-pipeline {
+  display: grid;
+  grid-template-rows: auto 22px auto;
+  min-width: 0;
+  align-content: center;
+}
+
+.finance-news-training-node {
+  display: grid;
+  gap: 6px;
+  padding: 9px;
+  border: 1px solid rgba(181, 129, 48, 0.48);
+  border-radius: 8px;
+  color: var(--finance-navy);
+  background:
+    linear-gradient(145deg, rgba(181, 129, 48, 0.1), transparent 58%),
+    rgba(255, 252, 242, 0.96);
+}
+
+.finance-news-training-node > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(181, 129, 48, 0.25);
+  color: var(--finance-red);
+}
+
+.finance-news-training-node > header span {
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.finance-training-data {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  padding: 5px 7px;
+  border-radius: 5px;
+  background: rgba(23, 62, 92, 0.045);
+}
+
+.finance-training-data > div,
+.finance-training-output {
+  display: grid;
+  gap: 1px;
+}
+
+.finance-training-data strong,
+.finance-training-output strong {
+  color: var(--ink-soft);
+  font-size: 8.5px;
+  line-height: 1.25;
+}
+
+.finance-training-data small,
+.finance-training-output small {
+  color: var(--muted);
+  font-size: 6.5px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.finance-training-method {
+  display: grid;
+  place-items: center;
+  min-height: 31px;
+  padding: 5px 10px 10px;
+  clip-path: polygon(0 0, 100% 0, 100% 68%, 60% 68%, 50% 100%, 40% 68%, 0 68%);
+  color: #fffdf7;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--finance-gold) 90%, #6d4317), var(--finance-gold));
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 7px;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.finance-training-output {
+  padding: 5px 7px;
+  border: 1px solid rgba(40, 102, 83, 0.28);
+  border-radius: 5px;
+  background: rgba(40, 102, 83, 0.055);
+}
+
+.finance-adapter-route {
+  width: 100%;
+  height: 22px;
+  overflow: visible;
+}
+
+.finance-adapter-route path {
+  fill: none;
+  stroke: rgba(156, 65, 53, 0.72);
+  stroke-width: 1.6;
+  stroke-dasharray: 4 5;
+  vector-effect: non-scaling-stroke;
+  animation: finance-wire-flow 3.2s linear infinite;
+}
+
+.finance-adapter-route marker path {
+  fill: var(--finance-red);
+  stroke: none;
+}
+
+.finance-news-agent-node {
+  position: relative;
+  display: grid;
+  gap: 7px;
+  align-content: start;
+  padding: 11px;
+  border: 1px solid rgba(23, 62, 92, 0.25);
+  border-radius: 8px;
+  color: var(--finance-navy);
+  background:
+    linear-gradient(150deg, rgba(23, 62, 92, 0.045), transparent 48%),
+    rgba(255, 255, 252, 0.94);
+}
+
+.finance-news-agent-node > header {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 0 16px 9px 0;
+  border-bottom: 1px solid rgba(23, 62, 92, 0.14);
+}
+
+.finance-news-agent-node > header div {
+  display: grid;
+  gap: 2px;
+}
+
+.finance-news-agent-node > header span,
+.finance-news-branch > span {
+  color: var(--finance-red);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+}
+
+.finance-news-agent-node > header strong {
+  color: var(--ink-soft);
+  font-size: 11px;
+}
+
+.finance-news-agent-node > header > i {
+  position: absolute;
+  top: 3px;
+  right: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--finance-green);
+  box-shadow: 0 0 0 0 rgba(40, 102, 83, 0.34);
+  animation: finance-agent-pulse 2.8s ease-out infinite;
+}
+
+.finance-news-source {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border: 1px dashed rgba(23, 62, 92, 0.23);
+  border-radius: 6px;
+  color: var(--finance-navy);
+  background: rgba(23, 62, 92, 0.035);
+}
+
+.finance-news-source span {
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.finance-news-branches {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.finance-news-branch {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3px;
+  align-content: center;
+  justify-items: start;
+  min-height: 56px;
+  padding: 7px 8px;
+  border: 1px solid rgba(23, 62, 92, 0.18);
+  border-radius: 6px;
+  background: rgba(255, 254, 249, 0.85);
+}
+
+.finance-news-branch svg {
+  margin-bottom: 2px;
+}
+
+.finance-news-branch strong {
+  color: var(--ink-soft);
+  font-size: 9px;
+  line-height: 1.25;
+}
+
+.finance-news-branch.is-risk {
+  border-color: rgba(156, 65, 53, 0.38);
+  background: rgba(156, 65, 53, 0.045);
 }
 
 .finance-loop-label {
@@ -5431,14 +5655,60 @@ img {
   padding: 10px;
 }
 
-.finance-system-map.is-compact .finance-agent-cluster > div {
+.finance-system-map.is-compact .finance-agent-cluster > .finance-agent-layout {
   gap: 8px;
-  margin-top: 12px;
+  margin-top: 9px;
 }
 
 .finance-system-map.is-compact .finance-agent-node {
-  min-height: 82px;
-  padding: 9px;
+  min-height: 58px;
+  padding: 8px;
+}
+
+.finance-system-map.is-compact .finance-news-agent-node {
+  gap: 6px;
+  padding: 8px;
+}
+
+.finance-system-map.is-compact .finance-news-pipeline {
+  grid-template-rows: auto 17px auto;
+}
+
+.finance-system-map.is-compact .finance-news-training-node {
+  gap: 4px;
+  padding: 7px;
+}
+
+.finance-system-map.is-compact .finance-news-training-node > header {
+  padding-bottom: 4px;
+}
+
+.finance-system-map.is-compact .finance-training-data,
+.finance-system-map.is-compact .finance-training-output {
+  padding: 4px 6px;
+}
+
+.finance-system-map.is-compact .finance-training-method {
+  min-height: 25px;
+  padding: 4px 7px 8px;
+  font-size: 6px;
+}
+
+.finance-system-map.is-compact .finance-adapter-route {
+  height: 17px;
+}
+
+.finance-system-map.is-compact .finance-news-agent-node > header {
+  padding-bottom: 6px;
+}
+
+.finance-system-map.is-compact .finance-news-source {
+  padding: 4px 6px;
+}
+
+.finance-system-map.is-compact .finance-news-branch {
+  min-height: 40px;
+  padding: 5px 6px;
 }
 
 .finance-showcase-footer {
@@ -6008,7 +6278,7 @@ img {
     padding: 14px;
   }
 
-  .finance-agent-cluster > div {
+  .finance-agent-cluster > .finance-agent-layout {
     margin-top: 14px;
   }
 
@@ -6051,8 +6321,27 @@ img {
     grid-column: 1;
   }
 
-  .finance-agent-cluster > div {
+  .finance-agent-cluster > .finance-agent-layout {
     grid-template-columns: 1fr;
+  }
+
+  .finance-standard-agent-stack {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: none;
+  }
+
+  .finance-agent-node {
+    grid-template-columns: 1fr;
+    min-height: 84px;
+    align-content: center;
+  }
+
+  .finance-news-branches {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .finance-news-branches::before {
+    display: none;
   }
 
   .finance-showcase-facts {
@@ -6093,6 +6382,8 @@ img {
   .finance-source-dot,
   .finance-detail-status i,
   .finance-agent-node i,
+  .finance-news-agent-node > header > i,
+  .finance-adapter-route path,
   .finance-wire {
     animation: none;
   }
