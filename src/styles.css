@@ -5390,7 +5390,7 @@ img {
   border-right: 1px solid var(--paper-line);
   border-bottom: 1px solid var(--paper-line);
   color: var(--ink-soft);
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.52;
   text-align: left;
   vertical-align: top;
@@ -5403,7 +5403,7 @@ img {
   color: var(--moe-wine);
   background: color-mix(in srgb, var(--moe-wine) 5%, rgba(255, 255, 255, 0.82));
   font-family: "Cascadia Mono", Consolas, monospace;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -5428,7 +5428,7 @@ img {
   border: 1px solid var(--paper-line);
   border-radius: 999px;
   font-family: "Cascadia Mono", Consolas, monospace;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 850;
   line-height: 1.35;
 }

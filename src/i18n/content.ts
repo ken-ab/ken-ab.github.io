@@ -89,6 +89,7 @@ type ComparativeReviewTranslation = {
 
 type PublicationTranslation = {
   title?: string;
+  keywords?: string[];
   summary: string;
   abstractSummary: string;
   visualAlts: string[];
@@ -101,6 +102,7 @@ type PublicationTranslation = {
 export const publicationZh: Record<string, PublicationTranslation> = {
   moe: {
     title: "MoE模型的探索与增强：从 Deepspeed-MoE 到 DeepSeek-V3",
+    keywords: ["混合专家模型", "稀疏路由", "大模型效率", "专家激活", "DeepSeek-V3"],
     summary: "一篇比较性综述，系统梳理了从2022年以来七类前沿的代表性 MoE 架构，并综合分析文献报告的性能—效率证据。",
     abstractSummary: "本文是一篇比较性综述，解释 MoE 的基础机制与局限，并系统梳理 GLaM、Switch Transformer、DeepSpeed-MoE、PR-MoE、Mixtral 8×7B、DBRX 和 DeepSeek-V3 七类代表性系统，比较它们在路由方式、专家组织、激活参数规模、并行训练和架构优化方面的设计差异。在性能分析部分，文章汇总模型原论文、技术报告及公开评测中的结果，从综合能力、常识推理、世界知识、代码和数学五个维度，对部分 MoE 模型与 LLaMA、Mistral、Qwen、GPT 和 Claude 等 Transformer 模型进行横向比较。最后，文章归纳细粒度专家划分、共享专家隔离、稀疏激活、金字塔残差结构等主要优化思路，并讨论 MoE 模型在高效大模型构建、开源协作和未来路由机制研究中的发展方向。",
     visualAlts: ["2017 至 2024 年稀疏 MoE 系统整体演进背景时间线。"],
@@ -188,6 +190,8 @@ export const publicationZh: Record<string, PublicationTranslation> = {
     },
   },
   "olympic-prediction": {
+    title: "2028年奥运奖牌表现预测：机器学习模型及东道主与教练效应",
+    keywords: ["奥运奖牌", "K-means 聚类", "因子分析", "ARIMA", "XGBoost", "FCNN", "东道主效应"],
     summary: "预测 2028 奥运奖牌表现，并量化东道主与优秀教练效应。",
     abstractSummary: "研究以 1896—2024 年奥运历史数据为基础，将 234 个国家分为 α1—α4 四组。既往获奖国家通过因子分析、ARIMA 与四类机器学习模型构成 MPXG 路线；从未获奖国家通过参与人数预测和三层 FCNN 构成 FMPM 路线，同时单独量化东道主与优秀教练效应。",
     visualAlts: ["奥运奖牌预测研究的双路线模型框架图。"],
@@ -195,6 +199,8 @@ export const publicationZh: Record<string, PublicationTranslation> = {
     innovations: ["将 234 个国家分为 α1-α4，分别使用 MPXG 与 FMPM 双路径建模。", "把 XGBoost、FCNN 结果与 74% 东道主增益率及 0.2-0.5 枚教练效应连接起来。"],
   },
   "sustainability-bamboo": {
+    title: "基于机械性能机器学习的生态设计薄壁钢—竹连接行为预测",
+    keywords: ["薄壁钢—竹结构", "因子分析", "机器学习", "随机森林", "贝叶斯优化"],
     summary: "以机器学习和超参数优化预测薄壁钢-竹结构连接的机械行为。",
     abstractSummary: "研究将 51 个薄壁钢—竹连接试件产生的 249 组机械性能记录转化为可复用的连接类型预测流程。方法先通过因子分析形成综合排序，再比较八类机器学习模型和五种调参方法，最终将预测结果反馈到试件选择与结构设计。",
     visualAlts: ["从连接试验、数据处理、机器学习比较到设计反馈的研究框架。"],
@@ -202,6 +208,8 @@ export const publicationZh: Record<string, PublicationTranslation> = {
     innovations: ["对 51 个试件、249 组数据进行因子排名与八模型比较。", "RF 测试准确率约 61%，Bayesian Optimization 在五种调参方法中将其提高到约 67%。"],
   },
   "robot-vision": {
+    title: "机器人视觉、计算机视觉与机器学习融合研究进展：技术演进、挑战与工业应用",
+    keywords: ["机器人视觉", "计算机视觉", "机器学习", "目标检测", "三维重建", "工业应用"],
     summary: "梳理机器人视觉、计算机视觉与机器学习的技术演进、应用和部署挑战。",
     abstractSummary: "本文是一篇体系化综述，连接全局视觉、本地嵌入式视觉和云边协同架构，与目标检测、三维重建及动态场景理解等任务。文章进一步将实时性、数据稀缺和多模态融合等部署瓶颈，对应到轻量模型、联邦学习和神经符号系统等发展方向。",
     visualAlts: ["城市道路场景中的目标检测示例，包含行人、车辆和文本区域。"],
@@ -209,6 +217,8 @@ export const publicationZh: Record<string, PublicationTranslation> = {
     innovations: ["建立架构-任务-挑战-产业闭环技术地图。", "把轻量模型、联邦学习和神经符号系统对应到具体部署瓶颈，强调体系化综述而非原创算法。"],
   },
   "deic-digital-trade": {
+    title: "提升“一带一路”国家数字服务贸易出口潜力：数字经济发展与中介路径的随机前沿引力模型分析",
+    keywords: ["数字服务贸易", "一带一路", "数字经济", "随机前沿引力模型", "中介效应分析"],
     summary: "研究数字经济如何影响“一带一路”国家数字服务贸易出口潜力。",
     abstractSummary: "研究使用 36 个“一带一路”国家 2013—2021 年面板数据，以随机前沿引力模型估计贸易效率与未释放出口潜力，并检验服务业增加值占比和数字技术指数两条中介路径。预测扩展以 RFE、XGBoost 和遗传算法估计 2022—2028 年指标轨迹。",
     visualAlts: ["“一带一路”数字经济的新商业模式、关键趋势、技术和基础能力框架。"],

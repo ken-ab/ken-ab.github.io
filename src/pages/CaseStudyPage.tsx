@@ -12,7 +12,6 @@ import { getCaseStudy } from "../data/caseStudies";
 import type { AgentProjectCaseStudy, PublicationCaseStudy } from "../data/caseStudies";
 import { publicationZh } from "../i18n/content";
 import { bilingual, useLanguage } from "../i18n/LanguageContext";
-import { additionalPublications, selectedPublications } from "../data/siteStructure";
 
 export function CaseStudyPage() {
   const { id } = useParams();
@@ -110,7 +109,6 @@ function splitAbstractIntoParagraphs(text: string, breakAfter: string[] = []) {
 function PublicationIntro({ study }: { study: PublicationCaseStudy }) {
   const { language } = useLanguage();
   const localized = language === "zh" ? publicationZh[study.id] : undefined;
-  const publicationMeta = [...selectedPublications, ...additionalPublications].find((item) => item.briefId === study.id);
   const abstractParagraphs = splitAbstractIntoParagraphs(
     study.abstract ?? "",
     study.abstractParagraphBreaks,
@@ -119,9 +117,8 @@ function PublicationIntro({ study }: { study: PublicationCaseStudy }) {
   return (
     <>
       <section className="paper-brief-hero" aria-labelledby="paper-brief-title">
-        <p className="paper-keywords">{study.keywords?.join(" · ")}</p>
-        <h1 id="paper-brief-title">{study.title}</h1>
-        {language === "zh" && publicationMeta ? <p className="translated-title">{publicationMeta.titleZh}</p> : null}
+        <p className="paper-keywords">{(localized?.keywords ?? study.keywords)?.join(" · ")}</p>
+        <h1 id="paper-brief-title">{localized?.title ?? study.title}</h1>
         <p className="paper-authors" aria-label={bilingual(language, "Paper authors", "论文作者")}>
           {study.authors?.map((author, index) => (
             <span className={author === "Zhenkai Zhang" || author === "Zhengkai Zhang" ? "is-owner" : ""} key={author}>

@@ -42,7 +42,7 @@ export function MoeReviewDetail({ study }: { study: PublicationCaseStudy }) {
   return (
     <>
       <section className="paper-brief-hero moe-review-hero" aria-labelledby="paper-brief-title">
-        <p className="paper-keywords">{study.keywords.join(" · ")}</p>
+        <p className="paper-keywords">{(localized?.keywords ?? study.keywords).join(" · ")}</p>
         <h1 id="paper-brief-title">{localized?.title ?? study.title}</h1>
         <p className="paper-authors" aria-label={bilingual(language, "Paper authors", "论文作者")}>
           {study.authors.map((author, index) => (
