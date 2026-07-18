@@ -1,0 +1,158 @@
+import { AlertTriangle, CalendarDays, FileText, GitFork } from "lucide-react";
+import type { ReactNode } from "react";
+import financeReportRaw from "../assets/reports/finance-agent-guizhou-maotai-demo.md?raw";
+import financeReportUrl from "../assets/reports/finance-agent-guizhou-maotai-demo.md?url&no-inline";
+import { ActionButton } from "../components/portfolio/ActionButton";
+import "./FinanceResultDemo.css";
+
+type ReportSection = {
+  title: string;
+  lines: string[];
+};
+
+type ReportBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "list"; items: Array<{ depth: number; text: string }> };
+
+const report = parseReport(financeReportRaw);
+
+export function FinanceResultDemo() {
+  return (
+    <main className="page-shell finance-result-page page-enter">
+      <header className="finance-result-hero">
+        <div>
+          <p className="finance-result-kicker">实际运行输出 · ARCHIVED SYSTEM OUTPUT</p>
+          <h1>{report.title}</h1>
+          <p className="finance-result-intro">
+            这是一份由 Finance-Agent 在一次完整分析流程中生成的原始报告，用于展示系统如何汇总基本面、技术面、估值与新闻分析结果。
+          </p>
+        </div>
+        <div className="finance-result-meta">
+          <span><CalendarDays aria-hidden="true" size={16} /> 分析基准</span>
+          <strong>{report.analysisTime}</strong>
+        </div>
+        <div className="finance-result-actions">
+          <ActionButton href="/brief/finance-agent" variant="primary">返回系统详情</ActionButton>
+          <ActionButton external href={financeReportUrl}><FileText aria-hidden="true" size={16} /> 原始 Markdown</ActionButton>
+          <ActionButton external href="https://github.com/ken-ab/Finance-Agent"><GitFork aria-hidden="true" size={16} /> GitHub</ActionButton>
+        </div>
+      </header>
+
+      <aside className="finance-result-notice" role="note">
+        <AlertTriangle aria-hidden="true" size={21} />
+        <div>
+          <strong>演示说明</strong>
+          <p>
+            本页忠实呈现一次历史运行输出，并保留报告中记录的数据缺失与模型判断。内容以 2026 年 1 月 17 日为分析基准，仅用于说明系统输出能力，不代表当前市场观点，也不构成投资建议。
+          </p>
+        </div>
+      </aside>
+
+      <article className="finance-result-paper">
+        <header>
+          <span><FileText aria-hidden="true" size={18} /> MARKDOWN REPORT</span>
+          <small>Finance-Agent / 贵州茅台 600519</small>
+        </header>
+        <div className="finance-result-report-body">
+          {report.sections.map((section, index) => (
+            <section key={section.title}>
+              <div className="finance-result-section-heading">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h2>{section.title}</h2>
+              </div>
+              <ReportSectionBody lines={section.lines} />
+            </section>
+          ))}
+        </div>
+      </article>
+    </main>
+  );
+}
+
+function ReportSectionBody({ lines }: { lines: string[] }) {
+  return groupReportBlocks(lines).map((block, index) => {
+    if (block.type === "paragraph") {
+      return <p key={`paragraph-${index}`}>{renderInline(block.text)}</p>;
+    }
+
+    return (
+      <ul key={`list-${index}`}>
+        {block.items.map((item, itemIndex) => (
+          <li className={item.depth > 0 ? "is-nested" : undefined} key={`${item.text}-${itemIndex}`}>
+            {renderInline(item.text)}
+          </li>
+        ))}
+      </ul>
+    );
+  });
+}
+
+function parseReport(source: string) {
+  const lines = source.replace(/\r/g, "").trim().split("\n");
+  const title = lines.shift()?.replace(/^#\s+/, "") ?? "Finance-Agent 输出报告";
+  const sections: ReportSection[] = [];
+  let analysisTime = "2026-01-17 20:29:18";
+  let current: ReportSection | undefined;
+
+  for (const line of lines) {
+    if (line.startsWith("## ")) {
+      current = { title: line.slice(3).trim(), lines: [] };
+      sections.push(current);
+      continue;
+    }
+
+    if (line.startsWith("分析基准时间：")) {
+      analysisTime = line.slice("分析基准时间：".length).trim();
+      continue;
+    }
+
+    current?.lines.push(line);
+  }
+
+  return { title, sections, analysisTime };
+}
+
+function groupReportBlocks(lines: string[]): ReportBlock[] {
+  const blocks: ReportBlock[] = [];
+  let paragraph: string[] = [];
+  let list: Array<{ depth: number; text: string }> = [];
+
+  const flushParagraph = () => {
+    if (paragraph.length) blocks.push({ type: "paragraph", text: paragraph.join(" ") });
+    paragraph = [];
+  };
+  const flushList = () => {
+    if (list.length) blocks.push({ type: "list", items: list });
+    list = [];
+  };
+
+  for (const line of lines) {
+    const bullet = line.match(/^(\s*)-\s+(.*)$/);
+    if (bullet) {
+      flushParagraph();
+      list.push({ depth: bullet[1].length >= 2 ? 1 : 0, text: bullet[2].trim() });
+      continue;
+    }
+
+    if (!line.trim()) {
+      flushParagraph();
+      flushList();
+      continue;
+    }
+
+    flushList();
+    paragraph.push(line.trim());
+  }
+
+  flushParagraph();
+  flushList();
+  return blocks;
+}
+
+function renderInline(text: string): ReactNode[] {
+  return text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean).map((part, index) => (
+    part.startsWith("**") && part.endsWith("**")
+      ? <strong key={`${part}-${index}`}>{part.slice(2, -2)}</strong>
+      : <span key={`${part}-${index}`}>{part}</span>
+  ));
+}

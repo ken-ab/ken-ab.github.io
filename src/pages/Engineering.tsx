@@ -36,6 +36,7 @@ export function Engineering() {
           <div className="engineering-featured-actions">
             <ActionButton href="/brief/finance-agent" variant="primary">{bilingual(language, "Technical project overview", "技术项目概览")}</ActionButton>
             <ActionButton external href="https://github.com/ken-ab/Finance-Agent">GitHub</ActionButton>
+            <ActionButton href="/brief/finance-agent/result">{bilingual(language, "Result Demo", "结果演示")}</ActionButton>
           </div>
         </div>
 

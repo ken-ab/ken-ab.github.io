@@ -20,7 +20,7 @@ export function Research() {
             <p className="section-eyebrow" id="selected-publications-title">{bilingual(language, "01 · Selected Research", "01 · 精选研究")}</p>
           </div>
         </header>
-        <SelectedResearchShowcase />
+        <SelectedResearchShowcase showFinance={false} />
       </section>
 
       <section className="additional-publications-section" aria-labelledby="additional-publications-title">

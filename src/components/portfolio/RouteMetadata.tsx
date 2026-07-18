@@ -30,7 +30,9 @@ export function RouteMetadata() {
     };
 
     let pageTitle = pageTitles[pathname];
-    if (pathname.startsWith("/brief/")) {
+    if (pathname === "/brief/finance-agent/result") {
+      pageTitle = { en: "Finance-Agent Result Demo", zh: "Finance-Agent 结果演示" };
+    } else if (pathname.startsWith("/brief/")) {
       const id = pathname.slice("/brief/".length);
       const study = getCaseStudy(id);
       pageTitle = detailTitles[id] ?? (study ? { en: study.title, zh: study.title } : undefined);

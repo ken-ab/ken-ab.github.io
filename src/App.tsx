@@ -6,6 +6,7 @@ import { CaseStudyPage } from "./pages/CaseStudyPage";
 import { Contact } from "./pages/Contact";
 import { Engineering } from "./pages/Engineering";
 import { Experience } from "./pages/Experience";
+import { FinanceResultDemo } from "./pages/FinanceResultDemo";
 import { Home } from "./pages/Home";
 import { Research } from "./pages/Research";
 
@@ -20,6 +21,7 @@ export default function App() {
         <Route element={<Research />} path="/research" />
         <Route element={<Engineering />} path="/engineering" />
         <Route element={<Experience />} path="/experience" />
+        <Route element={<FinanceResultDemo />} path="/brief/finance-agent/result" />
         <Route element={<CaseStudyPage />} path="/brief/:id" />
         <Route element={<Navigate replace to="/research" />} path="/publications" />
         <Route element={<Navigate replace to="/research" />} path="/applications" />

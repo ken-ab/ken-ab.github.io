@@ -141,6 +141,9 @@ export function FinanceAgentDetail({ study }: { study: AgentProjectCaseStudy }) 
               <ActionButton external href={study.githubUrl} variant="primary">
                 <Code2 aria-hidden="true" size={17} /> GitHub
               </ActionButton>
+              <ActionButton href="/brief/finance-agent/result">
+                <FileText aria-hidden="true" size={17} /> {bilingual(language, "Result Demo", "结果演示")}
+              </ActionButton>
             </div>
           ) : null}
         </div>

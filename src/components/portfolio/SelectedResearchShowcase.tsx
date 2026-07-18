@@ -1,4 +1,4 @@
-import { Code2, FileText, GitFork, Search } from "lucide-react";
+import { FileText, GitFork, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import routerBenchOverview from "../../assets/case-studies/routerbench-cost-aware-routing.png";
 import financeAgentArchitecture from "../../assets/project-details/finance-agent-system-architecture.png";
@@ -9,7 +9,11 @@ import "./SelectedResearchShowcase.css";
 
 const publicationOrder = ["moe", "olympic"];
 
-export function SelectedResearchShowcase() {
+type SelectedResearchShowcaseProps = {
+  showFinance?: boolean;
+};
+
+export function SelectedResearchShowcase({ showFinance = true }: SelectedResearchShowcaseProps) {
   const { language } = useLanguage();
   const localize = (text: { en: string; zh: string }) => bilingual(language, text.en, text.zh);
   const orderedPublications = publicationOrder.flatMap((id) => {
@@ -92,7 +96,7 @@ export function SelectedResearchShowcase() {
           </article>
         ))}
 
-        <article className={`home-publication-card is-finance-agent is-${language}`}>
+        {showFinance ? <article className={`home-publication-card is-finance-agent is-${language}`}>
           <div className="status-pills selected-research-status">
             <span>{bilingual(language, "Agent System", "Agent 系统")}</span>
           </div>
@@ -124,15 +128,15 @@ export function SelectedResearchShowcase() {
               <strong>{bilingual(language, "4 specialist agents · 8 MCP tool families · 1 bounded reflection round", "4 个专业 Agent · 8 类 MCP 工具 · 1 轮最大反思")}</strong>
             </div>
             <div className="home-publication-actions">
+              <Link className="research-action-pill" to="/brief/finance-agent">
+                <Search aria-hidden="true" size={15} /> DETAIL
+              </Link>
               <a className="research-action-pill" href="https://github.com/ken-ab/Finance-Agent" rel="noreferrer" target="_blank">
                 <GitFork aria-hidden="true" size={15} /> GITHUB
               </a>
-              <a className="research-action-pill" href="https://github.com/ken-ab/Finance-Agent/tree/main" rel="noreferrer" target="_blank">
-                <Code2 aria-hidden="true" size={15} /> CODE
-              </a>
             </div>
           </footer>
-        </article>
+        </article> : null}
       </div>
     </div>
   );
