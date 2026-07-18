@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ActionButton } from "../components/portfolio/ActionButton";
 import { ProfileCard } from "../components/portfolio/ProfileCard";
@@ -11,11 +12,14 @@ import {
 } from "../data/siteStructure";
 import { homeZh } from "../i18n/content";
 import { bilingual, useLanguage } from "../i18n/LanguageContext";
+import { scheduleSiteImagePreload } from "../utils/siteImagePreload";
 
 export function Home() {
   const { language } = useLanguage();
   const localize = (text: { en: string; zh: string }) => bilingual(language, text.en, text.zh);
   const introduction = bilingual(language, profile.intro, homeZh.intro).split("\n\n");
+
+  useEffect(() => scheduleSiteImagePreload(), []);
 
   return (
     <main className="page-shell phase1-home page-enter">
