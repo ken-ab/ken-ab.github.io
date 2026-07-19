@@ -26,11 +26,11 @@ export function Home() {
       <section className="phase1-hero" aria-labelledby="home-title">
         <div className="phase1-hero-copy">
           <p className="hero-kicker">
-            {bilingual(language, "EFFICIENT AI · MODEL ROUTING · MULTIMODAL AGENTS", "高效 AI · 模型路由 · 多模态智能体")}
+            {bilingual(language, "GENERATIVE AI · DATA MODELING · MODEL ROUTING", "生成式 AI · 数据建模 · 模型路由")}
           </p>
           <div className={`phase1-motto-lockup is-${language}`}>
             <h1
-              aria-label={bilingual(language, "Good research takes time. Good systems are built with care.", "好的研究需要时间，好的系统需要用心构建。")}
+              aria-label={bilingual(language, "Good research takes time. Good systems take care.", "好的研究需要时间，好的系统需要用心。")}
               className="phase1-hero-motto"
               id="home-title"
             >
@@ -40,8 +40,8 @@ export function Home() {
                 {bilingual(language, ",", "，")}
               </span>
               <span aria-hidden="true">
-                {bilingual(language, "Good systems are built with ", "好的系统需要用心")}
-                <mark>{bilingual(language, "care", "构建")}</mark>
+                {bilingual(language, "Good systems take ", "好的系统需要")}
+                <mark>{bilingual(language, "care", "用心")}</mark>
                 <b>{bilingual(language, ".", "。")}</b>
               </span>
             </h1>
