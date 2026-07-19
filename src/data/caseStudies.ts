@@ -371,11 +371,11 @@ export const caseStudies: CaseStudy[] = [
     keywords: ["LangGraph", "MCP", "Multi-Agent", "ReAct", "Evaluation", "Reflection"],
     githubUrl: "https://github.com/ken-ab/Finance-Agent",
     oneLineSummary:
-      "This multi-agent financial research system is built with LangGraph, MCP, and ReAct. An independent MCP server provides eight families of financial-data tools to four specialist agents, which run fundamental, technical, valuation, and news analyses in parallel. A summary agent produces a structured Markdown report, an evaluator checks completeness and task alignment, and a reflection agent may issue one bounded replanning instruction before the final report is produced.",
+      "This multi-agent financial research system is built with LangGraph, MCP, and ReAct. An independent MCP server registers 28 financial-data tools across eight modules for four specialist agents, which run fundamental, technical, valuation, and news analyses in parallel. A summary agent produces a structured Markdown report, an evaluator checks completeness and task alignment, and a reflection agent may issue one bounded replanning instruction before the final report is produced.",
     facts: [
       { value: "4", label: "Specialist Agents", note: "Fundamental, technical, valuation, and news analysis" },
-      { value: "8", label: "MCP Tool Families", note: "Market, reports, indices, macro, analysis, and news access" },
-      { value: "1", label: "Maximum Reflection Round", note: "At most one replanning round when revision is required" },
+      { value: "28", label: "Registered MCP Tools", note: "Counted across eight active tool modules in the public source" },
+      { value: "60/60", label: "Extraction Tests", note: "Exact company-name and stock-code regression cases passed" },
     ],
     toolFamilies: [
       "Stock market",
@@ -397,7 +397,7 @@ export const caseStudies: CaseStudy[] = [
       "Source trace",
     ],
     experimentalNote:
-      "Experimental component: Qwen3-2.5B LoRA scripts explore news sentiment and risk scoring, but they are not presented as a required stage in the core LangGraph runtime.",
+      "Experimental component: Qwen2.5-0.5B LoRA scripts explore news sentiment and risk scoring, but the datasets, checkpoints, and accuracy claims are not part of the verified public evaluation or the required core runtime.",
     methodTitle: "LangGraph + MCP + evaluator-reflection loop",
     methodLead:
       "The repository implements a graph-style workflow where data tools feed specialist agents before a summary, evaluation, and bounded reflection stage.",

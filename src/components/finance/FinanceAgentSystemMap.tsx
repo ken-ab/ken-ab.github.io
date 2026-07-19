@@ -40,8 +40,8 @@ export function FinanceAgentSystemMap({
     <div
       aria-label={bilingual(
         language,
-        "Finance-Agent workflow from a natural-language query through MCP tools and four parallel specialist agents. The news agent separates sentiment and risk scoring, with a LoRA-tuned Qwen3-2.5B model in the risk branch, before summary, evaluation, reflection, and Markdown output.",
-        "Finance-Agent 从自然语言查询进入 MCP 工具与四个并行专业智能体；新闻智能体进一步拆分情感分析和风险评估，风险分支使用经 LoRA 微调的 Qwen3-2.5B 模型，最后进入汇总、评估、反思与 Markdown 输出。",
+        "Finance-Agent workflow from a natural-language query through MCP tools and four parallel specialist agents, followed by summary, evaluation, bounded reflection, and Markdown output. An optional Qwen2.5-0.5B LoRA experiment is shown separately and is not required by the core runtime.",
+        "Finance-Agent 从自然语言查询进入 MCP 工具与四个并行专业智能体，随后完成汇总、评估、有界反思与 Markdown 输出。图中另行标注了可选的 Qwen2.5-0.5B LoRA 实验，它不是核心运行时的必需阶段。",
       )}
       className={`finance-system-map${compact ? " is-compact" : ""}`}
     >
@@ -107,22 +107,22 @@ export function FinanceAgentSystemMap({
           <div className="finance-news-pipeline">
             <article className="finance-news-training-node">
               <header>
-                <span>{bilingual(language, "TRAINING", "训练")}</span>
+                <span>{bilingual(language, "OPTIONAL EXPERIMENT", "可选实验")}</span>
                 <Cpu aria-hidden="true" size={compact ? 14 : 17} />
               </header>
               <div className="finance-training-data">
                 <Database aria-hidden="true" size={compact ? 13 : 16} />
                 <div>
-                  <strong>{bilingual(language, "Labeled news corpus", "标注新闻语料")}</strong>
-                  <small>{bilingual(language, "Sentiment 1–5 · Risk 1–5", "情感 1–5 · 风险 1–5")}</small>
+                  <strong>{bilingual(language, "Local news corpus", "本地新闻语料")}</strong>
+                  <small>{bilingual(language, "Not distributed in this repository", "未随仓库公开")}</small>
                 </div>
               </div>
               <div className="finance-training-method">
-                <span>Qwen3-2.5B + LoRA {bilingual(language, "fine-tuning", "微调")}</span>
+                <span>Qwen2.5-0.5B + LoRA {bilingual(language, "scripts", "脚本")}</span>
               </div>
               <div className="finance-training-output">
-                <strong>{bilingual(language, "Two scoring adapters", "两套评分适配器")}</strong>
-                <small>{bilingual(language, "Sentiment · Risk", "情感 · 风险")}</small>
+                <strong>{bilingual(language, "Local adapters", "本地适配器")}</strong>
+                <small>{bilingual(language, "No public accuracy claim", "不宣称公开准确率")}</small>
               </div>
             </article>
 

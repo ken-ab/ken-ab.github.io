@@ -41,7 +41,7 @@ export function SelectedResearchShowcase({ showFinance = true }: SelectedResearc
           <p>{localize(routerBenchMini.question)}</p>
           <footer>
             <div className="featured-research-proof">
-              <strong>{bilingual(language, "3 task types · 5 routing strategies · 2 evaluation sets", "3 类任务 · 5 种路由策略 · 2 组评测数据")}</strong>
+              <strong>{bilingual(language, "4,000 examples · 800 frozen test · 13.94% lower cost", "4,000 道题 · 800 道冻结测试 · 成本降低 13.94%")}</strong>
             </div>
             <div className="home-publication-actions">
               <Link className="research-action-pill" to="/brief/routerbench-mini">
@@ -113,7 +113,7 @@ export function SelectedResearchShowcase({ showFinance = true }: SelectedResearc
               height={1024}
               loading="lazy"
               src={financeAgentArchitecture}
-              width={1535}
+              width={1536}
             />
           </div>
           <p>
@@ -125,7 +125,7 @@ export function SelectedResearchShowcase({ showFinance = true }: SelectedResearc
           </p>
           <footer>
             <div className="featured-research-proof">
-              <strong>{bilingual(language, "4 specialist agents · 8 MCP tool families · 1 bounded reflection round", "4 个专业 Agent · 8 类 MCP 工具 · 1 轮最大反思")}</strong>
+              <strong>{bilingual(language, "4 specialist agents · 28 MCP tools · 60/60 extraction tests", "4 个专业 Agent · 28 个 MCP 工具 · 60/60 提取测试")}</strong>
             </div>
             <div className="home-publication-actions">
               <Link className="research-action-pill" to="/brief/finance-agent">

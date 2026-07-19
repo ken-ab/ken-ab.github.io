@@ -4,13 +4,8 @@ import {
   Code2,
   Database,
   FileText,
-  MessageSquareText,
   RefreshCw,
-  ShieldAlert,
   ShieldCheck,
-  SlidersHorizontal,
-  Timer,
-  TrendingUp,
   Workflow,
 } from "lucide-react";
 import type { AgentProjectCaseStudy } from "../../data/caseStudies";
@@ -21,99 +16,63 @@ import { bilingual, useLanguage } from "../../i18n/LanguageContext";
 
 const financeMetrics = [
   {
-    value: "4,000+",
-    icon: Database,
-    en: {
-      label: "A-share Coverage",
-      detail: "Supports multi-dimensional fundamental, technical, valuation, and news analysis.",
-    },
-    zh: {
-      label: "A 股覆盖范围",
-      detail: "支持基本面、技术面、估值与新闻等多维度分析。",
-    },
-  },
-  {
-    value: "91.2%",
-    icon: MessageSquareText,
-    en: {
-      label: "Sentiment Model Accuracy",
-      detail: "Final result on an independent test set after Qwen3-2.5B LoRA fine-tuning.",
-    },
-    zh: {
-      label: "情感模型准确率",
-      detail: "基于 Qwen3-2.5B LoRA 微调，在独立测试集上的最终结果。",
-    },
-  },
-  {
-    value: "88.4%",
-    icon: ShieldAlert,
-    en: {
-      label: "Risk Model Accuracy",
-      detail: "Final result on an independent test set after Qwen3-2.5B LoRA fine-tuning.",
-    },
-    zh: {
-      label: "风险模型准确率",
-      detail: "基于 Qwen3-2.5B LoRA 微调，在独立测试集上的最终结果。",
-    },
-  },
-  {
-    value: "98%",
+    value: "4",
     icon: Workflow,
     en: {
-      label: "Tool-call Success Rate",
-      detail: "Successful MCP data-tool calls across the end-to-end analysis workflow.",
+      label: "Specialist Agents",
+      detail: "Fundamental, technical, valuation, and news branches run before report synthesis.",
     },
     zh: {
-      label: "工具调用成功率",
-      detail: "MCP 数据工具在端到端分析流程中的成功调用比例。",
+      label: "专业分析智能体",
+      detail: "基本面、技术面、估值与新闻分支完成分析后再汇总报告。",
     },
   },
   {
-    value: "≈99%",
+    value: "28",
+    icon: Database,
+    en: {
+      label: "Registered MCP Tools",
+      detail: "Counted directly from active FastMCP tool decorators in the public source tree.",
+    },
+    zh: {
+      label: "已注册 MCP 工具",
+      detail: "依据公开源码中启用的 FastMCP 工具装饰器直接统计。",
+    },
+  },
+  {
+    value: "8",
+    icon: Code2,
+    en: {
+      label: "MCP Tool Modules",
+      detail: "Market, reports, indices, overview, macro, dates, analysis, and news.",
+    },
+    zh: {
+      label: "MCP 工具模块",
+      detail: "覆盖市场、财报、指数、概览、宏观、日期、分析与新闻。",
+    },
+  },
+  {
+    value: "60/60",
     icon: BadgeCheck,
     en: {
-      label: "Data Consistency",
-      detail: "Validation consistency across data tools, analytical results, and final reports.",
+      label: "Extraction Tests Passed",
+      detail: "Exact matches for company names and stock codes in the committed regression suite.",
     },
     zh: {
-      label: "数据一致率",
-      detail: "不同数据工具、分析结果与最终报告之间的校验一致性。",
+      label: "提取测试通过",
+      detail: "仓库回归测试中，公司名称与股票代码均需精确匹配。",
     },
   },
   {
-    value: "≈90s",
-    icon: Timer,
+    value: "1",
+    icon: RefreshCw,
     en: {
-      label: "End-to-end Analysis Latency",
-      detail: "Reduced from over two minutes to about 90 seconds through parallel agents and result caching.",
+      label: "Maximum Reflection Retry",
+      detail: "The workflow permits one replanning cycle and cannot reflect indefinitely.",
     },
     zh: {
-      label: "端到端分析时延",
-      detail: "通过多 Agent 并行执行与结果缓存，由 2 分钟以上降至约 90 秒。",
-    },
-  },
-  {
-    value: "≈0.1%",
-    icon: SlidersHorizontal,
-    en: {
-      label: "LoRA Trainable Parameter Ratio",
-      detail: "Updates only a small parameter subset, substantially reducing memory and compute costs.",
-    },
-    zh: {
-      label: "LoRA 可训练参数比例",
-      detail: "仅更新少量模型参数，显著降低训练显存与计算成本。",
-    },
-  },
-  {
-    value: "78%",
-    icon: TrendingUp,
-    en: {
-      label: "Investment Recommendation Accuracy",
-      detail: "Backtested on two years of A-share data against expected performance over the following 3–6 months.",
-    },
-    zh: {
-      label: "投资建议准确率",
-      detail: "基于过去两年 A 股数据回测，评估投资建议在随后 3–6 个月内是否达到预期表现。",
+      label: "最大反思重试",
+      detail: "工作流最多进行一次重新规划，避免出现无限反思循环。",
     },
   },
 ];
@@ -180,7 +139,7 @@ export function FinanceAgentDetail({ study }: { study: AgentProjectCaseStudy }) 
       <section className="finance-tools-section" aria-labelledby="finance-tools-title">
         <header className="finance-section-heading is-label-only">
           <h2 className="finance-section-label" id="finance-tools-title">
-            {bilingual(language, "Model & System Metrics", financeZh.tools.eyebrow)}
+            {bilingual(language, "Verified Repository Evidence", financeZh.tools.eyebrow)}
           </h2>
         </header>
         <div className="finance-metric-grid">

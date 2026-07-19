@@ -58,22 +58,22 @@ export const routerBenchMini: ResearchProjectCaseStudy = {
       zh: "在统一提示、评分与 API 成本核算下，比较 Always Cheap、Always Strong、Task-Aware、Learned Router 与 Reflection。",
     },
     {
-      en: "Used the original 300-task development set and set A to compare methods and features, then froze the selected configuration before opening set B.",
-      zh: "使用原始 300 道开发题和 A 组进行方法与特征比较，并在查看 B 组前冻结最终方案。",
+      en: "Used 3,200 development examples for five-fold out-of-fold training, feature ablation, threshold selection, and overlap audits.",
+      zh: "使用 3,200 道开发题完成五折 OOF 训练、特征消融、阈值选择与重叠审计。",
     },
     {
-      en: "Reserved set B as an untouched 150-task confirmation set for the final frozen method configuration.",
-      zh: "将 B 组保留为 150 道完全未参与选择的最终确认集，用于评估冻结后的方法方案。",
+      en: "Opened the frozen 800-example test set only after methods, thresholds, manifests, prompts, and scoring rules were fixed.",
+      zh: "仅在方法、阈值、数据清单、提示词与评分规则全部冻结后，才打开 800 道测试题。",
     },
   ],
   results: [
     {
-      en: "Across the two non-overlapping held-out batches, the frozen Task-Aware baseline stayed within 0.67 percentage points of Always Strong.",
-      zh: "在两批无重叠 held-out 评测中，固定的 Task-Aware 基线仅比 Always Strong 低 0.67 个百分点。",
+      en: "On the frozen 800-example test set, Task-Aware reached 72.12% accuracy, 0.63 percentage points below Always Strong.",
+      zh: "在冻结的 800 道测试题上，Task-Aware 准确率为 72.12%，比 Always Strong 低 0.63 个百分点。",
     },
     {
-      en: "Under the same frozen evaluation, API-call cost fell by 22.5% and observed latency by 26.6%.",
-      zh: "同一冻结基线比较中，调用成本降低 22.5%，观测延迟降低 26.6%。",
+      en: "Against Always Strong, Task-Aware reduced average cost by 13.94%, latency by 14.01%, and Strong-model use to 69.88%.",
+      zh: "相较 Always Strong，Task-Aware 将平均成本降低 13.94%、延迟降低 14.01%，Strong 使用率降至 69.88%。",
     },
   ],
   limitations: [
@@ -82,8 +82,8 @@ export const routerBenchMini: ResearchProjectCaseStudy = {
       zh: "该项目是一项小型实验基准研究，不是正式发表论文，也不宣称提出了新的路由理论。",
     },
     {
-      en: "The two held-out batches are non-overlapping, but they are not two fully independent confirmatory replications because the A batch informed later feature selection.",
-      zh: "两批 held-out 评测互不重叠，但由于 A 组影响了后续特征选择，不能将其表述为两次完全独立的确认性复现。",
+      en: "The frozen test protocol reduces tuning leakage, but the evidence still comes from one model family and one benchmark implementation rather than an external replication.",
+      zh: "冻结测试协议降低了调参泄漏风险，但当前证据仍来自单一模型家族与一套基准实现，而不是外部独立复现。",
     },
     {
       en: "Observed latency reflects the tested runtime and should not be generalized to every provider, device, or deployment environment.",
@@ -91,14 +91,6 @@ export const routerBenchMini: ResearchProjectCaseStudy = {
     },
   ],
 };
-
-export const routerBenchV4Routes = [
-  { method: "Always Cheap", accuracy: "78.67%", latency: "1,178 ms", averageCost: "0.00023762" },
-  { method: "Always Strong", accuracy: "83.33%", latency: "2,619 ms", averageCost: "0.00064448" },
-  { method: "Handcrafted Task-Aware", accuracy: "82.67%", latency: "1,767 ms", averageCost: "0.00050139", featured: true },
-  { method: "Learned Cost-Aware", accuracy: "80.00%", latency: "2,391 ms", averageCost: "0.00043693" },
-  { method: "Calibrated Reflection", accuracy: "80.00%", latency: "2,202 ms", averageCost: "0.00047537" },
-] as const;
 
 export const selectedPublications: PublicationSummary[] = [
   {

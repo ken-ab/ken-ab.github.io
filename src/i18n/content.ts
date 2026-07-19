@@ -2,7 +2,7 @@ export const homeZh = {
   kicker: "应用人工智能 · 数据建模 · 全栈系统",
   title: ["我建模，", "我开发，", "我交付。"],
   intro:
-    "我是张桢铠（Ken），毕业于南京工业大学，获学士学位，荣誉学位等级为优秀；即将就读香港理工大学数据科学硕士项目。\n\n大三期间，我将主要精力投入科研，发表了 2 篇 SCI 论文和 2 篇会议论文，研究内容涵盖机器学习、MoE 与计算机视觉。大四期间，我在 2026 年 MCM/ICM 中获得 Meritorious Winner（M 奖），延续了对建模与研究问题的探索；与此同时，为了更直接地理解大模型与智能体系统在真实场景中的运行方式，我将部分重心延伸至工程实践，先后参与多智能体系统和企业级 AI 工作流的开发，并借助 AI 辅助编程独立完成了两个小程序。工程经历让我学会了如何将想法转化为可运行的系统，也让我更加清楚地意识到，真正长期吸引我的，是系统背后的模型架构、路由机制与效率边界。\n\n这些经历并没有让我远离科研，反而帮助我进一步明确了自己的研究兴趣。目前，我关注 Efficient AI、生成式 AI、模型路由与多模态学习，希望以研究助理或合作研究的方式参与相关课题，在真实科研过程中持续深化研究能力，并为项目推进与论文产出作出贡献。",
+    "我将于 2026 年 9 月就读香港理工大学数据科学硕士，关注高效 AI、模型路由与多模态智能体。目前已完成 RouterBench-Mini 与 Finance-Agent 等可复现研究原型，并寻求研究助理、研究工程及应用 AI 机会。",
   lanes: {
     "/publications": { label: "论文", title: "有模型纪律的研究", body: "按主线与辅助证据整理机器学习、决策系统和综述研究。" },
     "/projects": { label: "项目经历", title: "研究、竞赛与应用实践", body: "涵盖生物信息流水线、数学建模和投前工作流等课程之外的实践。" },
@@ -12,9 +12,9 @@ export const homeZh = {
 
 export const profileZh = {
   location: "南京 / 香港",
-  currently: "香港理工大学数据科学专业即将入学\n研究方向：高效生成式 AI、MoE 与模型适配\n正在开发智能体 AI 与机器学习系统原型",
+  currently: "香港理工大学数据科学专业即将入学\n研究方向：高效 AI、模型路由与多模态智能体\n寻求研究助理、研究工程与应用 AI 机会",
   researchInterests: "高效生成式 AI · 混合专家模型 · 模型适配与复用 · 多模态与智能体学习",
-  technicalFocus: "Python · PyTorch · TensorFlow · Transformers · BERT · ChatGLM · MoE · scikit-learn",
+  technicalFocus: "Python · PyTorch · Transformers · LangGraph · MCP · scikit-learn · FastAPI",
   lookingFor: "研究助理 · GenAI / 多模态学习 · 高效 AI · 智能体系统",
   focus: "多模态 / 多智能体 AI 研究 · AI 系统工程",
 };
@@ -232,19 +232,19 @@ export const financeZh = {
   title: "基于 MCP 协议的 A 股智能分析系统",
   role: "算法工程师",
   subtitle: "多智能体 A 股研究原型：把公司研究拆分为专业分析分支，并生成可追踪的 Markdown 报告。",
-  summary: "这是一个基于 LangGraph、MCP 和 ReAct 构建的多智能体金融研究系统。系统通过独立 MCP Server 提供 8 类金融数据工具，由基本面、技术面、估值和新闻 4 个专业 Agent 并行分析，再由 Summary Agent 汇总为结构化 Markdown 报告。报告生成后，Evaluator Agent 检查完整性与任务匹配度；若需要修订，Reflection Agent 会生成重新规划指令，并最多触发一次有界反思后输出最终报告。",
-  responsibility: "主要负责数据源工具化封装、股票分析工作流的设计，以及模型训练与微调工作。",
-  responsibilityEn: "I focused on packaging data sources as MCP tools, designing the stock-analysis workflow, and training and fine-tuning models.",
+  summary: "这是一个基于 LangGraph、MCP 和 ReAct 构建的多智能体金融研究系统。独立 MCP Server 在 8 个模块中注册 28 个金融数据工具，由基本面、技术面、估值和新闻 4 个专业 Agent 并行分析，再由 Summary Agent 汇总为结构化 Markdown 报告。报告生成后，Evaluator Agent 检查完整性与任务匹配度；若需要修订，Reflection Agent 会生成重新规划指令，并最多触发一次有界反思后输出最终报告。",
+  responsibility: "主要负责数据源工具化封装、股票分析工作流，以及评估与有界反思机制。",
+  responsibilityEn: "I focused on packaging data sources as MCP tools, designing the stock-analysis workflow, and implementing evaluation with bounded reflection.",
   facts: [
     { label: "专业分析智能体", note: "基本面、技术面、估值与新闻分析" },
-    { label: "MCP工具类别", note: "覆盖市场、财报、指数、宏观、分析与新闻" },
-    { label: "最大反思轮次", note: "报告不完整时最多触发一次重新规划" },
+    { label: "已注册 MCP 工具", note: "公开源码的 8 个模块中共注册 28 个工具" },
+    { label: "提取测试", note: "公司名称与股票代码 60/60 精确匹配" },
   ],
   architecture: {
     eyebrow: "系统架构",
   },
   tools: {
-    eyebrow: "模型与系统效果",
+    eyebrow: "已核验的仓库证据",
   },
   output: {
     eyebrow: "评估与反思",
@@ -259,7 +259,7 @@ export const financeZh = {
   reportNote: "Markdown / 不包含虚构投资结果",
   reportTitle: "A 股公司分析",
   reportSections: ["执行摘要", "基本面分析", "技术面分析", "估值分析", "新闻与风险", "综合评估", "来源追踪"],
-  experimentalNote: "实验支线：Qwen3-2.5B LoRA 脚本用于探索新闻情绪和风险评分，但不作为核心 LangGraph 运行时中的强制阶段。",
+  experimentalNote: "实验支线：Qwen2.5-0.5B LoRA 脚本用于探索新闻情绪和风险评分；数据集、检查点与准确率主张不属于当前已核验的公开评测，也不是核心 LangGraph 运行时的强制阶段。",
 };
 
 type MiniProgramTranslation = {

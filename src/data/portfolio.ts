@@ -102,7 +102,7 @@ export type DevelopmentProject = TimelineEntry & {
 export const profile = {
   name: "Ken",
   chineseName: "张桢铠",
-  headline: "Efficient GenAI · Multimodal Learning · Agentic AI Systems",
+  headline: "Efficient AI · Model Routing · Multimodal Agents",
   location: "Nanjing / Hong Kong",
   education: "Nanjing Tech University; The Hong Kong Polytechnic University",
   github: "https://github.com/ken-ab",
@@ -110,17 +110,17 @@ export const profile = {
   email: "zzk13373667812@gmail.com",
   wechat: "zzk13373667812",
   currently: `Incoming MSc student in Data Science & Analytics at PolyU
-Research focus: efficient GenAI, MoE, and model adaptation
-Developing prototypes for agentic AI and machine-learning systems`,
+Research focus: efficient AI, model routing, and multimodal agents
+Seeking RA, research engineering, and applied AI opportunities`,
   researchInterests:
     "Efficient Generative AI · Mixture-of-Experts · Model Adaptation and Reuse · Multimodal and Agentic Learning",
-  technicalFocus: "Python · PyTorch · TensorFlow · Transformers · BERT · ChatGLM · MoE · scikit-learn",
+  technicalFocus: "Python · PyTorch · Transformers · LangGraph · MCP · scikit-learn · FastAPI",
   lookingFor:
     "Research Assistantship · GenAI / Multimodal Learning · Efficient AI · Agentic AI Systems",
   focus: "Multimodal / Multi-Agent AI Research · AI Systems Engineering",
   availability: "Research Assistantship · Research Collaboration",
   intro:
-    "I’m Zhenkai Zhang (Ken). I earned a BSc in Data Science and Big Data Technology from Nanjing Tech University, with a GPA of 3.9/4.0. In September 2026, I will begin an MSc in Data Science & Analytics at The Hong Kong Polytechnic University.\n\nAs a third-year undergraduate, I focused on research and co-authored two peer-reviewed journal articles and two conference papers in machine learning, Mixture-of-Experts, and computer vision. In my final year, I received a Meritorious Winner award at MCM/ICM 2026 and gained further experience in mathematical modeling and problem-driven research. I also applied my research interests in engineering projects: I contributed to a multi-agent system and an enterprise AI workflow, and independently developed and deployed two WeChat mini programs. These projects helped me identify the questions that most interest me: how model architectures, routing mechanisms, and adaptation strategies affect the efficiency and capability limits of AI systems.\n\nMy current interests include efficient AI, generative models, model routing and reuse, and multimodal learning. I am seeking a research assistantship or collaboration in which I can contribute to rigorous experiments, system development, and publication-quality research while deepening my research skills.",
+    "Incoming MSc student in Data Science & Analytics at PolyU, working on efficient AI, model routing, and multimodal agents. I build reproducible research prototypes—including RouterBench-Mini and Finance-Agent—and am seeking research assistant, research engineering, and applied AI opportunities.",
 };
 
 export const homeLanes = [
@@ -381,12 +381,12 @@ export const developmentProjects: DevelopmentProject[] = [
     type: "AI Agent / Finance / Multi-agent System",
     description:
       "Built on MCP, the system coordinates multiple agents to produce structured research reports for investment analysis.",
-    tags: ["MCP", "LangGraph", "ReAct", "Multi-Agent", "A-share", "Qwen3-2.5B", "LoRA", "News Factor Model", "Markdown Report"],
+    tags: ["MCP", "LangGraph", "ReAct", "Multi-Agent", "A-share", "Qwen2.5-0.5B", "LoRA", "Evaluation", "Markdown Report"],
     highlights: [
-      "Supports data access for more than 4,000 A-share stocks.",
       "Implemented specialist agents for fundamental, technical, valuation, and news analysis.",
+      "Registered 28 MCP tools across eight financial-data modules.",
       "Added a summary agent, an evaluator, and a reflection-based replanning loop.",
-      "Integrated Qwen3-2.5B LoRA news factor model.",
+      "Verified 60/60 deterministic query and stock-code extraction cases.",
     ],
     actions: [
       { label: "View Brief", href: "/brief/finance-agent" },
@@ -410,7 +410,7 @@ export const developmentProjects: DevelopmentProject[] = [
       ],
       facts: [
         { value: "4", label: "Parallel specialist agents" },
-        { value: "8", label: "MCP tool families" },
+        { value: "28", label: "Registered MCP tools" },
         { value: "1", label: "Bounded reflection round" },
       ],
       reportSections: ["Fundamental", "Technical", "Valuation", "News & risk"],

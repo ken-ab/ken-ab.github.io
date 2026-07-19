@@ -22,8 +22,20 @@ function getBrowserLanguage(): Language {
   return preferredLanguage?.toLowerCase().startsWith("zh") ? "zh" : "en";
 }
 
+function getRequestedLanguage(): Language | null {
+  if (typeof window === "undefined") return null;
+  const hashQuery = window.location.hash.includes("?")
+    ? window.location.hash.slice(window.location.hash.indexOf("?") + 1)
+    : "";
+  const requested = new URLSearchParams(hashQuery).get("lang")
+    ?? new URLSearchParams(window.location.search).get("lang");
+  return requested === "zh" || requested === "en" ? requested : null;
+}
+
 function getInitialLanguage(): Language {
   if (typeof window === "undefined") return "en";
+  const requestedLanguage = getRequestedLanguage();
+  if (requestedLanguage) return requestedLanguage;
   const storedLanguage = window.localStorage.getItem(STORAGE_KEY);
   return storedLanguage === "zh" || storedLanguage === "en" ? storedLanguage : getBrowserLanguage();
 }
